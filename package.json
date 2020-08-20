@@ -1,0 +1,19 @@
+{
+  "name": "vue3-analysis",
+  "version": "1.0.0",
+  "description": "vue3及其相关类库分析",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev",
+    "build": "vuepress build"
+  },
+  "keywords": [
+    "vue3"
+  ],
+  "author": "xuguo",
+  "license": "ISC",
+  "devDependencies": {
+    "@vue/composition-api": "^1.0.0-beta.10",
+    "vuepress": "^1.5.3"
+  }
+}
