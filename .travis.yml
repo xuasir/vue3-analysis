@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+  - "12"
+
+cache:
+  yarn: true
+
+install:
+  - yarn install
+
+script:
+  - yarn build
+
+branches:
+  only:
+    - master
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: dist/
+  github_token: $GITHUB_TOKEN
+  keep_history: false
+  name: xuguo
+  email: xg501@outlook.com
+  on:
+    tags: true
+    branch: master
