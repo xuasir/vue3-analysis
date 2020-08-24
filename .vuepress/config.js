@@ -16,7 +16,8 @@ module.exports = {
           title: '理念篇',
           collapsable: false,
           children: [
-            ['idea/', '简介']
+            'idea/',
+            'idea/vue'
           ]
         }
       ]
