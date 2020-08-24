@@ -11,10 +11,6 @@ install:
 script:
   - yarn build
 
-branches:
-  only:
-    - master
-
 deploy:
   provider: pages
   skip_cleanup: true
