@@ -20,4 +20,5 @@ deploy:
   name: xuguo
   email: xg501@outlook.com
   on:
-    branch: true
+    tags: true
+    branch: master
