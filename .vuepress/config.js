@@ -17,7 +17,9 @@ module.exports = {
           collapsable: false,
           children: [
             'idea/',
-            'idea/vue'
+            'idea/vue',
+            'idea/view',
+            'idea/UI'
           ]
         }
       ]
