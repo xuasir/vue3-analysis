@@ -23,6 +23,16 @@ module.exports = {
             'idea/vue3',
             'idea/summary'
           ]
+        },
+        {
+          title: 'runtime篇',
+          collapsable: false,
+          children: [
+            'runtime/',
+            'runtime/createApp',
+            'runtime/mount',
+            'runtime/update'
+          ]
         }
       ]
     }
