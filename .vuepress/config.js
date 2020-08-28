@@ -20,6 +20,8 @@ module.exports = {
             'idea/vue',
             'idea/UI',
             'idea/view',
+            'idea/vue3',
+            'idea/summary'
           ]
         }
       ]
