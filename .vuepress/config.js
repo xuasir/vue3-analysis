@@ -18,8 +18,8 @@ module.exports = {
           children: [
             'idea/',
             'idea/vue',
+            'idea/UI',
             'idea/view',
-            'idea/UI'
           ]
         }
       ]
