@@ -105,7 +105,7 @@ export const createApp = ((...args) => {
 
 我们依次查看各个步骤内部所做的事情，再回头讨论`createApp`中为什么要做这几件事情。
 
-#### - 创建渲染器
+- #### 创建渲染器
 
 > 来到函数`ensureRenderer`中还是很简单的一个单例模式：
 
@@ -179,7 +179,7 @@ export const createApp = ((...args) => {
 
 > 紧接着我们应该是将`createApp`的入参悉数传递到渲染器的`createApp`函数中并且调用得到app实例。
 
-#### - 创建app实例
+- #### 创建app实例
 
 > 首先我们还得回到文件：`runtime-core/renderer.ts`找到`baseCreateRenderer`函数最后返回的部分:
 
@@ -291,7 +291,7 @@ export const createApp = ((...args) => {
 > `createAppAPI`的整个过程也就结束了，期间的通过函数柯里化技巧保存render等信息的方法是一大亮点，
   整个过程分析的也不算难，我们再次回到用户调用的`createApp`中现在已经到达了重写mount方法的阶段了。
   
-#### - 重写mount
+- #### 重写mount
 
 > 我们直接看整个重写的过程：
 
@@ -327,18 +327,18 @@ export const createApp = ((...args) => {
 
 ## 填坑
 
-#### - 为什么`Vue3`要在`createApp`的阶段进行渲染器的创建？
+- #### 为什么`Vue3`要在`createApp`的阶段进行渲染器的创建？
 
  > `Vue3`现在采用了分包的措施，存在用户仅需要使用`reactivity`包的情况，这时候延时创建渲染器的意义就体现了，
  当用户只引用`reactivity`包的时候就不会创建渲染器，因为渲染器是在`runtime`创建的，这样也就能通过`tree sharking`来去除不需要的渲染相关代码；
  而且`createApp`的含义是创建应用根实例，需要在平台相关代码中创建来确定是`web`平台应用还是其他平台应用，所以渲染器放需要放在`createApp`阶段。
 
-#### - 为什么要在`createApp`中将`mount`方法重写？
+- #### 为什么要在`createApp`中将`mount`方法重写？
 
  > 将重写`mount`处理的逻辑和渲染器`mount`分离，也强调了渲染器的单一职责性，这也是`Vue3`将`runtime`拆分成`core`和`dom`两个包的初衷，
  重写的逻辑基本上是处理平台相关的内容比如：处理容器元素、清空容器内容，这也是在`web`平台下特有操作，如果放在渲染器的`mount`中这就是一种冗杂，让渲染器不再纯粹的关注渲染相关。
 
-#### - `custom render API`是如何实现的？
+- #### `custom render API`是如何实现的？
 
  > `custom render API`基本的能力来源于，延时创建渲染器时`renderOptions`的动态传入以及`createApp`能对`mount`方法进行重写。因此`custom render API`也能分成两个部分：
  >

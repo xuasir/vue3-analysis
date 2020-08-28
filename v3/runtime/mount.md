@@ -1,14 +1,14 @@
 ### mount流程
 
-##### 本篇目标
+## 本篇目标
 
-1. 了解Vue3组件挂载的整体流程
+1. 了解`Vue3`组件挂载的整体流程
 2. 普通元素的挂载流程
-3. Vue3如何让位运算发挥神奇的作用
+3. `Vue3`如何让位运算发挥神奇的作用
 
-##### 前置知识
+## 前置知识
 
-在挂载过程中会涉及到虚拟Dom和Vnode这样的抽象概念，了解该概念的可以直接看下面的解析部分，不了解的可以看一下代码中关于Vnode的`interface`：
+在挂载过程中会涉及到虚拟`Dom`和`Vnode`这样的抽象概念，了解该概念的可以直接看下面的解析部分，不了解的可以看一下代码中关于`Vnode`的`interface`：
 
 ```ts
 export interface VNode<
@@ -63,9 +63,12 @@ export interface VNode<
 }
 ```
 
-所谓的`Vnode`也就是通过`JavaScript`对象来抽象描述dom元素，而虚拟dom就是由多个`Vnode`组成和Dom结构一一对应的一棵虚拟Dom树；虚拟Dom的优势不在于它拥有多快的速度而在于它的抽象能力，在`diff`出整个变更的最小更改之前可以在虚拟Dom下进行操作，直接操作js对象的性能势必比操作真实Dom更加高效，而且`diff`能保证每次对Dom的实际操作达到一个下限的保证；在渲染器和web平台的解耦中，虚拟Dom也有着不可替换的重要作用。
+所谓的`Vnode`也就是通过`JavaScript`对象来抽象描述`dom`元素，而虚拟`dom`就是由多个`Vnode`组成和`Dom`结构一一对应的一棵虚拟`Dom`树；
+虚拟`Dom`的优势不在于它拥有多快的速度而在于它的抽象能力，在`diff`出整个变更的最小更改之前可以在虚拟`Dom`下进行操作，
+直接操作`js`对象的性能势必比操作真实`Dom`更加高效，而且`diff`能保证每次对Dom的实际操作达到一个下限的保证；
+在渲染器和`web`平台的解耦中，虚拟`Dom`也有着不可替换的重要作用。
 
-##### 通篇解析模板
+## 通篇解析`demo`模板
 
 由于是解析整个应用的挂载过程为了统一文中描述，我将采用如下的应用书写，来进行分析：
 
@@ -105,9 +108,10 @@ let { reactive, toRefs } = Vue
   Vue.createApp(App).mount('#app')
 ```
 
-##### 解析
+## 解析
 
-`mount`解析的开始自然是用户调用`mount`开始，用户调用的`mount`是经过重写的`mount`函数这个在上一篇中能了解到，而真实的组件实例的`mount`函数也是会被调用，我们回到文件：`runtime-core/apiCreateApp.ts`中：
+`mount`解析的开始自然是用户调用`mount`开始，用户调用的`mount`是经过重写的`mount`函数这个在上一篇中能了解到，
+而真实的组件实例的`mount`函数也是会被调用，我们回到文件：`runtime-core/apiCreateApp.ts`中：
 
 ```ts
 // runtime-core/apiCreateApp.ts
@@ -138,7 +142,7 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
 
 现在就可以从几个疑问开始深入探究：
 
-- `根组件Vnode`如何创建的？
+- ### `根组件Vnode`如何创建的？
 
   通过`import`我们能在`runtime-core/vnode.ts`找到`createVNode`函数的本尊：
 
@@ -188,11 +192,16 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
   }
   ```
 
-  整体来说创建一个`VNode`主要是对`VNode`的形态类型进行确定、class和style进行规范化、然后通过对象字面量的方式来创建`VNode`最后是对`children`进行规范化；依据当前的额`type`情况，我们得到的应该是一个`ShapeFlags.STATEFUL_COMPONENT`类型的`组件VNode`，回到`mount`方法中我们将app上下文挂载到`根组件VNode`的`AppContext`属性上后就开始调用render开始进行从根组件开始的挂载工作了；这样我们就可以进入下一个疑问。
+  整体来说创建一个`VNode`主要是对`VNode`的形态类型进行确定、class和style进行规范化，
+  然后通过对象字面量的方式来创建`VNode`最后是对`children`进行规范化；依据当前的额`type`情况，
+  我们得到的应该是一个`ShapeFlags.STATEFUL_COMPONENT`类型的`组件VNode`，
+  回到`mount`方法中我们将app上下文挂载到`根组件VNode`的`AppContext`属性上后就开始调用render开始进行从根组件开始的挂载工作了；
+  这样我们就可以进入下一个疑问。
 
-- 在render中如何递归的渲染子组件和普通元素呢？如何产生递归关系将整个组件树形成的虚拟Dom树渲染完毕的呢？
+- ### 在render中如何递归的渲染子组件和普通元素呢？如何产生递归关系将整个组件树形成的虚拟Dom树渲染完毕的呢？
 
-  我们在同一文件中(`runtime-core/apiCreateApp.ts`)可以找到`render函数`，注意这个`render函数`与`组件的render函数`并不是同一个概念，当前的`render函数`是用来挂载某个组件或者`VNode`到某个容器上的渲染函数，而`组件的render函数`使用来生成组件的`子VNode树`的函数。
+  我们在同一文件中(`runtime-core/apiCreateApp.ts`)可以找到`render函数`，注意这个`render函数`与`组件的render函数`并不是同一个概念，
+  当前的`render函数`是用来挂载某个组件或者`VNode`到某个容器上的渲染函数，而`组件的render函数`使用来生成组件的`子VNode树`的函数。
 
   ```ts
   // runtime-core/apiCreateApp.ts
@@ -213,7 +222,9 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
     }
   ```
 
-  在`render`中我们本次要执行的就是`patch`方法，后面执行与调度相关的方法可以暂时忽略；`patch`方法是`Vue`中进行`VNode`操作的重要方法，被称作是打补丁方法，是进行`VNode`递归挂载和`diff`的递归函数，我们直接进入到`patch`的函数体便能更清楚的知道它的具体作用了。		
+  在`render`中我们本次要执行的就是`patch`方法，后面执行与调度相关的方法可以暂时忽略；
+  `patch`方法是`Vue`中进行`VNode`操作的重要方法，被称作是打补丁方法，是进行`VNode`递归挂载和`diff`的递归函数，
+  我们直接进入到`patch`的函数体便能更清楚的知道它的具体作用了。		
 
   `patch`函数依旧是定义在同一文件中：
 
@@ -276,11 +287,14 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
     }
   ```
 
-  整体上来看`patch`函数的作用就是通过对当前`VNode`类型的判断来确定下一步需要具体执行的子逻辑，由此我们可以想象在当前`VNode`的子逻辑执行完毕到需要去挂载chidren的时候时候我们任然会回到`patch`函数，来通过`patch`将patch逻辑分发到具体的子逻辑，这也是挂载整个应用树递归的方式。这种拆分子逻辑的方式很好的将子过程分发到不同的子函数中，让子函数关注的类型与逻辑可以单一化，这样无论是从代码的可读性和扩展性都是有很大的提升，这样的技巧是非常值得学习的。		
+  整体上来看`patch`函数的作用就是通过对当前`VNode`类型的判断来确定下一步需要具体执行的子逻辑，
+  由此我们可以想象在当前`VNode`的子逻辑执行完毕到需要去挂载chidren的时候时候我们任然会回到`patch`函数，来通过`patch`将patch逻辑分发到具体的子逻辑，
+  这也是挂载整个应用树递归的方式。这种拆分子逻辑的方式很好的将子过程分发到不同的子函数中，让子函数关注的类型与逻辑可以单一化，
+  这样无论是从代码的可读性和扩展性都是有很大的提升，这样的技巧是非常值得学习的。		
 
   同时`Vue3`在处理`VNode`的`shapeFlag`时采用了位运算的方式，展开的话也有挺多能讲的为了不影响主线，可以暂时将`&`理解成检查是否是某一类型，`|`理解成授予某一类型。
 
-  1. ##### 组件的挂载
+  1. #### 组件的挂载
 
      我们回到主线从`render函数`进入到`patch`中现在的`VNode`应该是`根组件VNode`这是毫无疑问的，那我们应该进入到`processComponent`函数中：
 
@@ -356,7 +370,7 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
 
      三个流程执行完毕组件也就完成了挂载，我们一个个来分析。
 
-     1. ##### `createComponentInstance`
+     1. #### `createComponentInstance`
 
         我们来到文件：`runtime-core/component.ts`找到`createComponentInstance`函数如下：
 
@@ -445,11 +459,14 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
         }
         ```
 
-        由此可见`instance`所包含的信息还是非常大的，里面也不乏一些特定功能相关的属性，其实大可不必硬记住有哪些属性，暂时将这个`interface`当做一个查找表，在接下来的解析中使用到了哪一些便查找就可以了解到对应属性设立的意义；总之我们通过`createComponentInstance`得到了一个信息量巨大的`instance`，再次回到`mountComponent`看到下一个阶段。
+        由此可见`instance`所包含的信息还是非常大的，里面也不乏一些特定功能相关的属性，其实大可不必硬记住有哪些属性，
+        暂时将这个`interface`当做一个查找表，在接下来的解析中使用到了哪一些便查找就可以了解到对应属性设立的意义；
+        总之我们通过`createComponentInstance`得到了一个信息量巨大的`instance`，再次回到`mountComponent`看到下一个阶段。
 
-     2. ##### `setupComponent`
+     2. #### `setupComponent`
 
-        `setupComponent`函数主要的职责还是初始化`props`和`slots`然后执行`setup`函数或者是兼容`options API`得到最终`instance`的`state`；`setupComponent`的具体解析会放在后面的解析`setup()`流程篇章中，我们暂时只看一下`setupComponent`的函数体：
+        `setupComponent`函数主要的职责还是初始化`props`和`slots`然后执行`setup`函数或者是兼容`options API`得到最终`instance`的`state`；
+        `setupComponent`的具体解析会放在后面的解析`setup()`流程篇章中，我们暂时只看一下`setupComponent`的函数体：
 
         ```ts
         // runtime-core/omponent.ts
@@ -473,7 +490,7 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
         }
         ```
 
-     3. ##### `setupRenderEffect`
+     3. #### `setupRenderEffect`
 
         上述两个步骤完成后，渲染阶段的准备工作也已经完成了，我们有了`instance`、`Props`、`Slots`和`state`就可以开始`render`了；
 
@@ -523,7 +540,9 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
         1. 渲染组件子树
         2. patch子树
 
-        `patch`子树的时候也就是递归挂载组件`VNode Tree`的时机，当然子树包含的可能是子组件也可能是Dom元素这就是`patch`的分发逻辑工作了；当然我们首先要将`renderComponentRoot`的子逻辑过程理解清楚，我们现在来到文件 `runtime-core/componentRenderUtils.ts`找到`renderComponentRoot`的函数体，当然首先得明确`renderComponentRoot`函数是通过接受`instance`得到一个`VNode`的过程，在看到他的函数体：
+        `patch`子树的时候也就是递归挂载组件`VNode Tree`的时机，当然子树包含的可能是子组件也可能是Dom元素这就是`patch`的分发逻辑工作了；
+        当然我们首先要将`renderComponentRoot`的子逻辑过程理解清楚，我们现在来到文件 `runtime-core/componentRenderUtils.ts`找到`renderComponentRoot`的函数体，
+        当然首先得明确`renderComponentRoot`函数是通过接受`instance`得到一个`VNode`的过程，在看到他的函数体：
 
         ```ts
         export function renderComponentRoot(
@@ -576,11 +595,13 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
         }
         ```
 
-        `renderComponentRoot`核心是通过组件的`render函数`来得到组件子树，也没什么太多可讲的，我们回到 `setupRenderEffect`接下来就是递归`patch`的过程了，当我们`patch`完子树后整个组件的mount过程也就结束啦。
+        `renderComponentRoot`核心是通过组件的`render函数`来得到组件子树，也没什么太多可讲的，
+        我们回到 `setupRenderEffect`接下来就是递归`patch`的过程了，当我们`patch`完子树后整个组件的mount过程也就结束啦。
 
-  2. ##### 普通元素的挂载
+  2. ### 普通元素的挂载
 
-     在完成组件子树生成后，再度进入到`patch`函数中，这次我们拿到的`VNode`对象已经变成根组件的第一个真实Dom节点了，也就是`id=“root”`的div元素了，这次`patch`进入的子逻辑应该是`processElement`函数了：
+     在完成组件子树生成后，再度进入到`patch`函数中，这次我们拿到的`VNode`对象已经变成根组件的第一个真实Dom节点了，
+     也就是`id=“root”`的div元素了，这次`patch`进入的子逻辑应该是`processElement`函数了：
 
      ```ts
      // runtime-core/renderer.ts
@@ -703,14 +724,19 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
        }
      ```
 
-     `mountChildren`对于`children`直接采用遍历的方式来逐个`patch`这样也产生了递归关系，接下来我们看看`hostPatchProp`这个方法来自 `runtime-dom/patchProp.ts`中，都是一些关于原生Dom元素的属性的操作就不再展开。当当前的元素生成后就是插入Dom的时机了，调用的也是web平台的`insertBefore`或者`appendChild`；感兴趣的可以在 `runtime-dom/(nodeOps|patchProp).ts`中详细了解`Web平台`相关的渲染API。
+     `mountChildren`对于`children`直接采用遍历的方式来逐个`patch`这样也产生了递归关系，
+     接下来我们看看`hostPatchProp`这个方法来自 `runtime-dom/patchProp.ts`中，都是一些关于原生Dom元素的属性的操作就不再展开。
+     当当前的元素生成后就是插入Dom的时机了，调用的也是web平台的`insertBefore`或者`appendChild`；
+     感兴趣的可以在 `runtime-dom/(nodeOps|patchProp).ts`中详细了解`Web平台`相关的渲染API。
 
-  ##### 整体流程
+  ## 整体流程
 
-  ![mount流程](/blog/vue3-mount.jpg)
+  ![mount流程](/vue3-analysis/vue3-mount.jpg)
 
-  整个流程也并不是特别复杂，重点在于`组件VNode`的创建、`组件Instance`的创建、组件子树的渲染逻辑、普通元素的处理及其children的挂载这些问题在流程上的顺序和关系，大可以通过在特定的函数中类似：`mountComponent`、`mountElement`和组件`instance`、`subTree`的创建函数中打上`debugger`跟着流程走一遍更加利于理解。
+  整个流程也并不是特别复杂，重点在于`组件VNode`的创建、`组件Instance`的创建、组件子树的渲染逻辑、普通元素的处理及其children的挂载这些问题在流程上的顺序和关系，
+  大可以通过在特定的函数中类似：`mountComponent`、`mountElement`和组件`instance`、`subTree`的创建函数中打上`debugger`跟着流程走一遍更加利于理解。
 
-  ##### 总结
+  ## 总结
 
-  终于是攻克了组件挂载的流程了，看起来复杂的代码在一步步的调试和解析下也越来越清晰，我们关注主线选择性的忽略一些代码分支更加利于我们理解程序，里面还有很多可以深入学习的细节末枝，也可以等到后面解析更多具体的特性时再解析，下一篇我们将讲解组件的更新流程以及`Diff算法`。
+  终于是攻克了组件挂载的流程了，看起来复杂的代码在一步步的调试和解析下也越来越清晰，我们关注主线选择性的忽略一些代码分支更加利于我们理解程序，
+  里面还有很多可以深入学习的细节末枝，也可以等到后面解析更多具体的特性时再解析，下一篇我们将讲解组件的更新流程以及`Diff算法`。
