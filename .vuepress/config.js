@@ -9,7 +9,10 @@ module.exports = {
     editLinks: false,
     docsDir: './',
     lastUpdated: '最后一次更新',
-    nav: [{text: 'Vue3', link: '/v3/idea/'}],
+    nav: [
+      {text: 'Vue3', link: '/v3/idea/'},
+      {text: 'vue-hooks', link: 'http://xuguo.xyz/vue-hooks'}
+    ],
     sidebar: {
       '/v3/': [
         {
