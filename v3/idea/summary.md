@@ -4,9 +4,9 @@
 
 ## 前置准备
 
-看源码光看肯定是不够的，咱们需要一个好的测试环境，来进行debugger之类的操作，
-本次我是用的环境是直接在vue-next代码仓库中来运行vue3，
-这样的话也不用打开两个ide来回切换在源码和运行仓库中；环境准备步骤如下：
+看源码光看肯定是不够的，咱们需要一个好的测试环境，来进行`debugger`之类的操作，
+本次我是用的环境是直接在`vue-next`代码仓库中来运行`vue3`，
+这样的话也不用打开两个`ide`来回切换在源码和运行仓库中；环境准备步骤如下：
 
 > 1. 克隆代码仓库
 >    `git clone https://github.com/vuejs/vue-next.git`
@@ -15,17 +15,17 @@
 >
 >    `npm i`
 >
-> 3. 修改rollup配置开启生产打包sourceMap
+> 3. 修改`rollup`配置开启生产打包`sourceMap`
 >
 >    1、打开项目根目录的rollup.config.js
 >    2、找到第83行的   output.sourcemap = !!process.env.SOURCE_MAP
 >    3、至设置成   output.sourcemap = true
 >
-> 4. 打包生成vue3
+> 4. 打包生成`vue3`
 >
 >    `npm run build`
 >
-> 5. 打开src下的vue文件夹，在examples中新建demo文件夹，在demo中创建一个html如下：
+> 5. 打开`src`下的`vue`文件夹，在`examples`中新建`demo`文件夹，在`demo`中创建一个html如下：
 
 ```html
 <!DOCTYPE html>
@@ -60,7 +60,7 @@
 </html>
 ```
 
-> 6. vue3的生产源文件存放在examples的同级目录dist下，需要测试即可在源文件中打上debugger
-> 7. 直接将demo/index.html在浏览器打开即可
+> 6. vue3的生产源文件存放在`examples`的同级目录`dist`下，需要测试即可在源文件中打上`debugger`
+> 7. 直接将`demo/index.html`在浏览器打开即可
 
 至此关于代码调试的准备已经做完，在下一篇幅中将开始解析`vue3 runtime`。
