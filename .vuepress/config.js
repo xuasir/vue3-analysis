@@ -53,6 +53,7 @@ module.exports = {
               title: '核心方法',
               collapsable: false,
               children: [
+                'reactivity/reactivity'
               ]
             },
           ]
