@@ -34,7 +34,7 @@ module.exports = {
             ['runtime/', '前言'],
             {
               title: '核心流程',
-              collapsable: false,
+              collapsable: true,
               children: [
                 'runtime/createApp',
                 'runtime/mount',
@@ -51,7 +51,7 @@ module.exports = {
             ['reactivity/', '前言'],
             {
               title: '核心方法',
-              collapsable: false,
+              collapsable: true,
               children: [
                 'reactivity/reactivity'
               ]
