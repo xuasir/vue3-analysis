@@ -32,9 +32,16 @@ module.exports = {
           collapsable: false,
           children: [
             'runtime/',
-            'runtime/createApp',
-            'runtime/mount',
-            'runtime/update'
+            {
+              title: '核心流程',
+              collapsable: false,
+              children: [
+                'runtime/createApp',
+                'runtime/mount',
+                'runtime/update',
+                'runtime/setup'
+              ]
+            },
           ]
         }
       ]

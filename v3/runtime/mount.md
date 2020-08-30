@@ -732,7 +732,7 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
      当当前的元素生成后就是插入Dom的时机了，调用的也是web平台的`insertBefore`或者`appendChild`；
      感兴趣的可以在 `runtime-dom/(nodeOps|patchProp).ts`中详细了解`Web平台`相关的渲染API。
 
-  ## 整体流程
+  ## 整体流程图
 
   ![mount流程](/vue3-analysis/vue3-mount.jpg)
 
