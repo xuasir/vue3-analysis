@@ -14,10 +14,10 @@
 
 ## 解析
 
-1. ### 组件更新
+1. ## 组件更新
 
 首先我们应该来考虑`update`的入口是什么？在我们书写`Vue`代码时，
-非常自然的去使用组件内部的一些`data`、`props`等等状态来和视图显示的内容、交互操作进行一个直接或间接的绑定，
+非常自然的去使用组件内部的一些`data`、`props`等等数据来和视图显示的内容、交互操作进行一个直接或间接的绑定，
 这时候当状态更改是视图也会进行更新；可想而知的是视图更新一定是以组件为单位的，
 当我们改变组件内部状态、父组件更新子组件或者`forceUpdate`时，触发的应该是组件的`update`方法。
 我们依旧回到`runtime-core/renderer.ts`文件中的`setupRenderEffect`函数：
@@ -80,17 +80,18 @@ const setupRenderEffect: SetupRenderEffectFn = (
 我们先关注在`instance.next`下一个状态的`组件VNode`上，通过我们之前的分析可以得出，`Vue`以组件为单位进行更新时，
 能触发组件更新的情况除了组件自身也就只有父组件了；我们按情况分析一下这个`next`的产生情况然后再回到当前这个函数的逻辑。
 
-#### 1. 无`next`
+- #### 无`next`
 
 > 当组件自身发起更新时，我们直接来到就应该是当前的`setupRenderEffect`函数逻辑，此时是没有时机来生成`next`，
 这种情况也是比较简单，直接就到了生成子树然后`patch`子树的过程。
 
-#### 2. 有`next`
+- #### 有`next`
 
 > 我们首先考虑这个`next`状态的`组件VNode`从何而来？从触发更新的方式来思考，产生`next`的肯定是来自父组件的更新，
 因为父组件更新时是会重新渲染子树的，而我们当前组件作为子组件肯定是包含在这颗子树上的，便创建了新的`子组件VNode`；
 我们暂时了解到`next`的产生，具体next如何被赋值、如何开始执行子组件的`update`这些问题我们留在`patch`方法的组件相关子逻辑中解析，暂时带着这个疑问往下解析。
 
+- ### `patch`前组件信息更新
 现在我们知道了`next`产生情况，我们直接看到`updateComponentPreRender`函数是怎么更新、都更新了一些什么内容：
 
 ```ts
@@ -121,6 +122,7 @@ const updateComponentPreRender = (
 处理完组件的最新信息后，也就可以通过`renderComponentRoot`拿到新的组件子树，这个函数以及在挂载篇章解析了，
 主要是通过调用组件`render函数`来渲染得到新子树。我们直接到下一个步骤`patch subTree`。		
 
+- ### `patch`流程
 按照当前组件的结构来看，我们`patch`子树的第一步应该是`div标签`，但是我们现在关心的是组件及子组件的更新，
 我们暂时跳过普通元素的更新，直接看到`hello 组件的patch`在之前篇章的解析基础上我们知道`组件VNode`走的流程是`processComponent`：
 
@@ -228,8 +230,12 @@ export function shouldUpdateComponent(
 在`updateComponent`中通过检测组件插槽及`Props`来决定组件是否需要更新，我们直接看到需要更新的情况，
 主要是设置组件的`next VNode`并且将异步更新队列中的该组件更新任务清除，防止重复更新，因为当前组件也有可能状态更改触发了更新但是还未执行；
 最后一步就是执行组件更新函数，这样就回到了我们一开始的函数逻辑中。这就是整个组件完整的更新流程，包含了父子组件的情况是如何进行递归更新的。
+::: tip 组件的递归更新
+组件的更新可以来自自身状态的变更，也可以来自父组件的触发；嵌套的父子孙组件更新的触发发生在父组件的新旧子树`patch`过程中，
+`Vue`默认会对组件进行`shouldUpdateComponent`优化避免不必要的更新；而来自父组件触发的更新，往往会产生一个`next`状态的组件`VNode`.
+:::
 
-2. ### 普通元素更新
+2. ## 普通元素更新
 
 看完组件更新后，我们知道，组件只是某一段具体Dom的抽象，到最终进行`diff`的还是普通元素，
 现在我们就直接关注到普通元素的更新，在`patch`函数中找到`processElement`然后进入`patchElement`函数中：
@@ -256,11 +262,12 @@ const patchElement = (
   }
 ```
 
-我将`hooks`相关的代码以及针对`patchFlags`的优化操作直接忽略，但是不影响`patchElement`的整体功能：
+我将`hooks`函数相关的代码以及针对`patchFlags`的优化操作直接忽略，但是不影响`patchElement`的整体功能：
 
-1. 更新props
-2. 更新children
+> 1. 更新props
+> 2. 更新children
 
+- ### 更新`props`
 我们首先看到`patchProps`这里其实调用的是`web`平台的`patchProps`方法，
 位于 `runtime-dom/patchProp.ts`主要是针对`class`和`style`以及指令事件等内容，感兴趣的可以详细阅读。
 当`props`更新完成后对于一个原生的Dom元素来说就只剩下`children`需要做更新了，我们直接看到`patchChildren`：
@@ -342,9 +349,12 @@ const patchChildren: PatchChildrenFn = (
 
 ![patchChildren](/vue3-analysis/vue3-patch-children.jpg)
 
-结合代码来看，思路还是比较清晰的，其中`if`条件的设置也很巧妙，我们直接看到核心的部分`patchKeyedChildren`因为其他情况还是比较简单的不是清除就是挂载没有产生比对，
-我们关心的核心的`diff 算法`也在`patchKeyedChildren`中，所以我们直接看到`patchKeyedChildren`函数内部：
+结合代码来看，思路还是比较清晰的，其中`if`条件的设置也很巧妙即包含所有情况，又能清晰的拆分出挂载、删除、对比三个操作，
+我们直接看到核心的部分`patchKeyedChildren`因为其他情况还是比较简单的不是清除就是挂载没有产生比对，
+我们关心的核心的`diff 算法`也在`patchKeyedChildren`中，所以我们直接看到`patchKeyedChildren`函数内部：  
 
+- ### `children diff`算法  
+::: details 点击查看 patchKeyedChildren 代码注释
 ```ts
 // runtime-core/renderer.ts
   const patchKeyedChildren = (...) => {
@@ -544,13 +554,23 @@ const patchChildren: PatchChildrenFn = (
     }
   }
 ```
+::: 
+
+::: tip 核心流程
+针对新旧两个`children`数组进行如下操作：  
+1. 同步开始索引
+2. 同步尾部索引
+3. 同步后 需要mount的情况
+4. 同步后 需要卸载
+5. 同步后两者都还剩余，需要更细致判断
+:::
+
 
 `patchKeyedChildren`函数整体逻辑比较复杂，我们需要通过不同的样例来分析，源码中也贴心的将程序拆分成了几个小块并标识了，
 我们依据每个部分的功能来剖析每部分逻辑，当然我们还是应该明确`patchKeyedChildren`函数的目的是比对`children`找出最小的变更然后在`Dom`上进行变更修改：
 
-### 1. 同步头部和尾部
-
-对于两个新旧`children`来说我们将其简化成两个数组里面存储的是`Number`，这样能方便我们理解程序运行，并且不影响对于原本逻辑的理解。
+#### 1. 同步头部和尾部
+对于两个新旧`children`来说我们将其简化成两个数组里面存储的是简单类型，这样能方便我们理解程序运行，并且不影响对于原本逻辑的理解。
 
 ![diff-1](/vue3-analysis/vue3-diff-1.jpg)
 
@@ -595,16 +615,19 @@ while (i <= e1 && i <= e2) {
 }
 ```
 
-> 在代码中是以开始索引和结束索引为边界，也就意味着 `i e1 e2`三个变量的定义是当前未遍历到的`child`的索引值，
+::: tip 注意
+在代码中是以开始索引和结束索引为边界，也就意味着 `i e1 e2`三个变量的定义是当前未遍历到的`child`的索引值，
 当满足`i<=e1`或者`i<=e2`时， `i e1或者e2`是有效且未处理到的有效索引。
+:::
 
+#### 2. 处理同步后不同剩余情况
 而在源代码中后续的步骤也正是分别对这三种情况进行了不同的逻辑处理：
 
-1. 新`children`有剩余
+1. ##### 新`children`有剩余
 
    旧`children`都遍历完成了，但是新`children`还有剩余代表本次更新需要新挂载新`children`剩下的子序。
 
-2. 旧`children`有剩余
+2. ##### 旧`children`有剩余
 
    新`children`都遍历完成了，但是旧`children`还有剩余代表本次更新需要卸载旧`children`剩下的子序。
 
@@ -636,11 +659,10 @@ while (i <= e1 && i <= e2) {
 
    这两种判断条件，都符合我们上面对`i e1 e2`的定义，不存在越界问题；直到这里整体逻辑还是比较简单的。
 
-3. 未知子序列
-
+3. ##### 未知子序列
    在源码中这种新旧`children`两者都剩余的情况被称作未知子序列，尤大的处理方式很巧妙，为了方便讲解，
    在后续对于新`children`剩下的未知子序列简称新子序，旧`children`简称旧子序；
-   尤大的整体思路是通过某种方法来查找出新子序相对旧子序最长的顺序未更改的子序列，
+   尤大的整体思路是通过某种方法来查找出新子序相对旧子序最长的顺序未更改的一个子序列，
    然后移动顺序有更改的`child`来达到`diff`的目的；顺序这个概念可能比较难理解，
    因为在一组`children`中它在`Dom`中是有一个兄弟关系的，
    当我们真正的去插入`child`时调用的也是`insertBefore`这样的接口通常需要一个参照元素，
@@ -650,9 +672,14 @@ while (i <= e1 && i <= e2) {
 
    ![vue-diff](/vue3-analysis/vue3-diff-3.jpg)
 
+  ::: tip 建议
+  建议结合debugger断点调试和图文来理解这里的最长顺序子序是如何被设计的
+  :::
+
+   - ##### 获取最长顺序子序
    最初使用了`keyToNewIndexMap`来保存新子序中元素的所对应的索引下标，
    然后通过遍历旧子序来查找旧子序`child`在新子序中的索引，
-   再使用新子序中的索引`newIndex`作为`newIndexToOldIndexMap`的数组下标来存储`child`在旧子序中的索引值，
+   再使用新子序中的索引`newIndex`作为`newIndexToOldIndexMap`的数组下标来存储`child`在旧子序中的索引值（有1的偏差，后文会解释），
    这样就能得到以新子序的顺序递增并且存储对应`child`在旧子序中索引的一个`newIndexToOldIndexMap`索引表；
    这种情况我们只需要从`newIndexToOldIndexMap`中取出一段最长递增子序列就能得到旧子序中出现在新子序的最长的顺序子序，
    然后再对更改顺序的元素进行移动即可完成`diff`。		
@@ -728,18 +755,19 @@ while (i <= e1 && i <= e2) {
    ```
    
    在建立`newIndexToOldIndexMap`索引表中我们可以对需要卸载和`patch`的`child`分别进行`unmount`和`patch`，
-   剩下的就只需要进行移动或者挂载。移动的情况很好理解就是相对顺序改变了，但是需要挂载的元素是怎么判断出来的呢？
+   剩下的就只需要进行移动或者挂载。移动的情况很好理解就是相对顺序改变了，但是需要挂载的元素是怎么判断出来的呢？  
    我们可以看到对于`newIndexToOldIndexMap`是进行了初始值为`0`的赋值工作的，
    当我们遍历整个旧子序来构建`newIndexToOldIndexMap`时如果在旧子序中的`child`没有包含在新子序中，
    那就意味着`newIndexToOldIndexMap`对应的值存储的还是初始值`0`，因为我们永远不会遍历到也永远不会去存储该`child`对应的旧子序索引；
    这也是为什么`newIndexToOldIndexMap[newIndex - s2] = i + 1`这里对于`i`需要进行`1`的偏移的原因，防止 `i == 0`的情况干扰。		
    
-   ### 最后看到移动和挂载阶段
-   
+  - ##### 最后看到移动和挂载阶段
+
    ```ts
    // 5.3 移动和挂载
    // 得到newIndexToOldIndexMap的最长上升子序列对应的索引下标
    // 也就意味着得到了旧children 最长的不需要移动的子序列
+   //  这里采用了最长递增子序列的方式来查找出，新子序中最长的保持了旧子序顺序的元素下标（也就是在新子序中的下标）
    const increasingNewIndexSequence = moved
    ? getSequence(newIndexToOldIndexMap)
    : EMPTY_ARR
@@ -776,9 +804,9 @@ while (i <= e1 && i <= e2) {
    }
    ```
    
-   逻辑注释也比较全，需要注意的是这里的遍历是反向的遍历新子序的长度次；为什需要从后面的元素开始遍历呢？
+   逻辑注释也比较全，需要注意的是这里的遍历是反向的遍历新子序的长度次；为什需要从后面的元素开始遍历呢？  
    这是因为`insertBefore`需要的参照元素是后面的一个`Dom元素`而假如存在一种情况后面的元素是需要`mount`的那前面需要移动的元素就找不到参照元素导致插入失败。		
-   
+  
    这就是整个`children diff`的过程，建议采用一些点到顺序的实例，通过`debugger`来走一遍`diff`算法，这样会有更深刻的理解。
    
    ## 流程图
@@ -787,4 +815,4 @@ while (i <= e1 && i <= e2) {
    
    整体流程如上，十分建议通过`debugger`的方式来反复消化这部分逻辑，才能更好的理解尤大代码的精妙之处，
    其中关于最长递增子序的求法并没有详细讲解，这个我在之后会写一篇关于最长递增子序列的专门文章来具体解析最长上升子序列的解法；
-   下一篇会是关于`setup`函数这个`Vue3`的新`options`的运作流程。
+   下一篇会是关于`setup`函数这个`Vue3`的新`options`选项。

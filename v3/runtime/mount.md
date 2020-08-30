@@ -135,14 +135,14 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
 ```
 
 从`mount`函数的流程上来看，我们在挂载一个应用时，基本可以作为三步来理解：
-
-> 1. 根据根组件信息来创建根`组件Vnode`并且设置好`根组件Vnode`对应的上下文信息
-> 2. 从 `根组件Vnode`开始递归渲染生成整棵Dom树并且挂载到根容器上
-> 3. 处理根组件挂载完后的相关工作并返回根组件的代理
-
+::: tip 主要流程
+ 1. 根据根组件信息来创建根`组件Vnode`并且设置好`根组件Vnode`对应的上下文信息
+ 2. 从 `根组件Vnode`开始递归渲染生成整棵Dom树并且挂载到根容器上
+ 3. 处理根组件挂载完后的相关工作并返回根组件的代理
+:::
 现在就可以从几个疑问开始深入探究：
 
-- ### `根组件Vnode`如何创建的？
+- ## `根组件Vnode`如何创建的？
 
   通过`import`我们能在`runtime-core/vnode.ts`找到`createVNode`函数的本尊：
 
@@ -198,7 +198,10 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
   回到`mount`方法中我们将app上下文挂载到`根组件VNode`的`AppContext`属性上后就开始调用render开始进行从根组件开始的挂载工作了；
   这样我们就可以进入下一个疑问。
 
-- ### 在render中如何递归的渲染子组件和普通元素呢？如何产生递归关系将整个组件树形成的虚拟Dom树渲染完毕的呢？
+- ## render函数的流程
+  ::: tip 主要关注内容
+  在render中如何递归的渲染子组件和普通元素呢？如何产生递归关系将整个组件树形成的虚拟Dom树渲染完毕的呢？
+  :::
 
   我们在同一文件中(`runtime-core/apiCreateApp.ts`)可以找到`render函数`，注意这个`render函数`与`组件的render函数`并不是同一个概念，
   当前的`render函数`是用来挂载某个组件或者`VNode`到某个容器上的渲染函数，而`组件的render函数`使用来生成组件的`子VNode树`的函数。
@@ -294,7 +297,7 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
 
   同时`Vue3`在处理`VNode`的`shapeFlag`时采用了位运算的方式，展开的话也有挺多能讲的为了不影响主线，可以暂时将`&`理解成检查是否是某一类型，`|`理解成授予某一类型。
 
-  1. #### 组件的挂载
+  1. ### 组件的挂载
 
      我们回到主线从`render函数`进入到`patch`中现在的`VNode`应该是`根组件VNode`这是毫无疑问的，那我们应该进入到`processComponent`函数中：
 
@@ -364,9 +367,9 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
 
      `mountComponent`函数代码量依旧不大，这也是`Vue3`代码组织的特点，函数专职专供，整体流程清晰；简单分析可得出`mountComponent`函数主要做了三件事情：
 
-     1. 创建组件实例
-     2. 启动组件setup
-     3. 创建带副作用的render函数
+     > 1. 创建组件实例
+     > 2. 启动组件setup
+     > 3. 创建带副作用的render函数
 
      三个流程执行完毕组件也就完成了挂载，我们一个个来分析。
 
@@ -537,8 +540,8 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
 
         直接看到函数的整体逻辑，主要是分为两个步骤：
 
-        1. 渲染组件子树
-        2. patch子树
+        > 1. 渲染组件子树
+        > 2. patch子树
 
         `patch`子树的时候也就是递归挂载组件`VNode Tree`的时机，当然子树包含的可能是子组件也可能是Dom元素这就是`patch`的分发逻辑工作了；
         当然我们首先要将`renderComponentRoot`的子逻辑过程理解清楚，我们现在来到文件 `runtime-core/componentRenderUtils.ts`找到`renderComponentRoot`的函数体，
@@ -688,10 +691,10 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
 
      函数中的生命周期hook相关的内容我都去除了，只剩下核心的四部逻辑：
 
-     1. 依据元素类型使用平台创建元素函数创建`el`
-     2. 分情况处理`children`
-     3. 处理`Props`
-     4. 将元素插入Dom中
+     > 1. 依据元素类型使用平台创建元素函数创建`el`
+     > 2. 分情况处理`children`
+     > 3. 处理`Props`
+     > 4. 将元素插入Dom中
 
      `hostCreateElement`底层是调用了`createElement`，针对`children`不同的情况有逻辑分支，我们需要关注的主要在`mountChildren`中的逻辑。
 

@@ -330,8 +330,7 @@ export const createApp = ((...args) => {
 - #### 为什么`Vue3`要在`createApp`的阶段进行渲染器的创建？
 
  > `Vue3`现在采用了分包的措施，存在用户仅需要使用`reactivity`包的情况，这时候延时创建渲染器的意义就体现了，
- 当用户只引用`reactivity`包的时候就不会创建渲染器，因为渲染器是在`runtime`创建的，这样也就能通过`tree sharking`来去除不需要的渲染相关代码；
- 而且`createApp`的含义是创建应用根实例，需要在平台相关代码中创建来确定是`web`平台应用还是其他平台应用，所以渲染器放需要放在`createApp`阶段。
+ 当用户只引用`reactivity`包的时候就不会创建渲染器，因为渲染器是在`runtime`创建的，这样也就能通过`tree shaking`来去除不需要的渲染相关代码。
 
 - #### 为什么要在`createApp`中将`mount`方法重写？
 
