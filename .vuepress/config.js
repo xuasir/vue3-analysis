@@ -17,7 +17,7 @@ module.exports = {
       '/v3/': [
         {
           title: '理念篇',
-          collapsable: false,
+          collapsable: true,
           children: [
             'idea/',
             'idea/vue',
@@ -29,35 +29,45 @@ module.exports = {
         },
         {
           title: 'runtime篇',
-          collapsable: false,
+          collapsable: true,
           children: [
             ['runtime/', '前言'],
-            {
-              title: '核心流程',
-              collapsable: true,
-              children: [
-                'runtime/createApp',
-                'runtime/mount',
-                'runtime/update',
-                'runtime/setup'
-              ]
-            },
+            'runtime/createApp',
+            'runtime/mount',
+            'runtime/update',
+            'runtime/setup'
           ]
         },
         {
           title: 'reactivity篇',
-          collapsable: false,
+          collapsable: true,
           children: [
             ['reactivity/', '前言'],
-            {
-              title: '核心方法',
-              collapsable: true,
-              children: [
-                'reactivity/reactivity'
-              ]
-            },
+            'reactivity/reactivity',
+            'reactivity/effect'
           ]
-        }
+        },
+        {
+          title: 'compiler篇',
+          collapsable: true,
+          children: [
+            ['compiler/', '前言'],
+          ]
+        },
+        {
+          title: '实用特性篇',
+          collapsable: true,
+          children: [
+            ['future/', '前言'],
+          ]
+        },
+        {
+          title: '生态篇',
+          collapsable: true,
+          children: [
+            ['ecology/', '前言'],
+          ]
+        },
       ]
     }
   }
