@@ -347,7 +347,7 @@ const patchChildren: PatchChildrenFn = (
 得益于在`createVNode`的时候会对`children`进行规范化，我们在`diff children`时候可以仅考虑`children`为数组、文本和空这三种情况，进而进行逻辑判断。
 在整体逻辑中我直接忽略了`fragment`的处理，直接看到重点`children`逻辑，我们通过一个流程图来梳理一下思路：
 
-![patchChildren](/vue3-analysis/vue3-patch-children.jpg)
+![patchChildren](/vue3-analysis/runtime/vue3-patch-children.jpg)
 
 结合代码来看，思路还是比较清晰的，其中`if`条件的设置也很巧妙即包含所有情况，又能清晰的拆分出挂载、删除、对比三个操作，
 我们直接看到核心的部分`patchKeyedChildren`因为其他情况还是比较简单的不是清除就是挂载没有产生比对，
@@ -572,12 +572,12 @@ const patchChildren: PatchChildrenFn = (
 #### 1. 同步头部和尾部
 对于两个新旧`children`来说我们将其简化成两个数组里面存储的是简单类型，这样能方便我们理解程序运行，并且不影响对于原本逻辑的理解。
 
-![diff-1](/vue3-analysis/vue3-diff-1.jpg)
+![diff-1](/vue3-analysis/runtime/vue3-diff-1.jpg)
 
 如果我们有上图的两组`children`，而同步头部的意思是从左端一直往右端依次比对两个`children`中的元素，
 直到遇到不相同的就停止，同步尾部就是反向的过程；对首尾部进行同步后会出现三种情形，如下图所示：
 
-![diff-1](/vue3-analysis/vue3-diff-2.jpg)
+![diff-1](/vue3-analysis/runtime/vue3-diff-2.jpg)
 
 我们再具体看看源代码中是如何设置变量以及开展逻辑的：
 
@@ -670,7 +670,7 @@ while (i <= e1 && i <= e2) {
    `child`的兄弟关系映射到`children`中便可以用数组下标来表示，这是很巧妙的一个点；
    在源代码中有几个比较关键的变量，我通过一张图来表述这些变量对应的转换关系：
 
-   ![vue-diff](/vue3-analysis/vue3-diff-3.jpg)
+   ![vue-diff](/vue3-analysis/runtime/vue3-diff-3.jpg)
 
   ::: tip 建议
   建议结合debugger断点调试和图文来理解这里的最长顺序子序是如何被设计的
@@ -811,7 +811,7 @@ while (i <= e1 && i <= e2) {
    
    ## 流程图
    
-   ![update](/vue3-analysis/vue3-update.jpg)
+   ![update](/vue3-analysis/runtime/vue3-update.jpg)
    
    整体流程如上，十分建议通过`debugger`的方式来反复消化这部分逻辑，才能更好的理解尤大代码的精妙之处，
    其中关于最长递增子序的求法并没有详细讲解，这个我在之后会写一篇关于最长递增子序列的专门文章来具体解析最长上升子序列的解法；

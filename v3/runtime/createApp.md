@@ -321,7 +321,7 @@ export const createApp = ((...args) => {
 
 ## 整体流程图
 
-![createApp](/vue3-analysis/vue3-createApp.jpg)
+![createApp](/vue3-analysis/runtime/vue3-createApp.jpg)
 
 上图就是整个 `Vue3.createApp(app)`的全流程了，思路非常清晰。
 

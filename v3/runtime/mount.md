@@ -734,7 +734,7 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
 
   ## 整体流程图
 
-  ![mount流程](/vue3-analysis/vue3-mount.jpg)
+  ![mount流程](/vue3-analysis/runtime/vue3-mount.jpg)
 
   整个流程也并不是特别复杂，重点在于`组件VNode`的创建、`组件Instance`的创建、组件子树的渲染逻辑、普通元素的处理及其children的挂载这些问题在流程上的顺序和关系，
   大可以通过在特定的函数中类似：`mountComponent`、`mountElement`和组件`instance`、`subTree`的创建函数中打上`debugger`跟着流程走一遍更加利于理解。
