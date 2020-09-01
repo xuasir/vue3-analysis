@@ -1,13 +1,6 @@
-### createApp流程
-
-## 本篇目标
-
-1. 了解`createApp`背后都做了什么？
-2. `custom render API`是如何从`runtime-core`逻辑中分离
-
-## 解析
-
-`createApp`应该是用户最早能看到的`API`之一，不同于`Vue2.x`采用`new Vue({...})`的方式来生成根组件，`Vue3`采用了更函数式的调用方式：
+### createApp流程  
+`createApp`也是`Vue3`新暴露出来的`API`，用来创建`app`实例；`createApp`也是用户最早能看到的`API`之一，
+不同于`Vue2.x`采用`new Vue({...})`的方式来生成根组件，`Vue3`采用了更函数式的调用方式：
 
 ```js
 // vue2.x
@@ -19,6 +12,11 @@ createApp(app).mount('#app')
 ```
 
 对比就可以看到`Vue3`的调用方式更加简洁，那么`createApp`的背后究竟做了什么呢？
+
+## 本篇目标
+
+1. 了解`createApp`背后都做了什么？
+2. `custom render API`是如何从`runtime-core`逻辑中分离
 
 ## `createApp`概览
 
@@ -423,5 +421,5 @@ export const createApp = ((...args) => {
 ## 总结
 
 整体上来说 `createApp`的全流程并不算复杂，其中也有很多细节并未提到，感兴趣的小伙伴可以深入研读。
-再次回到本篇的目的，经过本篇的解析相信应该是都已有答案了。
+再次回到本篇的目的，经过本篇的解析相信应该是都已有答案了；接下来我们将要开始组件挂载更新相关的内容。
 
