@@ -34,6 +34,7 @@ function computed<T>(options: {
 ## 解析  
 我们直接看到`computed`的函数体：  
 ```typescript
+// reactivity/computed.ts
 export function computed<T>(
   getterOrOptions: ComputedGetter<T> | WritableComputedOptions<T>
 ) {

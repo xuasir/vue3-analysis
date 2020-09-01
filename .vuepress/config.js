@@ -35,7 +35,8 @@ module.exports = {
             'runtime/createApp',
             'runtime/mount',
             'runtime/update',
-            'runtime/setup'
+            'runtime/setup',
+            'runtime/scheduler'
           ]
         },
         {
