@@ -42,14 +42,17 @@ export function resetTracking() {
 :::
 
 - #### `effect`
+::: details 点击查看详细代码
 ```typescript
 // effect栈
 const effectStack: ReactiveEffect[] = []
 // 当前effect
 let activeEffect: ReactiveEffect | undefined
 ```
+:::
 
 - #### `effect`配置项  
+::: details 点击查看详细代码
 ```typescript
 export interface ReactiveEffectOptions {
   // 是否为lazy模式
@@ -63,6 +66,7 @@ export interface ReactiveEffectOptions {
   onStop?: () => void
 }
 ```
+:::
 
 ## 解析`effect`  
 我们直接看到`effect`的函数体：  
@@ -130,20 +134,24 @@ function createReactiveEffect<T = any>(
   return effect
 }
 ```
-可以看到`effect`是负责规范化`fn`处理成非`effect`函数，真正的`effect`函数是由`createReactiveEffect`来创建的，
+可以看到`effect`是负责预处理`fn`确保`fn`是一个非`effect`函数，真正的`effect`函数是由`createReactiveEffect`来创建的，
 `lazy`选项和`computed`强相关，配置成`true`会使得`effect`默认不立即执行。  
-我们再看到`createReactiveEffect`内部，`effect`仅是一个包裹函数，在他的内部来执行`fn`和处理`effectStack`相关内容，
+我们再看到`createReactiveEffect`内部，原来`effect`仅是一个包裹函数，在他的内部来执行`fn`和处理`effectStack`相关内容，
 我们逐步分析一下各个步骤：  
 - #### 处理激活状态  
-`effect.active`来表示副作用函数的激活状态，在`stop`一个副作用函数是会将其置成`false`，非激活状态的`effect`函数，
+`effect.active`来表示副作用函数的激活状态，在`stop`一个副作用函数后会将其置成`false`，非激活状态的`effect`函数被调用，
 如果不存在调度会直接执行。  
 
 - #### 清除操作  
-在正式开始执行`fn`前，会先`cleanup`当前`effect`的`deps`；`effect`的`deps`存储是的当前`effect`依赖属性的副作用`Set`表，
-这是一个双向指针的处理方式，不仅在`track`的时候，会将副作用函数与`target --> key --> deps`关联起来，
-同时也会保持`deps`的引用存储在`effect.deps`上；这样做非常重要的意义就在于现在的`cleanup`操作，
-我们能在`effect`再次执行之前，从所有收集到此`effect`函数的`key`剔除次`effect`，以便在此次`effect`执行时重新收集；
-这样操作的意义在于如下场景：  
+::: tip 注意
+`effect.deps`是一个数组，存储的是该`effect`依赖的每个属性的`depsSet`副作用函数表  
+`track`阶段建立的依赖存储表中，每个响应式对象触发依赖收集的`key`都会对应一个副作用的`Set`表下文以`depsSet`来称呼
+:::
+在正式开始执行`fn`前，会先`cleanup`当前`effect`的`deps`；`effect`的`deps`存储是的当前`effect`依赖属性的副作用`depsSet`表，
+这是一个双向指针的处理方式，不仅在`track`的时候，会将副作用函数与`target --> key --> depsSet`关联起来，
+同时也会保持`depsSet`的引用存储在`effect.deps`上；这样做的意义就在于现在的`cleanup`操作，
+我们能在`effect`再次执行之前，从所有收集到此`effect`函数的`depsSet`中剔除该`effect`，以便在此次`effect`执行时重新收集；
+这一步操作的意义在于如下场景：  
 ```vue 
 <template>
   <div v-if="showFalg">
@@ -168,13 +176,14 @@ export default {
 }
 </script>
 ```
-我们知道模板的执行时一个副作用渲染函数，首次渲染会将当前组件的副作用渲染函数收集到`showFalg, num1`对应的`deps`中，
+我们知道模板的执行是一个副作用渲染函数，首次渲染会将当前组件的副作用渲染函数收集到`showFalg, num1`对应的`depsSet`中，
 我们改变`showFalg`，触发渲染函数重新执行，此时如果我们不进行`cleanup`，`num1, num2, showFalg`都会收集到副作用渲染函数，
-而`num1`是并未显示在页面，我们更改它的时候并不需要触发渲染函数的重新渲染。  
+而`num1`是并未显示在页面，我们更改它的时候并不需要触发渲染函数的重新渲染。只有在重新执行副作用渲染函数之前进行`cleanup`操作，
+才能确保每次渲染函数执行后依赖收集的正确性  
 
 - #### 执行`fn`  
-`fn`的执行采用`try...finally`来包裹，以确保就算`fn`执行出错还是能正确保证`effectStack, activeEffect`的正确维护，
-在正式执行`fn`之前，会有一个压栈的操作，由于`effect`的执行会存在嵌套的情况比如组件渲染函数执行了遇到了子组件回调到子组件的渲染函数，
+`fn`的执行采用`try...finally`来包裹，以确保就算`fn`执行出错还是能保证`effectStack, activeEffect`的正确维护，
+在正式执行`fn`之前，会有一个压栈的操作，由于`effect`的执行会存在嵌套的情况比如组件渲染函数的执行遇到了子组件会跳到子组件的渲染函数中，
 函数的嵌套调用本就是一个栈结构，而栈的先进后出性质能很好保证`activeEffect`的正确回退；
 `fn`执行完成后，就进行出栈操作，跳回到上一个`effect`中。  
 

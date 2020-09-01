@@ -10,6 +10,6 @@
 可以通过[组合式 API 征求意见稿](https://composition-api.vuejs.org/zh/#%E6%A6%82%E8%BF%B0)来学习。
 
 ## 目标  
-本篇章以`reactive`、`ref`以及`effect`和`watchEffect`为核心方法讲解，
-`Vue3`响应式系统的依赖收集和派发更新如何通过`proxy`来处理的；
-对于`computed`、`watch`等等`API`划分到`future方法`中讲解。
+本篇章以`reactive`、`ref`以及`effect`为核心方法讲解，
+以理解`Vue3`响应式系统的依赖收集和派发更新如何通过`proxy`来处理的，副作用函数又是如何被收集；
+后续再深入对于`computed`、`watch`等等`API`进行歇息。
