@@ -43,8 +43,15 @@ module.exports = {
           collapsable: true,
           children: [
             ['reactivity/', '前言'],
-            'reactivity/reactivity',
-            'reactivity/effect'
+            {
+              title: '核心方法',
+              collapsable: true,
+              children: [
+                'reactivity/reactivity',
+                'reactivity/effect',
+                'reactivity/computed'
+              ]
+            }
           ]
         },
         {
