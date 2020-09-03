@@ -205,6 +205,10 @@ export default {
   函数的嵌套调用本就是一个栈结构，而栈的先进后出性质能很好保证`activeEffect`的正确回退；
   `fn`执行完成后，就进行出栈操作，跳回到上一个`effect`中。
 
+## 整体流程图
+
+![reactivity](/vue3-analysis/reactivity/reactivity.jpg)
+
 ## 总结
 
 这就是`effect`的执行全过程，在`fn`执行之前修正`activeEffect`的指向，
