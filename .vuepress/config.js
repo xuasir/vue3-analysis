@@ -62,7 +62,8 @@ module.exports = {
               children: [
                 'reactivity/reactivity',
                 'reactivity/effect',
-                'reactivity/computed'
+                'reactivity/computed',
+                'reactivity/watch'
               ]
             }
           ]
