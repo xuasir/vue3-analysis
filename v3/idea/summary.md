@@ -1,4 +1,5 @@
-### 总结及准备工作  
+### 总结及准备工作
+
 我们先后聊了`Vue3`的平衡性设计和内部的基本框架、职能分布，还深入探讨了`Vue3 composition API`带来的描述**UI**的方式以及`Vue3`的升级点，
 也算是从内在设计到表现形式都有了一定程度的理解，相信我们在接下来深入源码的时候，我们至少能做到在一开始就能了解模块的主要职能和基本思路。
 
@@ -17,50 +18,50 @@
 >
 > 3. 修改`rollup`配置开启生产打包`sourceMap`
 >
->    1、打开项目根目录的rollup.config.js
->    2、找到第83行的   output.sourcemap = !!process.env.SOURCE_MAP
->    3、至设置成   output.sourcemap = true
+>    1、打开项目根目录的 rollup.config.js
+>    2、找到第 83 行的 output.sourcemap = !!process.env.SOURCE_MAP
+>    3、至设置成 output.sourcemap = true
 >
 > 4. 打包生成`vue3`
 >
 >    `npm run build`
 >
-> 5. 打开`src`下的`vue`文件夹，在`examples`中新建`demo`文件夹，在`demo`中创建一个html如下：
+> 5. 打开`src`下的`vue`文件夹，在`examples`中新建`demo`文件夹，在`demo`中创建一个 html 如下：
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>vue3</title>
-  <script src="../../dist/vue.global.js"></script>
-</head>
-<body>
-  <div id="app"></div>
-</body>
-<script>
-  let { ref } = Vue
-  const App = {
-    template: `
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue3</title>
+    <script src="../../dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+  <script>
+    let { ref } = Vue;
+    const App = {
+      template: `
       <div id="root" @click="add">
         {{ num }}
       </div>
     `,
-    setup() {
-      let num = ref(0)
-      return {
-        num
-      }
-    }
-  }
+      setup() {
+        let num = ref(0);
+        return {
+          num,
+        };
+      },
+    };
 
-  Vue.createApp(App).mount('#app')
-</script>
+    Vue.createApp(App).mount("#app");
+  </script>
 </html>
 ```
 
-> 6. vue3的生产源文件存放在`examples`的同级目录`dist`下，需要测试即可在源文件中打上`debugger`
+> 6. vue3 的生产源文件存放在`examples`的同级目录`dist`下，需要测试即可在源文件中打上`debugger`
 > 7. 直接将`demo/index.html`在浏览器打开即可
 
 至此关于代码调试的准备已经做完，在下一篇幅中将开始解析`vue3 runtime`。

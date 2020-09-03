@@ -1,10 +1,13 @@
-### mount流程
+### 组件 mount 流程
+
+当我们创建了`app`实例后会调用`mount`方法将其挂载到某个`html`节点上，那么这期间到底发生了什么？组件是如何转化成真实`dom`的？
+本节我们关心的就是这样的问题。
 
 ## 本篇目标
 
 1. 了解`Vue3`组件挂载的整体流程
 2. 普通元素的挂载流程
-3. `Vue3`如何让位运算发挥神奇的作用
+3. 嵌套组件如何被挂载
 
 ## 前置知识
 
@@ -17,55 +20,55 @@ export interface VNode<
   ExtraProps = { [key: string]: any }
 > {
   // 是否为Vnode对象的标识
-  __v_isVNode: true
+  __v_isVNode: true;
   // 跳过reactivity的标识
-  __v_skip: true
+  __v_skip: true;
   // vnode类型标识
-  type: VNodeTypes
-  // vnode props 
-  props: (VNodeProps & ExtraProps) | null
+  type: VNodeTypes;
+  // vnode props
+  props: (VNodeProps & ExtraProps) | null;
   // vnode的唯一key值
-  key: string | number | null
-  ref: VNodeNormalizedRef | null
-  scopeId: string | null // SFC only
+  key: string | number | null;
+  ref: VNodeNormalizedRef | null;
+  scopeId: string | null; // SFC only
   // 子Vnode
-  children: VNodeNormalizedChildren
+  children: VNodeNormalizedChildren;
   // 对应组件实例
-  component: ComponentInternalInstance | null
-  suspense: SuspenseBoundary | null
-  dirs: DirectiveBinding[] | null
-  transition: TransitionHooks<HostElement> | null
+  component: ComponentInternalInstance | null;
+  suspense: SuspenseBoundary | null;
+  dirs: DirectiveBinding[] | null;
+  transition: TransitionHooks<HostElement> | null;
 
   // DOM
   // vnode对应元素 组件vnode则对应 挂载容器
-  el: HostNode | null
+  el: HostNode | null;
   // 相对锚点
-  anchor: HostNode | null // fragment anchor
+  anchor: HostNode | null; // fragment anchor
   // teleport组件的渲染目标元素
-  target: HostElement | null // teleport target
+  target: HostElement | null; // teleport target
   // teleport组件的渲染目标元素相对锚点
-  targetAnchor: HostNode | null // teleport target anchor
-  staticCount: number // number of elements contained in a static vnode
+  targetAnchor: HostNode | null; // teleport target anchor
+  staticCount: number; // number of elements contained in a static vnode
 
   // optimization only
   // vnode 优化标识
-  shapeFlag: number
+  shapeFlag: number;
   // patch 标识
-  patchFlag: number
+  patchFlag: number;
   // block优化下的效果：
   // 扁平的动态props
-  dynamicProps: string[] | null
+  dynamicProps: string[] | null;
   // 扁平的动态子节点
-  dynamicChildren: VNode[] | null
+  dynamicChildren: VNode[] | null;
 
   // 只有根组件拥有app上下文
-  appContext: AppContext | null
+  appContext: AppContext | null;
 }
 ```
 
 所谓的`Vnode`也就是通过`JavaScript`对象来抽象描述`dom`元素，而虚拟`dom`就是由多个`Vnode`组成和`Dom`结构一一对应的一棵虚拟`Dom`树；
 虚拟`Dom`的优势不在于它拥有多快的速度而在于它的抽象能力，在`diff`出整个变更的最小更改之前可以在虚拟`Dom`下进行操作，
-直接操作`js`对象的性能势必比操作真实`Dom`更加高效，而且`diff`能保证每次对Dom的实际操作达到一个下限的保证；
+直接操作`js`对象的性能势必比操作真实`Dom`更加高效，而且`diff`能保证每次对 Dom 的实际操作达到一个下限的保证；
 在渲染器和`web`平台的解耦中，虚拟`Dom`也有着不可替换的重要作用。
 
 ## 通篇解析`demo`模板
@@ -73,39 +76,39 @@ export interface VNode<
 由于是解析整个应用的挂载过程为了统一文中描述，我将采用如下的应用书写，来进行分析：
 
 ```js
-let { reactive, toRefs } = Vue
-  const Hello = {
-    name: 'hello',
-    props: ['msg'],
-    template: `
+let { reactive, toRefs } = Vue;
+const Hello = {
+  name: "hello",
+  props: ["msg"],
+  template: `
       <div>
         hello child {{ msg }}
       </div>
-    `
-  }
-  const App = {
-    components: {
-      Hello
-    },
-    template: `
+    `,
+};
+const App = {
+  components: {
+    Hello,
+  },
+  template: `
       <div id="root" @click="add">
 				<p>parent</p>
         <hello :msg="num" />
       </div>
     `,
-    setup() {
-      let state = reactive({ num: ['a', 'b', 'c', 'd', 'e'] })
-      function add() {
-        state.num = ['a', 'c', 'd', 'b', 'e']
-      }
-      return {
-        ...toRefs(state),
-        add
-      }
+  setup() {
+    let state = reactive({ num: ["a", "b", "c", "d", "e"] });
+    function add() {
+      state.num = ["a", "c", "d", "b", "e"];
     }
-  }
+    return {
+      ...toRefs(state),
+      add,
+    };
+  },
+};
 
-  Vue.createApp(App).mount('#app')
+Vue.createApp(App).mount("#app");
 ```
 
 ## 解析
@@ -130,17 +133,18 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
           ;(rootContainer as any).__vue_app__ = app
           // 返回根组件的代理
           return vnode.component!.proxy
-        } 
+        }
       }
 ```
 
 从`mount`函数的流程上来看，我们在挂载一个应用时，基本可以作为三步来理解：
 ::: tip 主要流程
- 1. 根据根组件信息来创建根`组件Vnode`并且设置好`根组件Vnode`对应的上下文信息
- 2. 从 `根组件Vnode`开始递归渲染生成整棵Dom树并且挂载到根容器上
- 3. 处理根组件挂载完后的相关工作并返回根组件的代理
-:::
-现在就可以从几个疑问开始深入探究：
+
+1.  根据根组件信息来创建根`组件Vnode`并且设置好`根组件Vnode`对应的上下文信息
+2.  从 `根组件Vnode`开始递归渲染生成整棵 Dom 树并且挂载到根容器上
+3.  处理根组件挂载完后的相关工作并返回根组件的代理
+    :::
+    现在就可以从几个疑问开始深入探究：
 
 - ## `根组件Vnode`如何创建的？
 
@@ -159,24 +163,24 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
     // 规范化 class & style
     if (props) {
       // ...
-      props.class = normalizeClass(klass)
-  		// ...
-      props.style = normalizeStyle(style)
+      props.class = normalizeClass(klass);
+      // ...
+      props.style = normalizeStyle(style);
     }
-  
+
     // VNode形态编码 来自枚举类ShapFlags
     const shapeFlag = isString(type)
       ? ShapeFlags.ELEMENT
       : __FEATURE_SUSPENSE__ && isSuspense(type)
-        ? ShapeFlags.SUSPENSE
-        : isTeleport(type)
-          ? ShapeFlags.TELEPORT
-          : isObject(type)
-            ? ShapeFlags.STATEFUL_COMPONENT
-            : isFunction(type)
-              ? ShapeFlags.FUNCTIONAL_COMPONENT
-              : 0
-  
+      ? ShapeFlags.SUSPENSE
+      : isTeleport(type)
+      ? ShapeFlags.TELEPORT
+      : isObject(type)
+      ? ShapeFlags.STATEFUL_COMPONENT
+      : isFunction(type)
+      ? ShapeFlags.FUNCTIONAL_COMPONENT
+      : 0;
+
     const vnode: VNode = {
       // VNode类型
       type,
@@ -184,23 +188,24 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
       key: props && normalizeKey(props),
       ref: props && normalizeRef(props),
       // ...
-    }
-  	// 规范化子节点---> 确定children的类型，规范化children成数组形态、插槽形态或者string、null
-    normalizeChildren(vnode, children)
-  
-    return vnode
+    };
+    // 规范化子节点---> 确定children的类型，规范化children成数组形态、插槽形态或者string、null
+    normalizeChildren(vnode, children);
+
+    return vnode;
   }
   ```
 
-  整体来说创建一个`VNode`主要是对`VNode`的形态类型进行确定、class和style进行规范化，
+  整体来说创建一个`VNode`主要是对`VNode`的形态类型进行确定、class 和 style 进行规范化，
   然后通过对象字面量的方式来创建`VNode`最后是对`children`进行规范化；依据当前的额`type`情况，
   我们得到的应该是一个`ShapeFlags.STATEFUL_COMPONENT`类型的`组件VNode`，
-  回到`mount`方法中我们将app上下文挂载到`根组件VNode`的`AppContext`属性上后就开始调用render开始进行从根组件开始的挂载工作了；
+  回到`mount`方法中我们将 app 上下文挂载到`根组件VNode`的`AppContext`属性上后就开始调用 render 开始进行从根组件开始的挂载工作了；
   这样我们就可以进入下一个疑问。
 
-- ## render函数的流程
+- ## render 函数的流程
+
   ::: tip 主要关注内容
-  在render中如何递归的渲染子组件和普通元素呢？如何产生递归关系将整个组件树形成的虚拟Dom树渲染完毕的呢？
+  在 render 中如何递归的渲染子组件和普通元素呢？如何产生递归关系将整个组件树形成的虚拟 Dom 树渲染完毕的呢？
   :::
 
   我们在同一文件中(`runtime-core/apiCreateApp.ts`)可以找到`render函数`，注意这个`render函数`与`组件的render函数`并不是同一个概念，
@@ -209,30 +214,30 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
   ```ts
   // runtime-core/apiCreateApp.ts
   const render: RootRenderFunction = (vnode, container) => {
-      if (vnode == null) {
-        // 无新的vnode入参 则代表是卸载
-        if (container._vnode) {
-          unmount(container._vnode, null, null, true)
-        }
-      } else {
-        // 挂载分支
-        patch(container._vnode || null, vnode, container)
+    if (vnode == null) {
+      // 无新的vnode入参 则代表是卸载
+      if (container._vnode) {
+        unmount(container._vnode, null, null, true);
       }
-    	// 执行postFlush任务队列
-      flushPostFlushCbs()
-    // 保存当前渲染完毕的根VNode在容器上
-      container._vnode = vnode
+    } else {
+      // 挂载分支
+      patch(container._vnode || null, vnode, container);
     }
+    // 执行postFlush任务队列
+    flushPostFlushCbs();
+    // 保存当前渲染完毕的根VNode在容器上
+    container._vnode = vnode;
+  };
   ```
 
   在`render`中我们本次要执行的就是`patch`方法，后面执行与调度相关的方法可以暂时忽略；
   `patch`方法是`Vue`中进行`VNode`操作的重要方法，被称作是打补丁方法，是进行`VNode`递归挂载和`diff`的递归函数，
-  我们直接进入到`patch`的函数体便能更清楚的知道它的具体作用了。		
+  我们直接进入到`patch`的函数体便能更清楚的知道它的具体作用了。
 
   `patch`函数依旧是定义在同一文件中：
 
   ```ts
-  // runtime-core/renderer.ts 
+  // runtime-core/renderer.ts
   const patch: PatchFn = (
     	// 旧VNode
       n1,
@@ -291,9 +296,9 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
   ```
 
   整体上来看`patch`函数的作用就是通过对当前`VNode`类型的判断来确定下一步需要具体执行的子逻辑，
-  由此我们可以想象在当前`VNode`的子逻辑执行完毕到需要去挂载chidren的时候时候我们任然会回到`patch`函数，来通过`patch`将patch逻辑分发到具体的子逻辑，
+  由此我们可以想象在当前`VNode`的子逻辑执行完毕到需要去挂载 chidren 的时候时候我们任然会回到`patch`函数，来通过`patch`将 patch 逻辑分发到具体的子逻辑，
   这也是挂载整个应用树递归的方式。这种拆分子逻辑的方式很好的将子过程分发到不同的子函数中，让子函数关注的类型与逻辑可以单一化，
-  这样无论是从代码的可读性和扩展性都是有很大的提升，这样的技巧是非常值得学习的。		
+  这样无论是从代码的可读性和扩展性都是有很大的提升，这样的技巧是非常值得学习的。
 
   同时`Vue3`在处理`VNode`的`shapeFlag`时采用了位运算的方式，展开的话也有挺多能讲的为了不影响主线，可以暂时将`&`理解成检查是否是某一类型，`|`理解成授予某一类型。
 
@@ -302,7 +307,7 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
      我们回到主线从`render函数`进入到`patch`中现在的`VNode`应该是`根组件VNode`这是毫无疑问的，那我们应该进入到`processComponent`函数中：
 
      ```ts
-     // runtime-core/renderer.ts 
+     // runtime-core/renderer.ts
      const processComponent = (...) => {
          if (n1 == null) {
            // 挂载组件
@@ -325,51 +330,51 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
      可以得知`processComponent`函数主要作用也是分发子逻辑，咱们主要关注的是挂载，所以直接看到`mountComponent`函数：
 
      ```ts
-       // runtime-core/renderer.ts 
-       const mountComponent: MountComponentFn = (
+     // runtime-core/renderer.ts
+     const mountComponent: MountComponentFn = (
+       initialVNode,
+       container,
+       anchor,
+       parentComponent,
+       parentSuspense,
+       isSVG,
+       optimized
+     ) => {
+       // 创建组件实例
+       const instance: ComponentInternalInstance = (initialVNode.component = createComponentInstance(
+         initialVNode,
+         parentComponent,
+         parentSuspense
+       ));
+       // 启动组件
+       setupComponent(instance);
+       // setup函数为异步的相关处理 忽略相关逻辑
+       if (__FEATURE_SUSPENSE__ && instance.asyncDep) {
+         parentSuspense.registerDep(instance, setupRenderEffect);
+         if (!initialVNode.el) {
+           const placeholder = (instance.subTree = createVNode(Comment));
+           processCommentNode(null, placeholder, container!, anchor);
+         }
+         return;
+       }
+       // 启动带副作用的render函数
+       setupRenderEffect(
+         instance,
          initialVNode,
          container,
          anchor,
-         parentComponent,
          parentSuspense,
          isSVG,
          optimized
-       ) => {
-         // 创建组件实例
-         const instance: ComponentInternalInstance = (initialVNode.component = createComponentInstance(
-           initialVNode,
-           parentComponent,
-           parentSuspense
-         ))
-         // 启动组件
-         setupComponent(instance)
-         // setup函数为异步的相关处理 忽略相关逻辑
-         if (__FEATURE_SUSPENSE__ && instance.asyncDep) {
-           parentSuspense.registerDep(instance, setupRenderEffect)
-           if (!initialVNode.el) {
-             const placeholder = (instance.subTree = createVNode(Comment))
-             processCommentNode(null, placeholder, container!, anchor)
-           }
-           return
-         }
-     		// 启动带副作用的render函数
-         setupRenderEffect(
-           instance,
-           initialVNode,
-           container,
-           anchor,
-           parentSuspense,
-           isSVG,
-           optimized
-         )
-       }
+       );
+     };
      ```
 
      `mountComponent`函数代码量依旧不大，这也是`Vue3`代码组织的特点，函数专职专供，整体流程清晰；简单分析可得出`mountComponent`函数主要做了三件事情：
 
      > 1. 创建组件实例
-     > 2. 启动组件setup
-     > 3. 创建带副作用的render函数
+     > 2. 启动组件 setup
+     > 3. 创建带副作用的 render 函数
 
      三个流程执行完毕组件也就完成了挂载，我们一个个来分析。
 
@@ -435,7 +440,7 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
           proxy: ComponentPublicInstance | null
           withProxy: ComponentPublicInstance | null
           ctx: Data
-        
+
           // 内部状态
           data: Data
           props: Data
@@ -452,7 +457,7 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
           suspense: SuspenseBoundary | null
           asyncDep: Promise<any> | null
           asyncResolved: boolean
-        
+
           // 生命周期相关标识
           isMounted: boolean
           isUnmounted: boolean
@@ -477,19 +482,19 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
           instance: ComponentInternalInstance,
           isSSR = false
         ) {
-          const { props, children, shapeFlag } = instance.vnode
+          const { props, children, shapeFlag } = instance.vnode;
           // 是否是包含状态的组件
-          const isStateful = shapeFlag & ShapeFlags.STATEFUL_COMPONENT
+          const isStateful = shapeFlag & ShapeFlags.STATEFUL_COMPONENT;
           // 初始化Props
-          initProps(instance, props, isStateful, isSSR)
+          initProps(instance, props, isStateful, isSSR);
           // 初始化Slots
-          initSlots(instance, children)
-        	// 如果是包含状态的函数，就执行状态函数得到状态
+          initSlots(instance, children);
+          // 如果是包含状态的函数，就执行状态函数得到状态
           const setupResult = isStateful
             ? setupStatefulComponent(instance, isSSR)
-            : undefined
-          
-          return setupResult
+            : undefined;
+
+          return setupResult;
         }
         ```
 
@@ -498,7 +503,7 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
         上述两个步骤完成后，渲染阶段的准备工作也已经完成了，我们有了`instance`、`Props`、`Slots`和`state`就可以开始`render`了；
 
         ```ts
-        // runtime-core/renderer.ts 
+        // runtime-core/renderer.ts
         const setupRenderEffect: SetupRenderEffectFn = (
             instance,
             initialVNode,
@@ -541,9 +546,9 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
         直接看到函数的整体逻辑，主要是分为两个步骤：
 
         > 1. 渲染组件子树
-        > 2. patch子树
+        > 2. patch 子树
 
-        `patch`子树的时候也就是递归挂载组件`VNode Tree`的时机，当然子树包含的可能是子组件也可能是Dom元素这就是`patch`的分发逻辑工作了；
+        `patch`子树的时候也就是递归挂载组件`VNode Tree`的时机，当然子树包含的可能是子组件也可能是 Dom 元素这就是`patch`的分发逻辑工作了；
         当然我们首先要将`renderComponentRoot`的子逻辑过程理解清楚，我们现在来到文件 `runtime-core/componentRenderUtils.ts`找到`renderComponentRoot`的函数体，
         当然首先得明确`renderComponentRoot`函数是通过接受`instance`得到一个`VNode`的过程，在看到他的函数体：
 
@@ -593,18 +598,18 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
           }
           // 置空正在渲染实例
           currentRenderingInstance = null
-        
+
           return result
         }
         ```
 
         `renderComponentRoot`核心是通过组件的`render函数`来得到组件子树，也没什么太多可讲的，
-        我们回到 `setupRenderEffect`接下来就是递归`patch`的过程了，当我们`patch`完子树后整个组件的mount过程也就结束啦。
+        我们回到 `setupRenderEffect`接下来就是递归`patch`的过程了，当我们`patch`完子树后整个组件的 mount 过程也就结束啦。
 
   2. ### 普通元素的挂载
 
-     在完成组件子树生成后，再度进入到`patch`函数中，这次我们拿到的`VNode`对象已经变成根组件的第一个真实Dom节点了，
-     也就是`id=“root”`的div元素了，这次`patch`进入的子逻辑应该是`processElement`函数了：
+     在完成组件子树生成后，再度进入到`patch`函数中，这次我们拿到的`VNode`对象已经变成根组件的第一个真实 Dom 节点了，
+     也就是`id=“root”`的 div 元素了，这次`patch`进入的子逻辑应该是`processElement`函数了：
 
      ```ts
      // runtime-core/renderer.ts
@@ -632,8 +637,8 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
        isSVG: boolean,
        optimized: boolean
      ) => {
-       let el: RendererElement
-       let vnodeHook: VNodeHook | undefined | null
+       let el: RendererElement;
+       let vnodeHook: VNodeHook | undefined | null;
        const {
          type,
          props,
@@ -641,18 +646,18 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
          transition,
          scopeId,
          patchFlag,
-         dirs
-       } = vnode
+         dirs,
+       } = vnode;
        // 创建div元素
        el = vnode.el = hostCreateElement(
          vnode.type as string,
          isSVG,
          props && props.is
-       )
+       );
        // 文本节点的children
        if (shapeFlag & ShapeFlags.TEXT_CHILDREN) {
          // 直接设置
-         hostSetElementText(el, vnode.children as string)
+         hostSetElementText(el, vnode.children as string);
        } else if (shapeFlag & ShapeFlags.ARRAY_CHILDREN) {
          // 数组型的children
          mountChildren(
@@ -661,11 +666,11 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
            null,
            parentComponent,
            parentSuspense,
-           isSVG && type !== 'foreignObject',
+           isSVG && type !== "foreignObject",
            optimized || !!vnode.dynamicChildren
-         )
+         );
        }
-     
+
        // 设置props
        if (props) {
          for (const key in props) {
@@ -680,63 +685,63 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
                parentComponent,
                parentSuspense,
                unmountChildren
-             )
+             );
            }
-         }  
-        }
-     		// 插入到容器元素中
-         hostInsert(el, container, anchor)
+         }
        }
+       // 插入到容器元素中
+       hostInsert(el, container, anchor);
+     };
      ```
 
-     函数中的生命周期hook相关的内容我都去除了，只剩下核心的四部逻辑：
+     函数中的生命周期 hook 相关的内容我都去除了，只剩下核心的四部逻辑：
 
      > 1. 依据元素类型使用平台创建元素函数创建`el`
      > 2. 分情况处理`children`
      > 3. 处理`Props`
-     > 4. 将元素插入Dom中
+     > 4. 将元素插入 Dom 中
 
      `hostCreateElement`底层是调用了`createElement`，针对`children`不同的情况有逻辑分支，我们需要关注的主要在`mountChildren`中的逻辑。
 
      ```ts
-      const mountChildren: MountChildrenFn = (
-         children,
-         container,
-         anchor,
-         parentComponent,
-         parentSuspense,
-         isSVG,
-         optimized,
-         start = 0
-       ) => {
-         for (let i = start; i < children.length; i++) {
-           // 规范化VNode
-           const child = normalizeVNode(children[i])
-           // 直接patch
-           patch(
-             null,
-             child,
-             container,
-             anchor,
-             parentComponent,
-             parentSuspense,
-             isSVG,
-             optimized
-           )
-         }
+     const mountChildren: MountChildrenFn = (
+       children,
+       container,
+       anchor,
+       parentComponent,
+       parentSuspense,
+       isSVG,
+       optimized,
+       start = 0
+     ) => {
+       for (let i = start; i < children.length; i++) {
+         // 规范化VNode
+         const child = normalizeVNode(children[i]);
+         // 直接patch
+         patch(
+           null,
+           child,
+           container,
+           anchor,
+           parentComponent,
+           parentSuspense,
+           isSVG,
+           optimized
+         );
        }
+     };
      ```
 
      `mountChildren`对于`children`直接采用遍历的方式来逐个`patch`这样也产生了递归关系，
-     接下来我们看看`hostPatchProp`这个方法来自 `runtime-dom/patchProp.ts`中，都是一些关于原生Dom元素的属性的操作就不再展开。
-     当当前的元素生成后就是插入Dom的时机了，调用的也是web平台的`insertBefore`或者`appendChild`；
-     感兴趣的可以在 `runtime-dom/(nodeOps|patchProp).ts`中详细了解`Web平台`相关的渲染API。
+     接下来我们看看`hostPatchProp`这个方法来自 `runtime-dom/patchProp.ts`中，都是一些关于原生 Dom 元素的属性的操作就不再展开。
+     当当前的元素生成后就是插入 Dom 的时机了，调用的也是 web 平台的`insertBefore`或者`appendChild`；
+     感兴趣的可以在 `runtime-dom/(nodeOps|patchProp).ts`中详细了解`Web平台`相关的渲染 API。
 
   ## 整体流程图
 
   ![mount流程](/vue3-analysis/runtime/vue3-mount.jpg)
 
-  整个流程也并不是特别复杂，重点在于`组件VNode`的创建、`组件Instance`的创建、组件子树的渲染逻辑、普通元素的处理及其children的挂载这些问题在流程上的顺序和关系，
+  整个流程也并不是特别复杂，重点在于`组件VNode`的创建、`组件Instance`的创建、组件子树的渲染逻辑、普通元素的处理及其 children 的挂载这些问题在流程上的顺序和关系，
   大可以通过在特定的函数中类似：`mountComponent`、`mountElement`和组件`instance`、`subTree`的创建函数中打上`debugger`跟着流程走一遍更加利于理解。
 
   ## 总结

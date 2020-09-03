@@ -28,20 +28,32 @@ module.exports = {
           ]
         },
         {
-          title: 'runtime篇',
-          collapsable: true,
+          title: '运行时篇',
+          collapsable: false,
           children: [
             ['runtime/', '前言'],
-            'runtime/createApp',
-            'runtime/mount',
-            'runtime/update',
-            'runtime/setup',
-            'runtime/scheduler'
+            {
+              title: '组件系统',
+              collapsable: true,
+              children: [
+                'runtime/createApp',
+                'runtime/mount',
+                'runtime/update',
+                'runtime/setup',
+              ]
+            },
+            {
+              title: '调度与VNode',
+              collapsable: true,
+              children: [
+                'runtime/scheduler'
+              ]
+            },
           ]
         },
         {
-          title: 'reactivity篇',
-          collapsable: true,
+          title: '响应式系统篇',
+          collapsable: false,
           children: [
             ['reactivity/', '前言'],
             {
