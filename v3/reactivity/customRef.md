@@ -20,6 +20,11 @@ customRef((track, trigger) => {
 `customRef`可接收一个工厂函数，参数分别为`track`和`trigger`，并且返回一个带有`get`和`set`的对象，
 我们能灵活的控制`track/trigger`的时机。
 
+## 本篇目标
+
+1. 理解`customRef`的实现原理
+2. 扩展`customRef`的使用场景
+
 ## 类型声明
 
 ```typescript

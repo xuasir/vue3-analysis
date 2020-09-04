@@ -21,6 +21,11 @@ const consumer = {
 
 `inject`第二个参数为可选的默认值，同时`provide`也能注入一个响应式的数据，在`inject`取出来后依旧能被侦听。
 
+## 本篇目标
+
+1. 理解`provide/inject`的实现原理
+2. 理解嵌套组件`provides`如何被处理
+
 ## 函数概览
 
 ```typescript

@@ -24,6 +24,10 @@ watch([num, obj], ([newNum, newObj], [oldNum, oldObj], onInvalidate) => {});
 这就是为什么`watchAPI`在`runtime-core`中实现却放在响应式篇章来讲解的原因；
 `watchAPI`的背后依附于`effect`函数就让我们看看是如何通过`effect`来实现侦听器的。
 
+## 本篇目标
+
+1. 理解`watch`和`watchEffect`的实现原理
+
 ## `watch API`概览
 
 - ##### `watch options`类型声明
