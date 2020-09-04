@@ -1,4 +1,4 @@
-### `reactive`和`ref`
+### `reactive` 和 `ref`
 
 在`Vue2`中创建响应式数据有两种方式，一是将数据放在`data`中返回封装性较强的使用方式，二是使用`Vue2.6`推出的`Vue.observable`
 较为接近`Vue3`的`API`形态；在`Vue3`的`reactivity`中暴露了更多底层的响应式方法，来让我们灵活的创建响应式对象，

@@ -40,15 +40,22 @@ module.exports = {
                 'runtime/mount',
                 'runtime/update',
                 'runtime/setup',
+                'runtime/lifecycle'
               ]
             },
             {
-              title: '调度与VNode',
+              title: '异步调度',
               collapsable: true,
               children: [
                 'runtime/scheduler'
               ]
             },
+            // {
+            //   title: 'VNode',
+            //   collapsable: true,
+            //   children: [
+            //   ]
+            // },
           ]
         },
         {
@@ -62,33 +69,64 @@ module.exports = {
               children: [
                 'reactivity/reactivity',
                 'reactivity/effect',
+                'reactivity/readonly',
                 'reactivity/computed',
-                'reactivity/watch'
+                'reactivity/watch',
+                'reactivity/provide'
+              ]
+            },
+            {
+              title: '更多方法',
+              collapsable: true,
+              children: [
+                'reactivity/customRef',
+                'reactivity/shallow',
+                'reactivity/reactivity-utils',
+              ]
+            },
+          ]
+        },
+        // {
+        //   title: 'compiler篇',
+        //   collapsable: true,
+        //   children: [
+        //     ['compiler/', '前言'],
+        //   ]
+        // },
+        {
+          title: '扩展篇',
+          collapsable: false,
+          children: [
+            ['future/', '前言'],
+            {
+              title: '内建组件',
+              collapsable: true,
+              children: [
+                'future/suspense',
+                'future/teleport'
+              ]
+            },
+            {
+              title: '实用特性',
+              collapsable: true,
+              children: [
+                'future/props',
+                'future/slot',
+                'future/refs',
+                'future/directives',
+                'future/defineComponent',
+                'future/defineAsyncComponent'
               ]
             }
           ]
         },
-        {
-          title: 'compiler篇',
-          collapsable: true,
-          children: [
-            ['compiler/', '前言'],
-          ]
-        },
-        {
-          title: '实用特性篇',
-          collapsable: true,
-          children: [
-            ['future/', '前言'],
-          ]
-        },
-        {
-          title: '生态篇',
-          collapsable: true,
-          children: [
-            ['ecology/', '前言'],
-          ]
-        },
+        // {
+        //   title: '生态篇',
+        //   collapsable: true,
+        //   children: [
+        //     ['ecology/', '前言'],
+        //   ]
+        // },
       ]
     }
   }

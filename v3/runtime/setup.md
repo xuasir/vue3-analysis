@@ -1,4 +1,4 @@
-### 组件 setup 新选项
+### setup 选项
 
 在`Vue3`中推出了一个新的`setup`选项，来承载`composition API`同时也替代了`beforeCreated`和`created`两个生命周期选项；
 `setup`仅在组件启动的时候执行一次，来确定组件所有与视图相关联系的数据、行为和作用；在`Vue3`中组件已经被简化成如下形态：
