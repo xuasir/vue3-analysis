@@ -11,7 +11,8 @@ module.exports = {
     lastUpdated: '最后一次更新',
     nav: [
       {text: 'Vue3', link: '/v3/idea/'},
-      {text: 'vue-hooks', link: 'http://xuguo.xyz/vue-hooks'}
+      {text: 'vue-hooks', link: 'http://xuguo.xyz/vue-hooks'},
+      {text: '我要修正', link: 'https://github.com/xuguo-code/vue3-analysis/issues'},
     ],
     sidebar: {
       '/v3/': [
