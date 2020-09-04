@@ -2,7 +2,8 @@ module.exports = {
   base: '/vue3-analysis/',
   dest: 'dist',
   title: 'vue3解析',
-  description: '解析vue3原理及设计思想',
+  description: ' ',
+  plugins: ['@vuepress/back-to-top'],
   themeConfig: {
     repo: 'xuguo-code/vue3-analysis',
     logo: '/logo.png',
@@ -10,7 +11,7 @@ module.exports = {
     docsDir: './',
     lastUpdated: '最后一次更新',
     nav: [
-      {text: 'Vue3', link: '/v3/idea/'},
+      {text: 'Vue3', link: '/v3/idea/vue'},
       {text: 'vue-hooks', link: 'http://xuguo.xyz/vue-hooks'},
       {text: '我要修正', link: 'https://github.com/xuguo-code/vue3-analysis/issues'},
     ],
@@ -20,7 +21,7 @@ module.exports = {
           title: '理念篇',
           collapsable: true,
           children: [
-            'idea/',
+            // 'idea/',
             'idea/vue',
             'idea/UI',
             'idea/view',
