@@ -112,8 +112,8 @@ module.exports = {
               title: '实用特性',
               collapsable: true,
               children: [
-                'future/props',
-                'future/slot',
+                // 'future/props',
+                // 'future/slot',
                 'future/refs',
                 'future/directives',
                 'future/defineComponent',
