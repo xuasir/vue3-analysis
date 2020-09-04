@@ -71,7 +71,6 @@ module.exports = {
               children: [
                 'reactivity/reactivity',
                 'reactivity/effect',
-                'reactivity/readonly',
                 'reactivity/computed',
                 'reactivity/watch',
                 'reactivity/provide'
@@ -82,6 +81,7 @@ module.exports = {
               collapsable: true,
               children: [
                 'reactivity/customRef',
+                'reactivity/readonly',
                 'reactivity/shallow',
                 'reactivity/reactivity-utils',
               ]
