@@ -100,14 +100,14 @@ module.exports = {
           collapsable: false,
           children: [
             ['future/', '前言'],
-            {
-              title: '内建组件',
-              collapsable: true,
-              children: [
-                'future/suspense',
-                'future/teleport'
-              ]
-            },
+            // {
+            //   title: '内建组件',
+            //   collapsable: true,
+            //   children: [
+            //     'future/suspense',
+            //     'future/teleport'
+            //   ]
+            // },
             {
               title: '实用特性',
               collapsable: true,
@@ -116,8 +116,8 @@ module.exports = {
                 // 'future/slot',
                 'future/refs',
                 'future/directives',
-                'future/defineComponent',
-                'future/defineAsyncComponent'
+                // 'future/defineComponent',
+                // 'future/defineAsyncComponent'
               ]
             }
           ]
