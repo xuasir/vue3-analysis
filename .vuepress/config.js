@@ -116,8 +116,7 @@ module.exports = {
                 // 'future/slot',
                 'future/refs',
                 'future/directives',
-                // 'future/defineComponent',
-                // 'future/defineAsyncComponent'
+                'future/defineAsyncComponent'
               ]
             }
           ]
