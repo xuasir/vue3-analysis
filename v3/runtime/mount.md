@@ -160,7 +160,7 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
     dynamicProps: string[] | null = null,
     isBlockNode = false
   ): VNode {
-    // 规范化 class & style
+    // 标准化 class & style
     if (props) {
       // ...
       props.class = normalizeClass(klass);
@@ -189,15 +189,15 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
       ref: props && normalizeRef(props),
       // ...
     };
-    // 规范化子节点---> 确定children的类型，规范化children成数组形态、插槽形态或者string、null
+    // 标准化子节点---> 确定children的类型，标准化children成数组形态、插槽形态或者string、null
     normalizeChildren(vnode, children);
 
     return vnode;
   }
   ```
 
-  整体来说创建一个`VNode`主要是对`VNode`的形态类型进行确定、class 和 style 进行规范化，
-  然后通过对象字面量的方式来创建`VNode`最后是对`children`进行规范化；依据当前的额`type`情况，
+  整体来说创建一个`VNode`主要是对`VNode`的形态类型进行确定、class 和 style 进行标准化，
+  然后通过对象字面量的方式来创建`VNode`最后是对`children`进行标准化；依据当前的额`type`情况，
   我们得到的应该是一个`ShapeFlags.STATEFUL_COMPONENT`类型的`组件VNode`，
   回到`mount`方法中我们将 app 上下文挂载到`根组件VNode`的`AppContext`属性上后就开始调用 render 开始进行从根组件开始的挂载工作了；
   这样我们就可以进入下一个疑问。
@@ -715,7 +715,7 @@ mount(rootContainer: HostElement, isHydrate?: boolean): any {
        start = 0
      ) => {
        for (let i = start; i < children.length; i++) {
-         // 规范化VNode
+         // 标准化VNode
          const child = normalizeVNode(children[i]);
          // 直接patch
          patch(

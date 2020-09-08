@@ -346,7 +346,7 @@ const patchChildren: PatchChildrenFn = (
 };
 ```
 
-得益于在`createVNode`的时候会对`children`进行规范化，我们在`diff children`时候可以仅考虑`children`为数组、文本和空这三种情况，进而进行逻辑判断。
+得益于在`createVNode`的时候会对`children`进行标准化，我们在`diff children`时候可以仅考虑`children`为数组、文本和空这三种情况，进而进行逻辑判断。
 在整体逻辑中我直接忽略了`fragment`的处理，直接看到重点`children`逻辑，我们通过一个流程图来梳理一下思路：
 
 ![patchChildren](/vue3-analysis/runtime/vue3-patch-children.jpg)

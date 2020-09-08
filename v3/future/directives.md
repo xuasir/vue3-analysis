@@ -70,10 +70,10 @@ export type Directive<T = any, V = any> =
 
 可接受包含钩子函数的对象也能直接接受一个钩子函数将会在`mounted`和`updated`时执行。
 
-## 规范化指令绑定
+## 标准化指令绑定
 
 注册钩子后，我们还需要在元素上去使用进行绑定传递参数使用修饰符一系列操作，
-在从模板转化成`VNode`还需要经历一个规范化指令绑定信息的过程，我们看一看带指令的模板会被编译成什么样的渲染函数：
+在从模板转化成`VNode`还需要经历一个标准化指令绑定信息的过程，我们看一看带指令的模板会被编译成什么样的渲染函数：
 
 ```html
 <div v-custom:args.foo.bar="value"></div>
@@ -120,7 +120,7 @@ export function withDirectives<T extends VNode>(
   const instance = internalInstance.proxy;
   // 拿到已处理的所有指令信息
   const bindings: DirectiveBinding[] = vnode.dirs || (vnode.dirs = []);
-  // 遍历规范化指令绑定信息
+  // 遍历标准化指令绑定信息
   for (let i = 0; i < directives.length; i++) {
     let [dir, value, arg, modifiers = EMPTY_OBJ] = directives[i];
     if (isFunction(dir)) {
@@ -177,7 +177,7 @@ export interface DirectiveBinding<V = any> {
 ```
 
 `withDirectives`所做的就是将`DirectiveArguments`转化成`DirectiveBinding`，
-我们再回看`withDirectives`的逻辑处理，先会对`app.directive()`的指令参数进行规范化处理，
+我们再回看`withDirectives`的逻辑处理，先会对`app.directive()`的指令参数进行标准化处理，
 然后将指令信息全部转化成`bindings`并存储在`VNode.dirs`。
 
 ## 调用指令钩子
@@ -283,7 +283,7 @@ export function invokeDirectiveHook(
 }
 ```
 
-得益于`withDirectives`的规范化指令信息，`invokeDirectiveHook`仅需要遍历调用相应的钩子函数即可。
+得益于`withDirectives`的标准化指令信息，`invokeDirectiveHook`仅需要遍历调用相应的钩子函数即可。
 
 ## 总结
 

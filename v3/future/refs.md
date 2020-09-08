@@ -113,7 +113,7 @@ export const setRef = (
       value = vnode.el;
     }
   }
-  // vnode ref 经过规范化后 [当前渲染组件实例，ref绑定元素]
+  // vnode ref 经过标准化后 [当前渲染组件实例，ref绑定元素]
   const [owner, ref] = rawRef;
   // 去除旧ref
   const oldRef = oldRawRef && oldRawRef[1];

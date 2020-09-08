@@ -77,7 +77,7 @@ export interface AsyncComponentOptions<T = any> {
 export function defineAsyncComponent<
   T extends PublicAPIComponent = { new (): ComponentPublicInstance }
 >(source: AsyncComponentLoader<T> | AsyncComponentOptions<T>): T {
-  // 1. 规范化source，创建相关方法变量
+  // 1. 标准化source，创建相关方法变量
   // 2. 创建load组件promise
   // 3. 调用defineComponent
   return defineComponent({
@@ -119,7 +119,7 @@ export function defineComponent(options: unknown) {
 然后通过`render`函数来进行条件渲染，`createInnerComp`做的只是将`props`和`children`透传给内部的组件；
 大体的思路我们理解了，再具体看一下细节实现。
 
-## 1. 规范化 source，创建相关方法变量
+## 1. 标准化 source，创建相关方法变量
 
 `defineAsyncComponent`可以接受`options`和`Promise`的异步组件两种类型的参数，如果接受的是`promise`函数会直接转成`options`；
 

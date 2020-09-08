@@ -452,9 +452,9 @@ export function handleSetupResult(
 
 4. #### 完成组件启动后续工作
    在处理完`setup`执行结果后，仍需要做两件事情：
-   > 1. 规范化模板或者 render 函数
+   > 1. 标准化模板或者 render 函数
    > 2. 兼容`options API`  
-   >    因为`setup`依旧有可能返回一个渲染函数，所以需要在这个时机进行模板或者 render 函数的规范化；
+   >    因为`setup`依旧有可能返回一个渲染函数，所以需要在这个时机进行模板或者 render 函数的标准化；
    >    `setup`替代了`beforeCreated`和`created`两个钩子，`vue2`的`options`也需要在这个时机来进行处理。
    >    我们直接看到`finishComponentSetup`函数内部：
 
@@ -466,7 +466,7 @@ function finishComponentSetup(
 ) {
   const Component = instance.type as ComponentOptions;
 
-  // 规范化模板或render
+  // 标准化模板或render
   if (__NODE_JS__ && isSSR) {
     // ssr下有渲染函数直接取渲染函数
     if (Component.render) {

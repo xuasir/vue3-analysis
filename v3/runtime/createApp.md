@@ -300,7 +300,7 @@ export function createAppContext(): AppContext {
 // 重写app的mount方法
 const { mount } = app;
 app.mount = (containerOrSelector: Element | string): any => {
-  // 规范化容器元素 element | string --> element
+  // 标准化容器元素 element | string --> element
   const container = normalizeContainer(containerOrSelector);
   // 找不到元素则直接return
   if (!container) return;

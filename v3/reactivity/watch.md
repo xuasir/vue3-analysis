@@ -238,7 +238,7 @@ function doWatch(
 ## 处理`source`参数
 
 `watch`函数的`source`参数有多个形态，我们的目标是通过`source`的不同传参来构建`getter`函数能访问到`source`都所有响应式数据，
-所以需要规范化同时也需要检测参数，来确定是`watch`调用还是`watchEffect`；
+所以需要标准化同时也需要检测参数，来确定是`watch`调用还是`watchEffect`；
 我们先看一下`source`的类型声明：
 
 ```typescript
