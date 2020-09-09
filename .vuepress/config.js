@@ -113,7 +113,7 @@ module.exports = {
               collapsable: true,
               children: [
                 // 'future/props',
-                // 'future/slot',
+                'future/slot',
                 'future/refs',
                 'future/directives',
                 'future/defineAsyncComponent'
