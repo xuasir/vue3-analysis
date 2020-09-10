@@ -104,21 +104,21 @@ module.exports = {
               title: '实用特性',
               collapsable: true,
               children: [
-                'future/props',
+                // 'future/props',
                 'future/slot',
                 'future/refs',
                 'future/directives',
                 'future/defineAsyncComponent'
               ]
             },
-            {
-              title: '内建组件',
-              collapsable: true,
-              children: [
-                'future/suspense',
-                'future/teleport'
-              ]
-            }
+            // {
+            //   title: '内建组件',
+            //   collapsable: true,
+            //   children: [
+            //     'future/suspense',
+            //     'future/teleport'
+            //   ]
+            // }
           ]
         },
         // {
