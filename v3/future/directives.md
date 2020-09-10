@@ -4,6 +4,22 @@
 指令能提供对于`Dom`元素操作的抽象能力，是高效开发不可获取的一部分；`Vue3`在指令的生命周期函数上做了调整，
 生命周期名称和组件生命周期保持一致，变化如下：
 
+```typescript
+// 2.x
+bind();
+inserted();
+update();
+componentUpdated();
+unbind();
+// 3.x
+beforeMount();
+mounted();
+beforeUpdate();
+updated();
+beforeUnmount();
+unmounted();
+```
+
 ## 本篇目标
 
 1. 理解完整的指令注册周期
