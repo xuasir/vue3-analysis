@@ -111,14 +111,14 @@ module.exports = {
                 'future/defineAsyncComponent'
               ]
             },
-            // {
-            //   title: '内建组件',
-            //   collapsable: true,
-            //   children: [
-            //     'future/suspense',
-            //     'future/teleport'
-            //   ]
-            // }
+            {
+              title: '内建组件',
+              collapsable: true,
+              children: [
+                'future/suspense',
+                // 'future/teleport'
+              ]
+            }
           ]
         },
         // {
