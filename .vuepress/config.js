@@ -116,7 +116,7 @@ module.exports = {
               collapsable: true,
               children: [
                 'future/suspense',
-                // 'future/teleport'
+                'future/teleport'
               ]
             }
           ]
