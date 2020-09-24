@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>effect 函数 | vue3解析</title>
+    <meta name="generator" content="VuePress 1.5.3">
+    
+    <meta name="description" content=" ">
+    <link rel="preload" href="/vue3-analysis/assets/css/0.styles.1acb776f.css" as="style"><link rel="preload" href="/vue3-analysis/assets/js/app.3e15c670.js" as="script"><link rel="preload" href="/vue3-analysis/assets/js/2.f2c58315.js" as="script"><link rel="preload" href="/vue3-analysis/assets/js/27.ecdc3973.js" as="script"><link rel="prefetch" href="/vue3-analysis/assets/js/10.d9152f7d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/11.48cbb26e.js"><link rel="prefetch" href="/vue3-analysis/assets/js/12.524698e3.js"><link rel="prefetch" href="/vue3-analysis/assets/js/13.2760879c.js"><link rel="prefetch" href="/vue3-analysis/assets/js/14.f967554a.js"><link rel="prefetch" href="/vue3-analysis/assets/js/15.f1bc39ea.js"><link rel="prefetch" href="/vue3-analysis/assets/js/16.563c74f3.js"><link rel="prefetch" href="/vue3-analysis/assets/js/17.d737fd54.js"><link rel="prefetch" href="/vue3-analysis/assets/js/18.3e7e5b73.js"><link rel="prefetch" href="/vue3-analysis/assets/js/19.77a3ce44.js"><link rel="prefetch" href="/vue3-analysis/assets/js/20.bde70dbc.js"><link rel="prefetch" href="/vue3-analysis/assets/js/21.b2b628a1.js"><link rel="prefetch" href="/vue3-analysis/assets/js/22.a072ba3b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/23.37f38ccc.js"><link rel="prefetch" href="/vue3-analysis/assets/js/24.ff4d6150.js"><link rel="prefetch" href="/vue3-analysis/assets/js/25.94a97415.js"><link rel="prefetch" href="/vue3-analysis/assets/js/26.cb21b23b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/28.8d51d670.js"><link rel="prefetch" href="/vue3-analysis/assets/js/29.4ca9afa9.js"><link rel="prefetch" href="/vue3-analysis/assets/js/3.f955db1b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/30.40a7c4a6.js"><link rel="prefetch" href="/vue3-analysis/assets/js/31.d35e90d4.js"><link rel="prefetch" href="/vue3-analysis/assets/js/32.0795f87d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/33.a990c8fb.js"><link rel="prefetch" href="/vue3-analysis/assets/js/34.21da1856.js"><link rel="prefetch" href="/vue3-analysis/assets/js/35.063396ca.js"><link rel="prefetch" href="/vue3-analysis/assets/js/36.51dede06.js"><link rel="prefetch" href="/vue3-analysis/assets/js/37.fe42948d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/38.ac88b170.js"><link rel="prefetch" href="/vue3-analysis/assets/js/39.a56bb399.js"><link rel="prefetch" href="/vue3-analysis/assets/js/4.0154b038.js"><link rel="prefetch" href="/vue3-analysis/assets/js/40.23e7468b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/41.cdbdb032.js"><link rel="prefetch" href="/vue3-analysis/assets/js/5.106b6465.js"><link rel="prefetch" href="/vue3-analysis/assets/js/6.47c88f4f.js"><link rel="prefetch" href="/vue3-analysis/assets/js/7.88fd05cf.js"><link rel="prefetch" href="/vue3-analysis/assets/js/8.ff6d3cfa.js"><link rel="prefetch" href="/vue3-analysis/assets/js/9.f533e484.js">
+    <link rel="stylesheet" href="/vue3-analysis/assets/css/0.styles.1acb776f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vue3-analysis/" class="home-link router-link-active"><img src="/vue3-analysis/logo.png" alt="vue3解析" class="logo"> <span class="site-name can-hide">vue3解析</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vue3-analysis/v3/idea/vue.html" class="nav-link">
+  Vue3
+</a></div><div class="nav-item"><a href="http://xuguo.xyz/vue-hooks" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-hooks
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/xuguo-code/vue3-analysis/issues" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  我要修正
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/xuguo-code/vue3-analysis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vue3-analysis/v3/idea/vue.html" class="nav-link">
+  Vue3
+</a></div><div class="nav-item"><a href="http://xuguo.xyz/vue-hooks" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-hooks
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/xuguo-code/vue3-analysis/issues" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  我要修正
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/xuguo-code/vue3-analysis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>理念篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>运行时篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/runtime/" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>组件系统</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>异步调度</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>响应式系统篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/reactivity/" aria-current="page" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading open"><span>核心方法</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/reactivity/reactivity.html" class="sidebar-link">reactive 和 ref</a></li><li><a href="/vue3-analysis/v3/reactivity/effect.html" aria-current="page" class="active sidebar-link">effect 函数</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/reactivity/effect.html#本篇目标" class="sidebar-link">本篇目标</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/reactivity/effect.html#全局变量提前声明" class="sidebar-link">全局变量提前声明</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/reactivity/effect.html#解析effect" class="sidebar-link">解析effect</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/reactivity/effect.html#整体流程图" class="sidebar-link">整体流程图</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/reactivity/effect.html#总结" class="sidebar-link">总结</a></li></ul></li><li><a href="/vue3-analysis/v3/reactivity/computed.html" class="sidebar-link">计算属性</a></li><li><a href="/vue3-analysis/v3/reactivity/watch.html" class="sidebar-link">侦听器</a></li><li><a href="/vue3-analysis/v3/reactivity/provide.html" class="sidebar-link">依赖注入</a></li></ul></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>更多方法</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>扩展篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/future/" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>实用特性</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>内建组件</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="effect-函数"><a href="#effect-函数" class="header-anchor">#</a> <code>effect</code> 函数</h3> <p>在上一节讨论<code>track</code>和<code>trigger</code>时，都提到了<code>effect</code>副作用函数，那么副作用函数到底是什么呢？
+我们先看一下<code>effect</code>如何使用：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">let</span> num <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">effect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// console.log --&gt; 0</span>
+num<span class="token punctuation">.</span>value <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token comment">// console.log --&gt; 1</span>
+</code></pre></div><p><code>effect</code>接受一个函数作为参数，当所接收函数内使用的响应式数据变更，能够自动重新执行这个函数；听起来似乎很魔法，
+让我们详细看看<code>effect</code>是如何工作的？</p> <h2 id="本篇目标"><a href="#本篇目标" class="header-anchor">#</a> 本篇目标</h2> <blockquote><ol><li>了解<code>effect</code>是如何实现</li> <li>理解<code>effect</code>是如何与<code>track</code>、<code>trigger</code>协作的</li></ol></blockquote> <h2 id="全局变量提前声明"><a href="#全局变量提前声明" class="header-anchor">#</a> 全局变量提前声明</h2> <ul><li><h4 id="shouldtrack"><a href="#shouldtrack" class="header-anchor">#</a> <code>shouldTrack</code></h4> <details class="custom-block details"><summary>点击查看详细代码</summary></details></li></ul> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// 当前shouldTrack状态</span>
+<span class="token keyword">let</span> shouldTrack <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token comment">// 历史shouldTrack状态栈</span>
+<span class="token keyword">const</span> trackStack<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">// 暂停收集</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">pauseTracking</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  trackStack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>shouldTrack<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  shouldTrack <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 开启收集</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">enableTracking</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  trackStack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>shouldTrack<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  shouldTrack <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 重置当前shouldTrack状态</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">resetTracking</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> last <span class="token operator">=</span> trackStack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  shouldTrack <span class="token operator">=</span> last <span class="token operator">===</span> <span class="token keyword">undefined</span> <span class="token operator">?</span> <span class="token boolean">true</span> <span class="token operator">:</span> last<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>:::</p> <ul><li><h4 id="effect"><a href="#effect" class="header-anchor">#</a> <code>effect</code></h4> <details class="custom-block details"><summary>点击查看详细代码</summary></details></li></ul> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// effect栈</span>
+<span class="token keyword">const</span> effectStack<span class="token operator">:</span> ReactiveEffect<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">// 当前effect</span>
+<span class="token keyword">let</span> activeEffect<span class="token operator">:</span> ReactiveEffect <span class="token operator">|</span> <span class="token keyword">undefined</span><span class="token punctuation">;</span>
+</code></pre></div><p>:::</p> <ul><li><h4 id="effect配置项"><a href="#effect配置项" class="header-anchor">#</a> <code>effect</code>配置项</h4> <details class="custom-block details"><summary>点击查看详细代码</summary></details></li></ul> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">ReactiveEffectOptions</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 是否为lazy模式</span>
+  lazy<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span>
+  <span class="token comment">// 执行副作用函数的调度器</span>
+  scheduler<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span>job<span class="token operator">:</span> ReactiveEffect<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+  <span class="token comment">// debugger函数</span>
+  onTrack<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span>event<span class="token operator">:</span> DebuggerEvent<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+  onTrigger<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span>event<span class="token operator">:</span> DebuggerEvent<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+  <span class="token comment">// 副作用停止的钩子函数</span>
+  onStop<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>:::</p> <h2 id="解析effect"><a href="#解析effect" class="header-anchor">#</a> 解析<code>effect</code></h2> <p>我们直接看到<code>effect</code>的函数体：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// reactivity/effect.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token generic-function"><span class="token function">effect</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token constant">T</span> <span class="token operator">=</span> <span class="token builtin">any</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>
+  <span class="token function-variable function">fn</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token constant">T</span><span class="token punctuation">,</span>
+  options<span class="token operator">:</span> ReactiveEffectOptions <span class="token operator">=</span> <span class="token constant">EMPTY_OBJ</span>
+<span class="token punctuation">)</span><span class="token operator">:</span> ReactiveEffect<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 传入副作用函数，取原函数</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isEffect</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    fn <span class="token operator">=</span> fn<span class="token punctuation">.</span>raw<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">const</span> effect <span class="token operator">=</span> <span class="token function">createReactiveEffect</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 配置了lazy，不会立即执行</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>options<span class="token punctuation">.</span>lazy<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">effect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> effect<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// effect 唯一标识</span>
+<span class="token keyword">let</span> uid <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token generic-function"><span class="token function">createReactiveEffect</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token constant">T</span> <span class="token operator">=</span> <span class="token builtin">any</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>
+  <span class="token function-variable function">fn</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token constant">T</span><span class="token punctuation">,</span>
+  options<span class="token operator">:</span> ReactiveEffectOptions
+<span class="token punctuation">)</span><span class="token operator">:</span> ReactiveEffect<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">effect</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">reactiveEffect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">unknown</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>effect<span class="token punctuation">.</span>active<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 非激活状态处理</span>
+      <span class="token keyword">return</span> options<span class="token punctuation">.</span>scheduler <span class="token operator">?</span> <span class="token keyword">undefined</span> <span class="token operator">:</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 确保副作用栈栈中没有当前副作用函数</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>effectStack<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>effect<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 清除副作用函数依赖</span>
+      <span class="token function">cleanup</span><span class="token punctuation">(</span>effect<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 开启收集</span>
+        <span class="token function">enableTracking</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 设置当前副作用函数为激活副作用</span>
+        effectStack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>effect<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        activeEffect <span class="token operator">=</span> effect<span class="token punctuation">;</span>
+        <span class="token comment">// 执行 fn</span>
+        <span class="token keyword">return</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 恢复副作用栈和激活副作用以及收集状态</span>
+        effectStack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">resetTracking</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        activeEffect <span class="token operator">=</span> effectStack<span class="token punctuation">[</span>effectStack<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token keyword">as</span> ReactiveEffect<span class="token punctuation">;</span>
+  <span class="token comment">// 添加唯一标识</span>
+  effect<span class="token punctuation">.</span>id <span class="token operator">=</span> uid<span class="token operator">++</span><span class="token punctuation">;</span>
+  <span class="token comment">// 标识为副作用函数</span>
+  effect<span class="token punctuation">.</span>_isEffect <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token comment">// 激活副作用函数</span>
+  effect<span class="token punctuation">.</span>active <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token comment">// 保存原函数</span>
+  effect<span class="token punctuation">.</span>raw <span class="token operator">=</span> fn<span class="token punctuation">;</span>
+  <span class="token comment">// 初始化依赖数组</span>
+  effect<span class="token punctuation">.</span>deps <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token comment">// 保存配置选项</span>
+  effect<span class="token punctuation">.</span>options <span class="token operator">=</span> options<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> effect<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>可以看到<code>effect</code>是负责预处理<code>fn</code>确保<code>fn</code>是一个非<code>effect</code>函数，真正的<code>effect</code>函数是由<code>createReactiveEffect</code>来创建的，
+<code>lazy</code>选项和<code>computed</code>强相关，配置成<code>true</code>会使得<code>effect</code>默认不立即执行。<br>
+我们再看到<code>createReactiveEffect</code>内部，原来<code>effect</code>仅是一个包裹函数，在他的内部来执行<code>fn</code>和处理<code>effectStack</code>相关内容，
+我们逐步分析一下各个步骤：</p> <ul><li><h4 id="处理激活状态"><a href="#处理激活状态" class="header-anchor">#</a> 处理激活状态</h4> <p><code>effect.active</code>来表示副作用函数的激活状态，在<code>stop</code>一个副作用函数后会将其置成<code>false</code>，非激活状态的<code>effect</code>函数被调用，
+如果不存在调度会直接执行。</p></li> <li><h4 id="清除操作"><a href="#清除操作" class="header-anchor">#</a> 清除操作</h4> <div class="custom-block tip"><p class="custom-block-title">注意</p> <p><code>effect.deps</code>是一个数组，存储的是该<code>effect</code>依赖的每个属性的<code>depsSet</code>副作用函数表<br> <code>track</code>阶段建立的依赖存储表中，每个响应式对象触发依赖收集的<code>key</code>都会对应一个副作用的<code>Set</code>表下文以<code>depsSet</code>来称呼</p></div> <p>在正式开始执行<code>fn</code>前，会先<code>cleanup</code>当前<code>effect</code>的<code>deps</code>；<code>effect</code>的<code>deps</code>存储是的当前<code>effect</code>依赖属性的副作用<code>depsSet</code>表，
+这是一个双向指针的处理方式，不仅在<code>track</code>的时候，会将副作用函数与<code>target --&gt; key --&gt; depsSet</code>关联起来，
+同时也会保持<code>depsSet</code>的引用存储在<code>effect.deps</code>上；这样做的意义就在于现在的<code>cleanup</code>操作，
+我们能在<code>effect</code>再次执行之前，从所有收集到此<code>effect</code>函数的<code>depsSet</code>中剔除该<code>effect</code>，以便在此次<code>effect</code>执行时重新收集；
+这一步操作的意义在于如下场景：</p></li></ul> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>showFalg<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    {{ num1 }}
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+    {{ num2 }}
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> showFalg <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> num1 <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> num2 <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      showFalg<span class="token punctuation">,</span>
+      num1<span class="token punctuation">,</span>
+      num2<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>我们知道模板的执行是一个副作用渲染函数，首次渲染会将当前组件的副作用渲染函数收集到<code>showFalg, num1</code>对应的<code>depsSet</code>中，
+我们改变<code>showFalg</code>，触发渲染函数重新执行，此时如果我们不进行<code>cleanup</code>，<code>num1, num2, showFalg</code>都会收集到副作用渲染函数，
+而<code>num1</code>是并未显示在页面，我们更改它的时候并不需要触发渲染函数的重新渲染。只有在重新执行副作用渲染函数之前进行<code>cleanup</code>操作，
+才能确保每次渲染函数执行后依赖收集的正确性</p> <ul><li><h4 id="执行fn"><a href="#执行fn" class="header-anchor">#</a> 执行<code>fn</code></h4> <code>fn</code>的执行采用<code>try...finally</code>来包裹，以确保就算<code>fn</code>执行出错还是能保证<code>effectStack, activeEffect</code>的正确维护，
+在正式执行<code>fn</code>之前，会有一个压栈的操作，由于<code>effect</code>的执行会存在嵌套的情况比如组件渲染函数的执行遇到了子组件会跳到子组件的渲染函数中，
+函数的嵌套调用本就是一个栈结构，而栈的先进后出性质能很好保证<code>activeEffect</code>的正确回退；
+<code>fn</code>执行完成后，就进行出栈操作，跳回到上一个<code>effect</code>中。</li></ul> <h2 id="整体流程图"><a href="#整体流程图" class="header-anchor">#</a> 整体流程图</h2> <p><img src="/vue3-analysis/reactivity/reactivity.jpg" alt="reactivity"></p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>这就是<code>effect</code>的执行全过程，在<code>fn</code>执行之前修正<code>activeEffect</code>的指向，
+然后再<code>fn</code>的执行中会访问到响应式数据从而触发<code>track</code>将副作用函数作为依赖收集起来。
+这样就串起来整个<code>effect</code>和<code>track</code>以及<code>trigger</code>。
+下一节我们来解析一个<code>effect</code>、<code>track</code>以及<code>trigger</code>综合使用的案例——<code>computed</code>。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最后一次更新:</span> <span class="time">9/4/2020, 2:14:03 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/vue3-analysis/v3/reactivity/reactivity.html" class="prev">
+        reactive 和 ref
+      </a></span> <span class="next"><a href="/vue3-analysis/v3/reactivity/computed.html">
+        计算属性
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/vue3-analysis/assets/js/app.3e15c670.js" defer></script><script src="/vue3-analysis/assets/js/2.f2c58315.js" defer></script><script src="/vue3-analysis/assets/js/27.ecdc3973.js" defer></script>
+  </body>
+</html>

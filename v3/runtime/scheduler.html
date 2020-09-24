@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>异步任务调度 | vue3解析</title>
+    <meta name="generator" content="VuePress 1.5.3">
+    
+    <meta name="description" content=" ">
+    <link rel="preload" href="/vue3-analysis/assets/css/0.styles.1acb776f.css" as="style"><link rel="preload" href="/vue3-analysis/assets/js/app.3e15c670.js" as="script"><link rel="preload" href="/vue3-analysis/assets/js/2.f2c58315.js" as="script"><link rel="preload" href="/vue3-analysis/assets/js/38.ac88b170.js" as="script"><link rel="prefetch" href="/vue3-analysis/assets/js/10.d9152f7d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/11.48cbb26e.js"><link rel="prefetch" href="/vue3-analysis/assets/js/12.524698e3.js"><link rel="prefetch" href="/vue3-analysis/assets/js/13.2760879c.js"><link rel="prefetch" href="/vue3-analysis/assets/js/14.f967554a.js"><link rel="prefetch" href="/vue3-analysis/assets/js/15.f1bc39ea.js"><link rel="prefetch" href="/vue3-analysis/assets/js/16.563c74f3.js"><link rel="prefetch" href="/vue3-analysis/assets/js/17.d737fd54.js"><link rel="prefetch" href="/vue3-analysis/assets/js/18.3e7e5b73.js"><link rel="prefetch" href="/vue3-analysis/assets/js/19.77a3ce44.js"><link rel="prefetch" href="/vue3-analysis/assets/js/20.bde70dbc.js"><link rel="prefetch" href="/vue3-analysis/assets/js/21.b2b628a1.js"><link rel="prefetch" href="/vue3-analysis/assets/js/22.a072ba3b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/23.37f38ccc.js"><link rel="prefetch" href="/vue3-analysis/assets/js/24.ff4d6150.js"><link rel="prefetch" href="/vue3-analysis/assets/js/25.94a97415.js"><link rel="prefetch" href="/vue3-analysis/assets/js/26.cb21b23b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/27.ecdc3973.js"><link rel="prefetch" href="/vue3-analysis/assets/js/28.8d51d670.js"><link rel="prefetch" href="/vue3-analysis/assets/js/29.4ca9afa9.js"><link rel="prefetch" href="/vue3-analysis/assets/js/3.f955db1b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/30.40a7c4a6.js"><link rel="prefetch" href="/vue3-analysis/assets/js/31.d35e90d4.js"><link rel="prefetch" href="/vue3-analysis/assets/js/32.0795f87d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/33.a990c8fb.js"><link rel="prefetch" href="/vue3-analysis/assets/js/34.21da1856.js"><link rel="prefetch" href="/vue3-analysis/assets/js/35.063396ca.js"><link rel="prefetch" href="/vue3-analysis/assets/js/36.51dede06.js"><link rel="prefetch" href="/vue3-analysis/assets/js/37.fe42948d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/39.a56bb399.js"><link rel="prefetch" href="/vue3-analysis/assets/js/4.0154b038.js"><link rel="prefetch" href="/vue3-analysis/assets/js/40.23e7468b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/41.cdbdb032.js"><link rel="prefetch" href="/vue3-analysis/assets/js/5.106b6465.js"><link rel="prefetch" href="/vue3-analysis/assets/js/6.47c88f4f.js"><link rel="prefetch" href="/vue3-analysis/assets/js/7.88fd05cf.js"><link rel="prefetch" href="/vue3-analysis/assets/js/8.ff6d3cfa.js"><link rel="prefetch" href="/vue3-analysis/assets/js/9.f533e484.js">
+    <link rel="stylesheet" href="/vue3-analysis/assets/css/0.styles.1acb776f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vue3-analysis/" class="home-link router-link-active"><img src="/vue3-analysis/logo.png" alt="vue3解析" class="logo"> <span class="site-name can-hide">vue3解析</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vue3-analysis/v3/idea/vue.html" class="nav-link">
+  Vue3
+</a></div><div class="nav-item"><a href="http://xuguo.xyz/vue-hooks" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-hooks
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/xuguo-code/vue3-analysis/issues" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  我要修正
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/xuguo-code/vue3-analysis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vue3-analysis/v3/idea/vue.html" class="nav-link">
+  Vue3
+</a></div><div class="nav-item"><a href="http://xuguo.xyz/vue-hooks" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-hooks
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/xuguo-code/vue3-analysis/issues" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  我要修正
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/xuguo-code/vue3-analysis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>理念篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>运行时篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/runtime/" aria-current="page" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>组件系统</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading open"><span>异步调度</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/runtime/scheduler.html" aria-current="page" class="active sidebar-link">异步任务调度</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/runtime/scheduler.html#前置知识" class="sidebar-link">前置知识</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/runtime/scheduler.html#基本任务队列设计" class="sidebar-link">基本任务队列设计</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/runtime/scheduler.html#nexttick" class="sidebar-link">nextTick</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/runtime/scheduler.html#入队操作" class="sidebar-link">入队操作</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/runtime/scheduler.html#执行队列" class="sidebar-link">执行队列</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/runtime/scheduler.html#防止循环任务" class="sidebar-link">防止循环任务</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/runtime/scheduler.html#总结" class="sidebar-link">总结</a></li></ul></li></ul></section></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>响应式系统篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/reactivity/" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>核心方法</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>更多方法</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>扩展篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/future/" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>实用特性</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>内建组件</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="异步任务调度"><a href="#异步任务调度" class="header-anchor">#</a> 异步任务调度</h3> <p>相信在深度使用<code>Vue2</code>的时候会经常用到<code>$nextTick</code>这样一个<code>API</code>，也可能了解到了<code>vue</code>的组件更新是异步的，
+这一节我们就会深入探讨<code>Vue3</code>异步任务调度的实现。在开始之前我们先回答一个问题，为什么组件的更新需要异步执行？<br>
+我们先假设组件的更新是同步的，如果在一个<code>tick</code>（一次宏任务的周期）中组件所依赖的对个状态都发生了变更，
+此时是同步执行更新的那么这个更新的流程会被触发多次，这有必要吗？显然我们可以等待当前<code>tick</code>完成后再去统一执行一次组件更新，
+这样做我们即将所有的数据变更都应用了，也减少了很多不必要的重复执行；这样的一个当前<code>tick</code>执行完成后的时机就是微任务阶段，
+这也是<code>Vue</code>异步任务调度的核心，缓冲当前<code>tick</code>的所有更新<code>trigger</code>，在微任务阶段一次执行完成；
+异步调度存在的原因和实现思想我们都有所了解了，那让我们具体来看看代码实现吧。</p> <h2 id="前置知识"><a href="#前置知识" class="header-anchor">#</a> 前置知识</h2> <ul><li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop" target="_blank" rel="noopener noreferrer">EventLoop<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></li> <li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener noreferrer">Promise<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></li> <li><h2 id="基本任务队列设计"><a href="#基本任务队列设计" class="header-anchor">#</a> 基本任务队列设计</h2> <p>在<code>Vue3</code>的异步任务调度设计中，有两种任务队列：</p></li></ul> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/scheduler.ts</span>
+<span class="token comment">// 异步任务队列</span>
+<span class="token keyword">const</span> queue<span class="token operator">:</span> <span class="token punctuation">(</span>Job <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">// 异步任务队列执行完成后的异步回调队列</span>
+<span class="token keyword">const</span> postFlushCbs<span class="token operator">:</span> <span class="token builtin">Function</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><p>这两种队列的典型就是，组件更新通过异步任务队列来执行，指令的<code>updated</code>、组件的<code>updated</code>等等通过<code>postFlushCbs</code>来执行。</p> <ul><li><h2 id="nexttick"><a href="#nexttick" class="header-anchor">#</a> <code>nextTick</code></h2></li></ul> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/scheduler.ts</span>
+<span class="token keyword">const</span> p <span class="token operator">=</span> <span class="token builtin">Promise</span><span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">nextTick</span><span class="token punctuation">(</span>fn<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> fn <span class="token operator">?</span> p<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span> <span class="token operator">:</span> p<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>Vue3</code>的<code>nextTick</code>实现已经变得非常简单，直接采用<code>Promise.resolve().then()</code>来实现。</p> <ul><li><h2 id="入队操作"><a href="#入队操作" class="header-anchor">#</a> 入队操作</h2></li> <li><h4 id="_1-异步任务队列入队"><a href="#_1-异步任务队列入队" class="header-anchor">#</a> 1. 异步任务队列入队</h4></li></ul> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/scheduler.ts</span>
+<span class="token comment">// 当前执行异步任务的下标</span>
+<span class="token keyword">let</span> flushIndex <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token comment">// 是否在执行任务中</span>
+<span class="token keyword">let</span> isFlushing <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token comment">// 是否在等待执行任务中（已有flushJobs被nextTick的情况）</span>
+<span class="token keyword">let</span> isFlushPending <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">queueJob</span><span class="token punctuation">(</span>job<span class="token operator">:</span> Job<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>queue<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>job<span class="token punctuation">,</span> flushIndex<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    queue<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>job<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">queueFlush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 既没有执行任务也没有等待执行就添加任务到nextTick</span>
+<span class="token keyword">function</span> <span class="token function">queueFlush</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isFlushing <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>isFlushPending<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    isFlushPending <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token function">nextTick</span><span class="token punctuation">(</span>flushJobs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>异步任务的入队直接查找当前执行任务之后的所有任务发现没有同一任务时任务入队；
+这里需要<code>flushIndex</code>的原因是在异步任务执行的过程中也时可能会添加新的异步任务入队。
+在<code>queueFlush</code>函数中，如果既没有执行异步任务执行中也没有在等待执行中，我们直接向微任务队列添加一个清空异步队列的任务。</p> <ul><li><h4 id="_2-postflushcbs队列入队"><a href="#_2-postflushcbs队列入队" class="header-anchor">#</a> 2. <code>postFlushCbs</code>队列入队</h4></li></ul> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/scheduler.ts</span>
+<span class="token comment">// 执行中的异步回调队列</span>
+<span class="token keyword">let</span> pendingPostFlushCbs<span class="token operator">:</span> <span class="token builtin">Function</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token comment">// 当前执行异步回调的下标</span>
+<span class="token keyword">let</span> pendingPostFlushIndex <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">queuePostFlushCb</span><span class="token punctuation">(</span>cb<span class="token operator">:</span> <span class="token builtin">Function</span> <span class="token operator">|</span> <span class="token builtin">Function</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isArray</span><span class="token punctuation">(</span>cb<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>
+      <span class="token operator">!</span>pendingPostFlushCbs <span class="token operator">||</span>
+      <span class="token operator">!</span>pendingPostFlushCbs<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>cb<span class="token punctuation">,</span> pendingPostFlushIndex<span class="token punctuation">)</span>
+    <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      postFlushCbs<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>cb<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 如果是一个数组，说明是组件hooks函数，这只能被唯一的一个job触发添加</span>
+    <span class="token comment">// 无需再次去重，跳过以提升性能</span>
+    postFlushCbs<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token operator">...</span>cb<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">queueFlush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在没有执行异步回调队列或者剩余队列中不包含当前异步回调函数时入队。
+同样的通过<code>pendingPostFlushIndex</code>的设计来考虑执行过程中添加异步回调任务的情况。</p> <ul><li><h2 id="执行队列"><a href="#执行队列" class="header-anchor">#</a> 执行队列</h2></li> <li><h4 id="_1-异步任务队列执行"><a href="#_1-异步任务队列执行" class="header-anchor">#</a> 1. 异步任务队列执行</h4></li></ul> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/scheduler.ts</span>
+<span class="token comment">// 获取任务id</span>
+<span class="token keyword">const</span> <span class="token function-variable function">getId</span> <span class="token operator">=</span> <span class="token punctuation">(</span>job<span class="token operator">:</span> Job<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>job<span class="token punctuation">.</span>id <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">?</span> <span class="token number">Infinity</span> <span class="token operator">:</span> job<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 执行任务</span>
+<span class="token keyword">function</span> <span class="token function">flushJobs</span><span class="token punctuation">(</span>seen<span class="token operator">?</span><span class="token operator">:</span> CountMap<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 设置成正在执行异步任务</span>
+  isFlushPending <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  isFlushing <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    seen <span class="token operator">=</span> seen <span class="token operator">||</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 将任务按id从小到大排列</span>
+  queue<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">getId</span><span class="token punctuation">(</span>a<span class="token operator">!</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">getId</span><span class="token punctuation">(</span>b<span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 循环执行任务</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span>flushIndex <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> flushIndex <span class="token operator">&lt;</span> queue<span class="token punctuation">.</span>length<span class="token punctuation">;</span> flushIndex<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> job <span class="token operator">=</span> queue<span class="token punctuation">[</span>flushIndex<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>job<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 检测是否有循环更新</span>
+        <span class="token function">checkRecursiveUpdates</span><span class="token punctuation">(</span>seen<span class="token operator">!</span><span class="token punctuation">,</span> job<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// 执行任务</span>
+      <span class="token function">callWithErrorHandling</span><span class="token punctuation">(</span>job<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> ErrorCodes<span class="token punctuation">.</span><span class="token constant">SCHEDULER</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 执行完毕,重置参数</span>
+  flushIndex <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  queue<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token comment">// 执行异步回调任务队列</span>
+  <span class="token function">flushPostFlushCbs</span><span class="token punctuation">(</span>seen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  isFlushing <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token comment">// 在任务执行过程中添加的任务，需要在当前微任务队列中一并执行完毕</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>queue<span class="token punctuation">.</span>length <span class="token operator">||</span> postFlushCbs<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 循环调用直达执行完毕</span>
+    <span class="token function">flushJobs</span><span class="token punctuation">(</span>seen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h5 id="_1-首先在开始执行之前会将相关状态设置成正在执行任务。"><a href="#_1-首先在开始执行之前会将相关状态设置成正在执行任务。" class="header-anchor">#</a> 1. 首先在开始执行之前会将相关状态设置成正在执行任务。</h5> <h5 id="_2-任务排序"><a href="#_2-任务排序" class="header-anchor">#</a> 2. 任务排序</h5> <p>任务排序的意义在于，我们要确保父组件的更新在子组件之前；同时也能在父组件的更新过程中确保如果卸载了子组件，可以跳过子组件的更新；
+那么为什么排序就能实现这样的效果呢？<br>
+我们知道组件的更新是执行副作用的渲染函数，这就涉及到<code>effect</code>创建的内容，
+可以在后续的解析<code>effect</code>的时候注意一下创建<code>effect</code>时会给<code>effect</code>设置一个<code>id</code>而这个<code>id</code>是递增的；
+组件的创建是从父到子的顺序，那么对应的渲染函数的<code>id</code>也是递增的，我们按从小到大的顺序排序就能确保父组件的更新能先于子组件执行。
+关于卸载了子组件如何跳过子组件更新，这会涉及到<code>effect</code>的知识点，总之在<code>unmountComponent</code>时会停止渲染函数副作用，
+而被停止的带调度器的副作用函数再次调用不会执行。</p> <h5 id="_3-执行异步任务"><a href="#_3-执行异步任务" class="header-anchor">#</a> 3. 执行异步任务</h5> <p>通过一个索引和每次循环都动态获取任务队列长度，来确保执行过程中动态添加了异步任务也能在此次循环中执行完毕；
+关于循环检测我们放在后面讲解，执行完毕后就会进入异步回调任务队列的执行，最后再检测是否需要循环清空队列。</p> <ul><li><h4 id="_2-postflushcbs队列执行"><a href="#_2-postflushcbs队列执行" class="header-anchor">#</a> 2. <code>postFlushCbs</code>队列执行</h4></li></ul> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/scheduler.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">flushPostFlushCbs</span><span class="token punctuation">(</span>seen<span class="token operator">?</span><span class="token operator">:</span> CountMap<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 存在任务就执行</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>postFlushCbs<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 拷贝一份去重的任务队列</span>
+    pendingPostFlushCbs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span><span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span>postFlushCbs<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    postFlushCbs<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      seen <span class="token operator">=</span> seen <span class="token operator">||</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 循环执行</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>
+      pendingPostFlushIndex <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      pendingPostFlushIndex <span class="token operator">&lt;</span> pendingPostFlushCbs<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+      pendingPostFlushIndex<span class="token operator">++</span>
+    <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">checkRecursiveUpdates</span><span class="token punctuation">(</span>
+          seen<span class="token operator">!</span><span class="token punctuation">,</span>
+          pendingPostFlushCbs<span class="token punctuation">[</span>pendingPostFlushIndex<span class="token punctuation">]</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      pendingPostFlushCbs<span class="token punctuation">[</span>pendingPostFlushIndex<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 重置信息</span>
+    pendingPostFlushCbs <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    pendingPostFlushIndex <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>postFlushCbs</code>队列的执行仅会清空开始任务时队列所拥有的所有回调任务，
+在<code>postFlushCb</code>中有可能添加异步任务也有可能添加异步任务回调，
+我们需要保持异步任务和异步任务回调的执行顺序，所以我们需要拷贝一份当前的异步回调任务，
+以免执行异步回调任务队列中动态添加的异步回调任务被提前执行。</p> <ul><li><h2 id="防止循环任务"><a href="#防止循环任务" class="header-anchor">#</a> 防止循环任务</h2></li></ul> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/scheduler.ts</span>
+<span class="token comment">// 任务单次微任务执行上限</span>
+<span class="token keyword">const</span> <span class="token constant">RECURSION_LIMIT</span> <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">checkRecursiveUpdates</span><span class="token punctuation">(</span>seen<span class="token operator">:</span> CountMap<span class="token punctuation">,</span> fn<span class="token operator">:</span> Job <span class="token operator">|</span> <span class="token builtin">Function</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>seen<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    seen<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> count <span class="token operator">=</span> seen<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">;</span>
+    <span class="token comment">// 任务在一次微任务中执行次数超过RECURSION_LIMIT视为循环任务，直接抛出错误</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>count <span class="token operator">&gt;</span> <span class="token constant">RECURSION_LIMIT</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span>
+        <span class="token string">&quot;Maximum recursive updates exceeded. &quot;</span> <span class="token operator">+</span>
+          <span class="token string">&quot;You may have code that is mutating state in your component's &quot;</span> <span class="token operator">+</span>
+          <span class="token string">&quot;render function or updated hook or watcher source function.&quot;</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 未达到上限，增加计数</span>
+      seen<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> count <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在整个任务过程中我们保持了<code>seen</code>变量来记录每个任务的执行次数，当超过<code>RECURSION_LIMIT</code>时就是做循环任务来抛出异常。</p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>这就是<code>Vue3</code>异步任务调度的全部，异步任务调度在不仅使用在组建更新上，也会使用在<code>watch API</code>中，
+现在我们对于<code>Vue3</code>调度的有了更深层次的理解，这非常有助于之后的<code>effect</code>、<code>watch API</code>的阅读。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最后一次更新:</span> <span class="time">9/3/2020, 3:03:21 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/vue3-analysis/v3/runtime/lifecycle.html" class="prev">
+        生命周期
+      </a></span> <span class="next"><a href="/vue3-analysis/v3/reactivity/">
+        前言
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/vue3-analysis/assets/js/app.3e15c670.js" defer></script><script src="/vue3-analysis/assets/js/2.f2c58315.js" defer></script><script src="/vue3-analysis/assets/js/38.ac88b170.js" defer></script>
+  </body>
+</html>

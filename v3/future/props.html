@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Props系统 | vue3解析</title>
+    <meta name="generator" content="VuePress 1.5.3">
+    
+    <meta name="description" content=" ">
+    <link rel="preload" href="/vue3-analysis/assets/css/0.styles.1acb776f.css" as="style"><link rel="preload" href="/vue3-analysis/assets/js/app.3e15c670.js" as="script"><link rel="preload" href="/vue3-analysis/assets/js/2.f2c58315.js" as="script"><link rel="preload" href="/vue3-analysis/assets/js/13.2760879c.js" as="script"><link rel="prefetch" href="/vue3-analysis/assets/js/10.d9152f7d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/11.48cbb26e.js"><link rel="prefetch" href="/vue3-analysis/assets/js/12.524698e3.js"><link rel="prefetch" href="/vue3-analysis/assets/js/14.f967554a.js"><link rel="prefetch" href="/vue3-analysis/assets/js/15.f1bc39ea.js"><link rel="prefetch" href="/vue3-analysis/assets/js/16.563c74f3.js"><link rel="prefetch" href="/vue3-analysis/assets/js/17.d737fd54.js"><link rel="prefetch" href="/vue3-analysis/assets/js/18.3e7e5b73.js"><link rel="prefetch" href="/vue3-analysis/assets/js/19.77a3ce44.js"><link rel="prefetch" href="/vue3-analysis/assets/js/20.bde70dbc.js"><link rel="prefetch" href="/vue3-analysis/assets/js/21.b2b628a1.js"><link rel="prefetch" href="/vue3-analysis/assets/js/22.a072ba3b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/23.37f38ccc.js"><link rel="prefetch" href="/vue3-analysis/assets/js/24.ff4d6150.js"><link rel="prefetch" href="/vue3-analysis/assets/js/25.94a97415.js"><link rel="prefetch" href="/vue3-analysis/assets/js/26.cb21b23b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/27.ecdc3973.js"><link rel="prefetch" href="/vue3-analysis/assets/js/28.8d51d670.js"><link rel="prefetch" href="/vue3-analysis/assets/js/29.4ca9afa9.js"><link rel="prefetch" href="/vue3-analysis/assets/js/3.f955db1b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/30.40a7c4a6.js"><link rel="prefetch" href="/vue3-analysis/assets/js/31.d35e90d4.js"><link rel="prefetch" href="/vue3-analysis/assets/js/32.0795f87d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/33.a990c8fb.js"><link rel="prefetch" href="/vue3-analysis/assets/js/34.21da1856.js"><link rel="prefetch" href="/vue3-analysis/assets/js/35.063396ca.js"><link rel="prefetch" href="/vue3-analysis/assets/js/36.51dede06.js"><link rel="prefetch" href="/vue3-analysis/assets/js/37.fe42948d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/38.ac88b170.js"><link rel="prefetch" href="/vue3-analysis/assets/js/39.a56bb399.js"><link rel="prefetch" href="/vue3-analysis/assets/js/4.0154b038.js"><link rel="prefetch" href="/vue3-analysis/assets/js/40.23e7468b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/41.cdbdb032.js"><link rel="prefetch" href="/vue3-analysis/assets/js/5.106b6465.js"><link rel="prefetch" href="/vue3-analysis/assets/js/6.47c88f4f.js"><link rel="prefetch" href="/vue3-analysis/assets/js/7.88fd05cf.js"><link rel="prefetch" href="/vue3-analysis/assets/js/8.ff6d3cfa.js"><link rel="prefetch" href="/vue3-analysis/assets/js/9.f533e484.js">
+    <link rel="stylesheet" href="/vue3-analysis/assets/css/0.styles.1acb776f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vue3-analysis/" class="home-link router-link-active"><img src="/vue3-analysis/logo.png" alt="vue3解析" class="logo"> <span class="site-name can-hide">vue3解析</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vue3-analysis/v3/idea/vue.html" class="nav-link">
+  Vue3
+</a></div><div class="nav-item"><a href="http://xuguo.xyz/vue-hooks" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-hooks
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/xuguo-code/vue3-analysis/issues" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  我要修正
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/xuguo-code/vue3-analysis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vue3-analysis/v3/idea/vue.html" class="nav-link">
+  Vue3
+</a></div><div class="nav-item"><a href="http://xuguo.xyz/vue-hooks" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-hooks
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/xuguo-code/vue3-analysis/issues" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  我要修正
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/xuguo-code/vue3-analysis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>理念篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>运行时篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/runtime/" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>组件系统</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>异步调度</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>响应式系统篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/reactivity/" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>核心方法</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>更多方法</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>扩展篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/future/" aria-current="page" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading open"><span>实用特性</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/future/props.html" aria-current="page" class="active sidebar-link">Props系统</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/props.html#本篇目标" class="sidebar-link">本篇目标</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/props.html#解析" class="sidebar-link">解析</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/props.html#props-的初始化" class="sidebar-link">props 的初始化</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/props.html#props-的更新" class="sidebar-link">props 的更新</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/props.html#props-的校验" class="sidebar-link">props 的校验</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/props.html#总结" class="sidebar-link">总结</a></li></ul></li><li><a href="/vue3-analysis/v3/future/slot.html" class="sidebar-link">插槽</a></li><li><a href="/vue3-analysis/v3/future/refs.html" class="sidebar-link">模板 Refs</a></li><li><a href="/vue3-analysis/v3/future/directives.html" class="sidebar-link">指令系统</a></li><li><a href="/vue3-analysis/v3/future/defineAsyncComponent.html" class="sidebar-link">声明异步组件</a></li></ul></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>内建组件</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="props系统"><a href="#props系统" class="header-anchor">#</a> <code>Props</code>系统</h3> <p>在<code>Vue</code>中处理父子组件的通讯时，常用到<code>Props</code>来实现父到子的单向数据流传递，来实现组件的对外配置化或者一些高级功能；
+我们通过一个实例来更加直观的了解<code>props</code>的使用：</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span> {{ title }}-{{ desc }} <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">&quot;child&quot;</span><span class="token punctuation">,</span>
+  props<span class="token operator">:</span> <span class="token punctuation">{</span>
+    title<span class="token operator">:</span> String<span class="token punctuation">,</span>
+    desc<span class="token operator">:</span> String<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>使用：</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>child</span> <span class="token attr-name">:title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span><span class="token punctuation">'</span>标题<span class="token punctuation">'</span><span class="token punctuation">&quot;</span></span> <span class="token attr-name">:desc</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span><span class="token punctuation">'</span>描述<span class="token punctuation">'</span><span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+</code></pre></div><p><code>props</code>很好的解决了父到子组件的数据传递问题，让子组件能在类似的功能下通过<code>props</code>的差异化实现复用；
+本篇会深入<code>Props</code>的原理，解析<code>Vue3</code>中<code>Props</code>的全流程。</p> <h2 id="本篇目标"><a href="#本篇目标" class="header-anchor">#</a> 本篇目标</h2> <ol><li>理解<code>props</code>的整个生命周期</li> <li>理解<code>props</code>的解析方式</li></ol> <h2 id="解析"><a href="#解析" class="header-anchor">#</a> 解析</h2> <p>对于<code>Props</code>的解析，我们会从<code>porps</code>初始化和<code>props</code>更新两个流程来深入解析。</p> <div class="custom-block tip"><p class="custom-block-title">注意</p> <p>在<code>Vue</code>的组件系统中，<code>props</code>大致可以分为三类：</p> <ol><li><code>props options</code>声明过的： <code>props</code></li> <li><code>emits options</code>声明过的： <code>emits</code></li> <li>除以上两种外剩下的： <code>attrs</code></li></ol></div> <h2 id="props-的初始化"><a href="#props-的初始化" class="header-anchor">#</a> <code>props</code> 的初始化</h2> <p><code>props</code>在整个组件的生命周期中是属于最先被初始化的一类数据，初始化<code>props</code>的时机就发生在组件实例创建后开始执行<code>setup</code>之前：</p> <details class="custom-block details"><summary>查看详细代码</summary> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/component.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">setupComponent</span><span class="token punctuation">(</span>
+  instance<span class="token operator">:</span> ComponentInternalInstance<span class="token punctuation">,</span>
+  isSSR <span class="token operator">=</span> <span class="token boolean">false</span>
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  isInSSRComponentSetup <span class="token operator">=</span> isSSR<span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> props<span class="token punctuation">,</span> children<span class="token punctuation">,</span> shapeFlag <span class="token punctuation">}</span> <span class="token operator">=</span> instance<span class="token punctuation">.</span>vnode<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> isStateful <span class="token operator">=</span> shapeFlag <span class="token operator">&amp;</span> ShapeFlags<span class="token punctuation">.</span><span class="token constant">STATEFUL_COMPONENT</span><span class="token punctuation">;</span>
+  <span class="token comment">// 初始化props</span>
+  <span class="token function">initProps</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> props<span class="token punctuation">,</span> isStateful<span class="token punctuation">,</span> isSSR<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">initSlots</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 执行setup</span>
+  <span class="token keyword">const</span> setupResult <span class="token operator">=</span> isStateful
+    <span class="token operator">?</span> <span class="token function">setupStatefulComponent</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> isSSR<span class="token punctuation">)</span>
+    <span class="token operator">:</span> <span class="token keyword">undefined</span><span class="token punctuation">;</span>
+  isInSSRComponentSetup <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> setupResult<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></details> <p>初始化<code>Props</code>需要接受组件实例、传入的<code>props</code>以及两个标识参数，我们直接看到<code>initProps</code>的函数体：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/componentProps.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">initProps</span><span class="token punctuation">(</span>
+  instance<span class="token operator">:</span> ComponentInternalInstance<span class="token punctuation">,</span>
+  <span class="token comment">// 来自组件vnode 是传递到组件的props</span>
+  rawProps<span class="token operator">:</span> Data <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  isStateful<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> <span class="token comment">// result of bitwise flag comparison</span>
+  isSSR <span class="token operator">=</span> <span class="token boolean">false</span>
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// options 声明过的是props</span>
+  <span class="token keyword">const</span> props<span class="token operator">:</span> Data <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token comment">// 未声明过传递 属于attrs</span>
+  <span class="token keyword">const</span> attrs<span class="token operator">:</span> Data <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token comment">// 设置内部对象标识</span>
+  <span class="token function">def</span><span class="token punctuation">(</span>attrs<span class="token punctuation">,</span> InternalObjectKey<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 全量设置props和attrs</span>
+  <span class="token function">setFullProps</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> rawProps<span class="token punctuation">,</span> props<span class="token punctuation">,</span> attrs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 开发环境下 进行props的校验</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">validateProps</span><span class="token punctuation">(</span>props<span class="token punctuation">,</span> instance<span class="token punctuation">.</span><span class="token keyword">type</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>isStateful<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 带状态的组件</span>
+    instance<span class="token punctuation">.</span>props <span class="token operator">=</span> isSSR <span class="token operator">?</span> props <span class="token operator">:</span> <span class="token function">shallowReactive</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>instance<span class="token punctuation">.</span><span class="token keyword">type</span><span class="token punctuation">.</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 函数式组件未声明props 将 attrs 当做 props</span>
+      instance<span class="token punctuation">.</span>props <span class="token operator">=</span> attrs<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 函数式组件声明过 props</span>
+      instance<span class="token punctuation">.</span>props <span class="token operator">=</span> props<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  instance<span class="token punctuation">.</span>attrs <span class="token operator">=</span> attrs<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>可以看出<code>initProps</code>的主要目标是依据<code>rawProps</code>和<code>props options</code>来分离出<code>props</code>和<code>attrs</code>，
+最终进行组件实例<code>props</code>和<code>attrs</code>的赋值；真正的解析出<code>props</code>发生在<code>setFullProps</code>函数，让我们继续查看。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/componentProps.ts</span>
+<span class="token keyword">function</span> <span class="token function">setFullProps</span><span class="token punctuation">(</span>
+  instance<span class="token operator">:</span> ComponentInternalInstance<span class="token punctuation">,</span>
+  <span class="token comment">// 传递到组件render后挂在VNode上的props</span>
+  rawProps<span class="token operator">:</span> Data <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  props<span class="token operator">:</span> Data<span class="token punctuation">,</span>
+  attrs<span class="token operator">:</span> Data
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 标准化props options</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>options<span class="token punctuation">,</span> needCastKeys<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">normalizePropsOptions</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span><span class="token keyword">type</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>rawProps<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> key <span class="token keyword">in</span> rawProps<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> value <span class="token operator">=</span> rawProps<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token comment">// 内部属性跳过</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isReservedProp</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">continue</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// 规范化key为小驼峰</span>
+      <span class="token keyword">let</span> camelKey<span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>options <span class="token operator">&amp;&amp;</span> <span class="token function">hasOwn</span><span class="token punctuation">(</span>options<span class="token punctuation">,</span> <span class="token punctuation">(</span>camelKey <span class="token operator">=</span> <span class="token function">camelize</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 选项中存在该key</span>
+        props<span class="token punctuation">[</span>camelKey<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isEmitListener</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span><span class="token keyword">type</span><span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 不在组件props选项声明的key中，也不在emit中，视作attrs</span>
+        attrs<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>needCastKeys<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 处理默认值 和 强制转换Boolean型</span>
+    <span class="token keyword">const</span> rawCurrentProps <span class="token operator">=</span> <span class="token function">toRaw</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> needCastKeys<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> key <span class="token operator">=</span> needCastKeys<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      props<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">resolvePropValue</span><span class="token punctuation">(</span>
+        options<span class="token operator">!</span><span class="token punctuation">,</span>
+        rawCurrentProps<span class="token punctuation">,</span>
+        key<span class="token punctuation">,</span>
+        rawCurrentProps<span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这里代码逻辑虽然简单，但是出现了几个容易混淆的概念:</p> <blockquote><p><code>rawProps</code>: 使用子组件时传递的<code>props</code>，经历<code>render</code>函数以及规范化后挂载在<code>VNode</code>上<br> <code>props</code>: 初始化<code>props</code>需要求得的属性<code>key: value</code>对象绑定在组件实例上的<code>props</code>属性<br> <code>options</code>: 标准化组件选项中<code>props</code>配置后形成的组件<code>Props</code>选项</p></blockquote> <p>对这三个概念有了了解后，我们可以继续看<code>setFullProps</code>函数：</p> <h4 id="_1-标准化-props-options"><a href="#_1-标准化-props-options" class="header-anchor">#</a> 1. 标准化 <code>props options</code></h4> <p>我们都知道<code>Props</code>选项能够接受多种配置方式类似：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code>props<span class="token operator">:</span> <span class="token punctuation">{</span>
+  title<span class="token operator">:</span> String<span class="token punctuation">,</span>
+  desc<span class="token operator">:</span> <span class="token punctuation">[</span>String<span class="token punctuation">,</span> Boolean<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  sub<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token keyword">type</span><span class="token operator">:</span> String<span class="token punctuation">,</span>
+    required<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token keyword">default</span><span class="token operator">:</span> <span class="token string">''</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们需要将其标准化成对象配置的形式，并且还要标记出来需要求默认值和强制转<code>Boolean</code>的<code>props</code>；
+带着这些目标我们再来看<code>normalizePropsOptions</code>函数。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/componentProps.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">normalizePropsOptions</span><span class="token punctuation">(</span>
+  comp<span class="token operator">:</span> Component
+<span class="token punctuation">)</span><span class="token operator">:</span> NormalizedPropsOptions <span class="token operator">|</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 使用缓存</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>comp<span class="token punctuation">.</span>__props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> comp<span class="token punctuation">.</span>__props<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 取出组件props选项</span>
+  <span class="token keyword">const</span> raw <span class="token operator">=</span> comp<span class="token punctuation">.</span>props<span class="token punctuation">;</span>
+  <span class="token comment">// 规范后的props配置</span>
+  <span class="token keyword">const</span> normalized<span class="token operator">:</span> NormalizedPropsOptions<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token comment">// 需要强制转换的key</span>
+  <span class="token keyword">const</span> needCastKeys<span class="token operator">:</span> NormalizedPropsOptions<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// apply mixin/extends props</span>
+  <span class="token keyword">let</span> hasExtends <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>__FEATURE_OPTIONS_API__ <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token function">isFunction</span><span class="token punctuation">(</span>comp<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token function-variable function">extendProps</span> <span class="token operator">=</span> <span class="token punctuation">(</span>raw<span class="token operator">:</span> ComponentOptions<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> <span class="token punctuation">[</span>props<span class="token punctuation">,</span> keys<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">normalizePropsOptions</span><span class="token punctuation">(</span>raw<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">extend</span><span class="token punctuation">(</span>normalized<span class="token punctuation">,</span> props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>keys<span class="token punctuation">)</span> needCastKeys<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token operator">...</span>keys<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token comment">// 处理来自extends的props</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>comp<span class="token punctuation">.</span><span class="token keyword">extends</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      hasExtends <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+      <span class="token function">extendProps</span><span class="token punctuation">(</span>comp<span class="token punctuation">.</span><span class="token keyword">extends</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 处理来自mixin的props</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>comp<span class="token punctuation">.</span>mixins<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      hasExtends <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+      comp<span class="token punctuation">.</span>mixins<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>extendProps<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 无props声明也无来自混入或者继承的props选项</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>raw <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>hasExtends<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>comp<span class="token punctuation">.</span>__props <span class="token operator">=</span> <span class="token constant">EMPTY_ARR</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 数组写法 ['a', 'b']</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isArray</span><span class="token punctuation">(</span>raw<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> raw<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__ <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token function">isString</span><span class="token punctuation">(</span>raw<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">warn</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">props must be strings when using array syntax.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span> raw<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// 转小驼峰</span>
+      <span class="token keyword">const</span> normalizedKey <span class="token operator">=</span> <span class="token function">camelize</span><span class="token punctuation">(</span>raw<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 校验key合法性 不以$开头</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">validatePropName</span><span class="token punctuation">(</span>normalizedKey<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 没有配置项目，设置为空对象</span>
+        normalized<span class="token punctuation">[</span>normalizedKey<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token constant">EMPTY_OBJ</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>raw<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * 对象写法
+     * {
+     *  key: {
+     *    default: 'xx',
+     *    type: xxx
+     *    ...
+     *  },
+     *  key: type,
+     *  key: [type, type],
+     *  key: () =&gt; {}
+     * }
+     */</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__ <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token function">isObject</span><span class="token punctuation">(</span>raw<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 如果不是对象，警告 违法的props配置</span>
+      <span class="token function">warn</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">invalid props options</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span> raw<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> key <span class="token keyword">in</span> raw<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 转小驼峰</span>
+      <span class="token keyword">const</span> normalizedKey <span class="token operator">=</span> <span class="token function">camelize</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 校验props name是否合法</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">validatePropName</span><span class="token punctuation">(</span>normalizedKey<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 拿到opt对象</span>
+        <span class="token keyword">const</span> opt <span class="token operator">=</span> raw<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token comment">// key: [Boolean]</span>
+        <span class="token comment">// key: () =&gt; ....</span>
+        <span class="token keyword">const</span> prop<span class="token operator">:</span> NormalizedProp <span class="token operator">=</span> <span class="token punctuation">(</span>normalized<span class="token punctuation">[</span>normalizedKey<span class="token punctuation">]</span> <span class="token operator">=</span>
+          <span class="token function">isArray</span><span class="token punctuation">(</span>opt<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token function">isFunction</span><span class="token punctuation">(</span>opt<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token punctuation">{</span> <span class="token keyword">type</span><span class="token operator">:</span> opt <span class="token punctuation">}</span> <span class="token operator">:</span> opt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>prop<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token comment">// 查找 Boolean 类型出现的位置</span>
+          <span class="token keyword">const</span> booleanIndex <span class="token operator">=</span> <span class="token function">getTypeIndex</span><span class="token punctuation">(</span>Boolean<span class="token punctuation">,</span> prop<span class="token punctuation">.</span><span class="token keyword">type</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token comment">// 查找 String 类型出现的位置</span>
+          <span class="token keyword">const</span> stringIndex <span class="token operator">=</span> <span class="token function">getTypeIndex</span><span class="token punctuation">(</span>String<span class="token punctuation">,</span> prop<span class="token punctuation">.</span><span class="token keyword">type</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token comment">// 标识需要强转 Boolean</span>
+          prop<span class="token punctuation">[</span>BooleanFlags<span class="token punctuation">.</span>shouldCast<span class="token punctuation">]</span> <span class="token operator">=</span> booleanIndex <span class="token operator">&gt;</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+          <span class="token comment">// 标识需要 强制转为 true</span>
+          prop<span class="token punctuation">[</span>BooleanFlags<span class="token punctuation">.</span>shouldCastTrue<span class="token punctuation">]</span> <span class="token operator">=</span>
+            stringIndex <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">||</span> booleanIndex <span class="token operator">&lt;</span> stringIndex<span class="token punctuation">;</span>
+          <span class="token comment">// 如果需要 默认设置默认值 或者 转 Boolean</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>booleanIndex <span class="token operator">&gt;</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">||</span> <span class="token function">hasOwn</span><span class="token punctuation">(</span>prop<span class="token punctuation">,</span> <span class="token string">&quot;default&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            needCastKeys<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>normalizedKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 缓存</span>
+  <span class="token keyword">const</span> normalizedEntry<span class="token operator">:</span> NormalizedPropsOptions <span class="token operator">=</span> <span class="token punctuation">[</span>normalized<span class="token punctuation">,</span> needCastKeys<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  comp<span class="token punctuation">.</span>__props <span class="token operator">=</span> normalizedEntry<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> normalizedEntry<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>标准化的过程无非就是将用户的多种<code>props</code>写法都转化成标准的对象配置形式，其中通过<code>__props</code>来缓存以及标准化的<code>props</code>配置，
+缓存的优化方式在<code>Vue</code>中无处不在，我们可以好好学习这种空间换时间的优化思路。</p> <p><code>normalizePropsOptions</code>中首先对<code>mixin/extends</code>这些选项进行了递归处理，将其<code>props</code>属性合并过来；
+然后优先处理了无具体选项配置的情况，将对应的<code>props</code>配置设置成空对象；然后对数组和函数的配置形式转化成对象配置；
+值得注意的是对<code>BooleanFlags</code>两个标识位的处理，出现<code>Boolean</code>类型限制时会标识需要强制转<code>Boolean</code>，
+如果<code>Boolean</code>出现在<code>String</code>类型之前会标识需要强制转为<code>true</code>；最终对标准化完成后的数据进行缓存并且返回。</p> <h4 id="_2-分离-attrs-和-props"><a href="#_2-分离-attrs-和-props" class="header-anchor">#</a> 2. 分离 <code>attrs</code> 和 <code>props</code></h4> <p>在得到标准化的组件选项后，会对传递给组件的<code>props</code>进行遍历，按之前所说的规则将<code>props</code>分离为<code>attrs</code>和<code>props</code>。</p> <h4 id="_3-处理默认值和强制转换"><a href="#_3-处理默认值和强制转换" class="header-anchor">#</a> 3. 处理默认值和强制转换</h4> <p>对于标记了需要处理的<code>key</code>会通过<code>resolvePropValue</code>来处理一遍：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/componentProps.ts</span>
+<span class="token keyword">function</span> <span class="token function">resolvePropValue</span><span class="token punctuation">(</span>
+  <span class="token comment">// 标准化后的 配置项</span>
+  options<span class="token operator">:</span> NormalizedPropsOptions<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token comment">// instance props</span>
+  props<span class="token operator">:</span> Data<span class="token punctuation">,</span>
+  key<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+  value<span class="token operator">:</span> <span class="token builtin">unknown</span>
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> opt <span class="token operator">=</span> options<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>opt <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 处理默认值</span>
+    <span class="token keyword">const</span> hasDefault <span class="token operator">=</span> <span class="token function">hasOwn</span><span class="token punctuation">(</span>opt<span class="token punctuation">,</span> <span class="token string">&quot;default&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 默认值</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>hasDefault <span class="token operator">&amp;&amp;</span> value <span class="token operator">===</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> defaultValue <span class="token operator">=</span> opt<span class="token punctuation">.</span><span class="token keyword">default</span><span class="token punctuation">;</span>
+      value <span class="token operator">=</span>
+        opt<span class="token punctuation">.</span><span class="token keyword">type</span> <span class="token operator">!==</span> <span class="token builtin">Function</span> <span class="token operator">&amp;&amp;</span> <span class="token function">isFunction</span><span class="token punctuation">(</span>defaultValue<span class="token punctuation">)</span>
+          <span class="token operator">?</span> <span class="token function">defaultValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+          <span class="token operator">:</span> defaultValue<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// boolean casting</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>opt<span class="token punctuation">[</span>BooleanFlags<span class="token punctuation">.</span>shouldCast<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">hasOwn</span><span class="token punctuation">(</span>props<span class="token punctuation">,</span> key<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>hasDefault<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        value <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>
+        opt<span class="token punctuation">[</span>BooleanFlags<span class="token punctuation">.</span>shouldCastTrue<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span>
+        <span class="token punctuation">(</span>value <span class="token operator">===</span> <span class="token string">&quot;&quot;</span> <span class="token operator">||</span> value <span class="token operator">===</span> <span class="token function">hyphenate</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        value <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> value<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>默认值的处理十分简单，如果该<code>props</code>配置了默认值，并且没否被赋予初值，就从<code>default</code>获取默认值（支持函数和值类型）；
+<code>boolean casting</code>主要可以分为两个情况来理解：</p> <ol><li><p>该<code>props</code>设置的<code>Boolean</code>类型的限制，但是并没有传递值和配置默认值，我们需要将其手动设置成<code>false</code></p></li> <li><p>该<code>props</code>同时设置了<code>Boolean</code>和<code>string</code>的类型限制并且<code>Boolean</code>出现在<code>String</code>之前，
+此时我们传递了<code>&quot;&quot;</code>空字符串给<code>props</code>，按优先级别处理我们需要将<code>props</code>处理为<code>true</code>。</p></li></ol> <p>回到<code>initProps</code>函数，我们得到了<code>props</code>和<code>attrs</code>，
+仅需要根据函数组件或者状态组件的<code>props options</code>情况进行赋值就已经完成整个<code>props</code>的初始化。</p> <h2 id="props-的更新"><a href="#props-的更新" class="header-anchor">#</a> <code>props</code> 的更新</h2> <p><code>props</code>的更新发生在组件重新渲染之前：</p> <details class="custom-block details"><summary>查看详细代码</summary> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/renderer.ts</span>
+<span class="token keyword">const</span> <span class="token function-variable function">updateComponentPreRender</span> <span class="token operator">=</span> <span class="token punctuation">(</span>
+  instance<span class="token operator">:</span> ComponentInternalInstance<span class="token punctuation">,</span>
+  nextVNode<span class="token operator">:</span> VNode<span class="token punctuation">,</span>
+  optimized<span class="token operator">:</span> <span class="token builtin">boolean</span>
+<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  nextVNode<span class="token punctuation">.</span>component <span class="token operator">=</span> instance<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> prevProps <span class="token operator">=</span> instance<span class="token punctuation">.</span>vnode<span class="token punctuation">.</span>props<span class="token punctuation">;</span>
+  instance<span class="token punctuation">.</span>vnode <span class="token operator">=</span> nextVNode<span class="token punctuation">;</span>
+  instance<span class="token punctuation">.</span>next <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token comment">// 更新props</span>
+  <span class="token function">updateProps</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> nextVNode<span class="token punctuation">.</span>props<span class="token punctuation">,</span> prevProps<span class="token punctuation">,</span> optimized<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 更新插槽</span>
+  <span class="token function">updateSlots</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> nextVNode<span class="token punctuation">.</span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div></details> <p><code>updateProps</code>需要接受新旧<code>rawProps</code>来对比生成新的<code>props</code>和<code>attrs</code>，我们看一下它的实现方式：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/componentProps.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">updateProps</span><span class="token punctuation">(</span>
+  instance<span class="token operator">:</span> ComponentInternalInstance<span class="token punctuation">,</span>
+  <span class="token comment">// 新的来自VNode传递的props</span>
+  rawProps<span class="token operator">:</span> Data <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  <span class="token comment">// 旧的来自VNode传递的props</span>
+  rawPrevProps<span class="token operator">:</span> Data <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  optimized<span class="token operator">:</span> <span class="token builtin">boolean</span>
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 去除当前的 props 和 attrs</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span>
+    props<span class="token punctuation">,</span>
+    attrs<span class="token punctuation">,</span>
+    vnode<span class="token operator">:</span> <span class="token punctuation">{</span> patchFlag <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span> <span class="token operator">=</span> instance<span class="token punctuation">;</span>
+  <span class="token comment">// 获取当前props的源数据</span>
+  <span class="token keyword">const</span> rawCurrentProps <span class="token operator">=</span> <span class="token function">toRaw</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 获取标准化后的 props 配置</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>options<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">normalizePropsOptions</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span><span class="token keyword">type</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>optimized <span class="token operator">||</span> patchFlag <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token punctuation">(</span>patchFlag <span class="token operator">&amp;</span> PatchFlags<span class="token punctuation">.</span><span class="token constant">FULL_PROPS</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>patchFlag <span class="token operator">&amp;</span> PatchFlags<span class="token punctuation">.</span><span class="token constant">PROPS</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 编译器优化情况 仅需要比对动态的props</span>
+      <span class="token keyword">const</span> propsToUpdate <span class="token operator">=</span> instance<span class="token punctuation">.</span>vnode<span class="token punctuation">.</span>dynamicProps<span class="token operator">!</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> propsToUpdate<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> key <span class="token operator">=</span> propsToUpdate<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token comment">// 新值</span>
+        <span class="token keyword">const</span> value <span class="token operator">=</span> rawProps<span class="token operator">!</span><span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token comment">// attrs 和 props 的分离发生在init 并且不会变更，我们仅需判断是否在 attrs</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">hasOwn</span><span class="token punctuation">(</span>attrs<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 更新新值</span>
+            attrs<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+          <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">const</span> camelizedKey <span class="token operator">=</span> <span class="token function">camelize</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 更新新值</span>
+            props<span class="token punctuation">[</span>camelizedKey<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">resolvePropValue</span><span class="token punctuation">(</span>
+              options<span class="token punctuation">,</span>
+              rawCurrentProps<span class="token punctuation">,</span>
+              camelizedKey<span class="token punctuation">,</span>
+              value
+            <span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          <span class="token comment">// 不存在配置项 props = attrs</span>
+          attrs<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 全量更新</span>
+    <span class="token function">setFullProps</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> rawProps<span class="token punctuation">,</span> props<span class="token punctuation">,</span> attrs<span class="token punctuation">)</span><span class="token punctuation">;</span>、
+    <span class="token keyword">let</span> kebabKey<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> key <span class="token keyword">in</span> rawCurrentProps<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>
+        <span class="token operator">!</span>rawProps <span class="token operator">||</span>
+        <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">hasOwn</span><span class="token punctuation">(</span>rawProps<span class="token punctuation">,</span> key<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+          <span class="token punctuation">(</span><span class="token punctuation">(</span>kebabKey <span class="token operator">=</span> <span class="token function">hyphenate</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">===</span> key <span class="token operator">||</span> <span class="token operator">!</span><span class="token function">hasOwn</span><span class="token punctuation">(</span>rawProps<span class="token punctuation">,</span> kebabKey<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 需要处理不存在在 新rawProps中 但是存在于旧rawProps的 props</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>
+            rawPrevProps <span class="token operator">&amp;&amp;</span>
+            <span class="token punctuation">(</span>rawPrevProps<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">!==</span> <span class="token keyword">undefined</span> <span class="token operator">||</span>
+              rawPrevProps<span class="token punctuation">[</span>kebabKey<span class="token operator">!</span><span class="token punctuation">]</span> <span class="token operator">!==</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span>
+          <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 存在于旧rawProps中并且不为undefined的prop设置为undefined</span>
+            props<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">resolvePropValue</span><span class="token punctuation">(</span>
+              options<span class="token punctuation">,</span>
+              rawProps <span class="token operator">||</span> <span class="token constant">EMPTY_OBJ</span><span class="token punctuation">,</span>
+              key<span class="token punctuation">,</span>
+              <span class="token keyword">undefined</span>
+            <span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          <span class="token comment">// 直接删除</span>
+          <span class="token keyword">delete</span> props<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// in the case of functional component w/o props declaration, props and</span>
+    <span class="token comment">// attrs point to the same object so it should already have been updated.</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>attrs <span class="token operator">!==</span> rawCurrentProps<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> key <span class="token keyword">in</span> attrs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>rawProps <span class="token operator">||</span> <span class="token operator">!</span><span class="token function">hasOwn</span><span class="token punctuation">(</span>rawProps<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">delete</span> attrs<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 触发来自 $attrs的更新</span>
+  <span class="token function">trigger</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> TriggerOpTypes<span class="token punctuation">.</span><span class="token constant">SET</span><span class="token punctuation">,</span> <span class="token string">&quot;$attrs&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__ <span class="token operator">&amp;&amp;</span> rawProps<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">validateProps</span><span class="token punctuation">(</span>props<span class="token punctuation">,</span> instance<span class="token punctuation">.</span><span class="token keyword">type</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>props</code>的更新主要分为两种情况，一是有编译器优化的模式，另一种就是全量的更新；我们分别看一下：</p> <h4 id="_1-优化模式"><a href="#_1-优化模式" class="header-anchor">#</a> 1. 优化模式</h4> <p>优化模式下仅需要将<code>dynamicProps</code>存有的<code>key</code>对应的<code>props</code>更新为新的值。</p> <h4 id="_2-全量更新"><a href="#_2-全量更新" class="header-anchor">#</a> 2. 全量更新</h4> <p>全量更新的模式下，会按照<code>initProps</code>的方式将新的<code>rawProps</code>设置一遍，
+最终再过滤不存在于<code>rawProps</code>上且存在于<code>rawPrevProps</code>上不为<code>undefined</code>的<code>prop</code>并设置为<code>undefined</code>；
+这句话比较拗口，我们通过如下的示例来辅助理解：</p> <div class="language-html extra-class"><pre class="language-html"><code>// 更新前
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>child</span> <span class="token attr-name">:title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span><span class="token punctuation">'</span>标题<span class="token punctuation">'</span><span class="token punctuation">&quot;</span></span> <span class="token attr-name">...</span> <span class="token punctuation">/&gt;</span></span>
+// 更新后
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>child</span> <span class="token attr-name">...</span> <span class="token punctuation">/&gt;</span></span>
+</code></pre></div><p>这种情况我们需要将<code>title</code>设置为<code>undefined</code>。
+整体来说更新逻辑还是十分简单的，现在我们还需要关注一个<code>validateProps</code>校验<code>props</code>的过程，它在初始化和更新阶段都出现了。</p> <h2 id="props-的校验"><a href="#props-的校验" class="header-anchor">#</a> <code>props</code> 的校验</h2> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">function</span> <span class="token function">validateProps</span><span class="token punctuation">(</span>props<span class="token operator">:</span> Data<span class="token punctuation">,</span> comp<span class="token operator">:</span> Component<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> rawValues <span class="token operator">=</span> <span class="token function">toRaw</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> options <span class="token operator">=</span> <span class="token function">normalizePropsOptions</span><span class="token punctuation">(</span>comp<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> key <span class="token keyword">in</span> options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> opt <span class="token operator">=</span> options<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment">// 没有配置选项 跳过</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>opt <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token keyword">continue</span><span class="token punctuation">;</span>
+    <span class="token comment">// 对比单个prop</span>
+    <span class="token function">validateProp</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> rawValues<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">,</span> opt<span class="token punctuation">,</span> <span class="token operator">!</span><span class="token function">hasOwn</span><span class="token punctuation">(</span>rawValues<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">validateProp</span><span class="token punctuation">(</span>
+  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+  value<span class="token operator">:</span> <span class="token builtin">unknown</span><span class="token punctuation">,</span>
+  prop<span class="token operator">:</span> PropOptions<span class="token punctuation">,</span>
+  <span class="token comment">// 是否不存在值</span>
+  isAbsent<span class="token operator">:</span> <span class="token builtin">boolean</span>
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> <span class="token keyword">type</span><span class="token punctuation">,</span> required<span class="token punctuation">,</span> validator <span class="token punctuation">}</span> <span class="token operator">=</span> prop<span class="token punctuation">;</span>
+  <span class="token comment">// 必填校验</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>required <span class="token operator">&amp;&amp;</span> isAbsent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">warn</span><span class="token punctuation">(</span><span class="token string">'Missing required prop: &quot;'</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">'&quot;'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 非必填 允许 null undefine</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>prop<span class="token punctuation">.</span>required<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 类型检测</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">type</span> <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">type</span> <span class="token operator">!==</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> isValid <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token comment">// 标准化为数组</span>
+    <span class="token keyword">const</span> types <span class="token operator">=</span> <span class="token function">isArray</span><span class="token punctuation">(</span><span class="token keyword">type</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token keyword">type</span> <span class="token operator">:</span> <span class="token punctuation">[</span><span class="token keyword">type</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> expectedTypes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment">//</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> types<span class="token punctuation">.</span>length <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>isValid<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 通过断言函数 获取 校验结果和校验的类型</span>
+      <span class="token keyword">const</span> <span class="token punctuation">{</span> valid<span class="token punctuation">,</span> expectedType <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">assertType</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> types<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      expectedTypes<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>expectedType <span class="token operator">||</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      isValid <span class="token operator">=</span> valid<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isValid<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 未通过</span>
+      <span class="token function">warn</span><span class="token punctuation">(</span><span class="token function">getInvalidTypeMessage</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> value<span class="token punctuation">,</span> expectedTypes<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 自定义校验器</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>validator <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token function">validator</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">warn</span><span class="token punctuation">(</span>
+      <span class="token string">'Invalid prop: custom validator check failed for prop &quot;'</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">'&quot;.'</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>可以看到校验适用于一定优先级别的，依次进行必填校验、类型校验和自定义校验器三种形式的校验来判断<code>props</code>的合法性。</p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>我们学习了<code>props</code>的初始化和更新两个流程，应该是更加了解<code>Vue</code>中<code>props</code>的设计思路了，
+当然我们还需要学习缓存这种代码优化的技巧，以便写出更加具有性能优势的代码。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最后一次更新:</span> <span class="time">9/15/2020, 2:00:28 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/vue3-analysis/v3/future/" class="prev router-link-active">
+        前言
+      </a></span> <span class="next"><a href="/vue3-analysis/v3/future/slot.html">
+        插槽
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/vue3-analysis/assets/js/app.3e15c670.js" defer></script><script src="/vue3-analysis/assets/js/2.f2c58315.js" defer></script><script src="/vue3-analysis/assets/js/13.2760879c.js" defer></script>
+  </body>
+</html>

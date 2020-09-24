@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>生命周期 | vue3解析</title>
+    <meta name="generator" content="VuePress 1.5.3">
+    
+    <meta name="description" content=" ">
+    <link rel="preload" href="/vue3-analysis/assets/css/0.styles.1acb776f.css" as="style"><link rel="preload" href="/vue3-analysis/assets/js/app.3e15c670.js" as="script"><link rel="preload" href="/vue3-analysis/assets/js/2.f2c58315.js" as="script"><link rel="preload" href="/vue3-analysis/assets/js/36.51dede06.js" as="script"><link rel="prefetch" href="/vue3-analysis/assets/js/10.d9152f7d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/11.48cbb26e.js"><link rel="prefetch" href="/vue3-analysis/assets/js/12.524698e3.js"><link rel="prefetch" href="/vue3-analysis/assets/js/13.2760879c.js"><link rel="prefetch" href="/vue3-analysis/assets/js/14.f967554a.js"><link rel="prefetch" href="/vue3-analysis/assets/js/15.f1bc39ea.js"><link rel="prefetch" href="/vue3-analysis/assets/js/16.563c74f3.js"><link rel="prefetch" href="/vue3-analysis/assets/js/17.d737fd54.js"><link rel="prefetch" href="/vue3-analysis/assets/js/18.3e7e5b73.js"><link rel="prefetch" href="/vue3-analysis/assets/js/19.77a3ce44.js"><link rel="prefetch" href="/vue3-analysis/assets/js/20.bde70dbc.js"><link rel="prefetch" href="/vue3-analysis/assets/js/21.b2b628a1.js"><link rel="prefetch" href="/vue3-analysis/assets/js/22.a072ba3b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/23.37f38ccc.js"><link rel="prefetch" href="/vue3-analysis/assets/js/24.ff4d6150.js"><link rel="prefetch" href="/vue3-analysis/assets/js/25.94a97415.js"><link rel="prefetch" href="/vue3-analysis/assets/js/26.cb21b23b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/27.ecdc3973.js"><link rel="prefetch" href="/vue3-analysis/assets/js/28.8d51d670.js"><link rel="prefetch" href="/vue3-analysis/assets/js/29.4ca9afa9.js"><link rel="prefetch" href="/vue3-analysis/assets/js/3.f955db1b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/30.40a7c4a6.js"><link rel="prefetch" href="/vue3-analysis/assets/js/31.d35e90d4.js"><link rel="prefetch" href="/vue3-analysis/assets/js/32.0795f87d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/33.a990c8fb.js"><link rel="prefetch" href="/vue3-analysis/assets/js/34.21da1856.js"><link rel="prefetch" href="/vue3-analysis/assets/js/35.063396ca.js"><link rel="prefetch" href="/vue3-analysis/assets/js/37.fe42948d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/38.ac88b170.js"><link rel="prefetch" href="/vue3-analysis/assets/js/39.a56bb399.js"><link rel="prefetch" href="/vue3-analysis/assets/js/4.0154b038.js"><link rel="prefetch" href="/vue3-analysis/assets/js/40.23e7468b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/41.cdbdb032.js"><link rel="prefetch" href="/vue3-analysis/assets/js/5.106b6465.js"><link rel="prefetch" href="/vue3-analysis/assets/js/6.47c88f4f.js"><link rel="prefetch" href="/vue3-analysis/assets/js/7.88fd05cf.js"><link rel="prefetch" href="/vue3-analysis/assets/js/8.ff6d3cfa.js"><link rel="prefetch" href="/vue3-analysis/assets/js/9.f533e484.js">
+    <link rel="stylesheet" href="/vue3-analysis/assets/css/0.styles.1acb776f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vue3-analysis/" class="home-link router-link-active"><img src="/vue3-analysis/logo.png" alt="vue3解析" class="logo"> <span class="site-name can-hide">vue3解析</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vue3-analysis/v3/idea/vue.html" class="nav-link">
+  Vue3
+</a></div><div class="nav-item"><a href="http://xuguo.xyz/vue-hooks" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-hooks
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/xuguo-code/vue3-analysis/issues" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  我要修正
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/xuguo-code/vue3-analysis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vue3-analysis/v3/idea/vue.html" class="nav-link">
+  Vue3
+</a></div><div class="nav-item"><a href="http://xuguo.xyz/vue-hooks" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-hooks
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/xuguo-code/vue3-analysis/issues" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  我要修正
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/xuguo-code/vue3-analysis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>理念篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>运行时篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/runtime/" aria-current="page" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading open"><span>组件系统</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/runtime/createApp.html" class="sidebar-link">createApp 流程</a></li><li><a href="/vue3-analysis/v3/runtime/mount.html" class="sidebar-link">组件挂载</a></li><li><a href="/vue3-analysis/v3/runtime/update.html" class="sidebar-link">组件更新</a></li><li><a href="/vue3-analysis/v3/runtime/setup.html" class="sidebar-link">setup 选项</a></li><li><a href="/vue3-analysis/v3/runtime/lifecycle.html" aria-current="page" class="active sidebar-link">生命周期</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/runtime/lifecycle.html#本篇目标" class="sidebar-link">本篇目标</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/runtime/lifecycle.html#钩子函数的注册" class="sidebar-link">钩子函数的注册</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/runtime/lifecycle.html#钩子函数的调用" class="sidebar-link">钩子函数的调用</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/runtime/lifecycle.html#总结" class="sidebar-link">总结</a></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>异步调度</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>响应式系统篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/reactivity/" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>核心方法</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>更多方法</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>扩展篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/future/" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>实用特性</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>内建组件</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="生命周期"><a href="#生命周期" class="header-anchor">#</a> 生命周期</h3> <p>我们在前面的章节讨论了组件的挂载更新流程，而<code>Vue</code>也为我们提供了一系列的钩子函数来在组件的不同生命周期做一些事情提供入口。
+在<code>Vue3</code>中已经将<code>beforeCreate</code>和<code>created</code>用<code>setup</code>来替代了，并且新增了两个用来调试<code>render</code>的生命周期，如下所示：</p> <div class="language- extra-class"><pre class="language-text"><code>beforeCreate --&gt; setup;
+created --&gt; setup;
+beforeMount --&gt; onBeforeMount;
+mounted --&gt; onMounted;
+beforeUpdate --&gt; onBeforeUpdate;
+updated --&gt; onUpdated;
+beforeDestory --&gt; onBeforeUnmount;
+destoryed --&gt; onUnmounted;
+activated --&gt; onActivated;
+deactivated --&gt; onDeactivated;
+errorCaptured --&gt; onErrorCaptured;
+onRenderTracked;
+onRenderTriggered;
+</code></pre></div><h2 id="本篇目标"><a href="#本篇目标" class="header-anchor">#</a> 本篇目标</h2> <ol><li>理解钩子函数的注册和调用</li> <li>了解钩子函数的调用时机</li></ol> <h2 id="钩子函数的注册"><a href="#钩子函数的注册" class="header-anchor">#</a> 钩子函数的注册</h2> <p>在<code>Vue3</code>中生命周期钩子函数不再使用<code>options</code>的形式使用而是在<code>setup</code>选项中，以函数的形式来调用类似：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">const</span> comp <span class="token operator">=</span> <span class="token function">defineComponent</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">onMounted</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;mounted&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">onUpdated</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;updated&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>通过调用<code>onMounted</code>函数就将生命周期函数注册上了，那我们来看一看<code>onMounted</code>是如何实现的。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/apiLifecycle.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> onBeforeMount <span class="token operator">=</span> <span class="token function">createHook</span><span class="token punctuation">(</span>LifecycleHooks<span class="token punctuation">.</span><span class="token constant">BEFORE_MOUNT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> onMounted <span class="token operator">=</span> <span class="token function">createHook</span><span class="token punctuation">(</span>LifecycleHooks<span class="token punctuation">.</span><span class="token constant">MOUNTED</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> onBeforeUpdate <span class="token operator">=</span> <span class="token function">createHook</span><span class="token punctuation">(</span>LifecycleHooks<span class="token punctuation">.</span><span class="token constant">BEFORE_UPDATE</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> onUpdated <span class="token operator">=</span> <span class="token function">createHook</span><span class="token punctuation">(</span>LifecycleHooks<span class="token punctuation">.</span><span class="token constant">UPDATED</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> onBeforeUnmount <span class="token operator">=</span> <span class="token function">createHook</span><span class="token punctuation">(</span>LifecycleHooks<span class="token punctuation">.</span><span class="token constant">BEFORE_UNMOUNT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> onUnmounted <span class="token operator">=</span> <span class="token function">createHook</span><span class="token punctuation">(</span>LifecycleHooks<span class="token punctuation">.</span><span class="token constant">UNMOUNTED</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">type</span> <span class="token class-name">DebuggerHook</span> <span class="token operator">=</span> <span class="token punctuation">(</span>e<span class="token operator">:</span> DebuggerEvent<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> onRenderTriggered <span class="token operator">=</span> <span class="token generic-function"><span class="token function">createHook</span><span class="token generic class-name"><span class="token operator">&lt;</span>DebuggerHook<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>
+  LifecycleHooks<span class="token punctuation">.</span><span class="token constant">RENDER_TRIGGERED</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> onRenderTracked <span class="token operator">=</span> <span class="token generic-function"><span class="token function">createHook</span><span class="token generic class-name"><span class="token operator">&lt;</span>DebuggerHook<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>
+  LifecycleHooks<span class="token punctuation">.</span><span class="token constant">RENDER_TRACKED</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">type</span> <span class="token class-name">ErrorCapturedHook</span> <span class="token operator">=</span> <span class="token punctuation">(</span>
+  err<span class="token operator">:</span> <span class="token builtin">unknown</span><span class="token punctuation">,</span>
+  instance<span class="token operator">:</span> ComponentPublicInstance <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  info<span class="token operator">:</span> <span class="token builtin">string</span>
+<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token builtin">boolean</span> <span class="token operator">|</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">onErrorCaptured</span> <span class="token operator">=</span> <span class="token punctuation">(</span>
+  hook<span class="token operator">:</span> ErrorCapturedHook<span class="token punctuation">,</span>
+  target<span class="token operator">:</span> ComponentInternalInstance <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token operator">=</span> currentInstance
+<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token function">injectHook</span><span class="token punctuation">(</span>LifecycleHooks<span class="token punctuation">.</span><span class="token constant">ERROR_CAPTURED</span><span class="token punctuation">,</span> hook<span class="token punctuation">,</span> target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>生命周期的注册函数大多数是由<code>createHook</code>来创建的，<code>onErrorCaptured</code>的创建比较特殊使用了<code>injectHook</code>那我们来看一下这两个函数：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/apiLifecycle.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> createHook <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token constant">T</span> <span class="token keyword">extends</span> <span class="token class-name"><span class="token builtin">Function</span></span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token builtin">any</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>
+  lifecycle<span class="token operator">:</span> LifecycleHooks
+<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>hook<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">,</span> target<span class="token operator">:</span> ComponentInternalInstance <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token operator">=</span> currentInstance<span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+  <span class="token function">injectHook</span><span class="token punctuation">(</span>lifecycle<span class="token punctuation">,</span> hook<span class="token punctuation">,</span> target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">injectHook</span><span class="token punctuation">(</span>
+  <span class="token keyword">type</span><span class="token operator">:</span> LifecycleHooks<span class="token punctuation">,</span>
+  hook<span class="token operator">:</span> <span class="token builtin">Function</span> <span class="token operator">&amp;</span> <span class="token punctuation">{</span> __weh<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">Function</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  target<span class="token operator">:</span> ComponentInternalInstance <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token operator">=</span> currentInstance<span class="token punctuation">,</span>
+  <span class="token comment">// 是否放置在hooks队列首部</span>
+  prepend<span class="token operator">:</span> <span class="token builtin">boolean</span> <span class="token operator">=</span> <span class="token boolean">false</span>
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 取出hooks队列</span>
+    <span class="token keyword">const</span> hooks <span class="token operator">=</span> target<span class="token punctuation">[</span><span class="token keyword">type</span><span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">(</span>target<span class="token punctuation">[</span><span class="token keyword">type</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> wrappedHook <span class="token operator">=</span>
+      hook<span class="token punctuation">.</span>__weh <span class="token operator">||</span>
+      <span class="token punctuation">(</span>hook<span class="token punctuation">.</span><span class="token function-variable function">__weh</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token operator">:</span> <span class="token builtin">unknown</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>target<span class="token punctuation">.</span>isUnmounted<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token comment">// 组件已经卸载 不执行</span>
+          <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 禁用 依赖收集</span>
+        <span class="token function">pauseTracking</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 设置当前组件实例</span>
+        <span class="token function">setCurrentInstance</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 调用钩子函数</span>
+        <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token function">callWithAsyncErrorHandling</span><span class="token punctuation">(</span>hook<span class="token punctuation">,</span> target<span class="token punctuation">,</span> <span class="token keyword">type</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 重新设置组件实例和 依赖收集状态</span>
+        <span class="token function">setCurrentInstance</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">resetTracking</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>prepend<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 放置在队首 提前执行</span>
+      hooks<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span>wrappedHook<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 正常情况 放置在队尾</span>
+      hooks<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>wrappedHook<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 不存在组件实例时 开发环境下要进行警告</span>
+    <span class="token keyword">const</span> apiName <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">on</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">capitalize</span><span class="token punctuation">(</span>
+      ErrorTypeStrings<span class="token punctuation">[</span><span class="token keyword">type</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/ hook$/</span><span class="token punctuation">,</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+    <span class="token function">warn</span><span class="token punctuation">(</span>
+      <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>apiName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> is called when there is no active component instance to be </span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">associated with. </span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Lifecycle injection APIs can only be used during execution of setup().</span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+        <span class="token punctuation">(</span>__FEATURE_SUSPENSE__
+          <span class="token operator">?</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string"> If you are using async setup(), make sure to register lifecycle </span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+            <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">hooks before the first await statement.</span><span class="token template-punctuation string">`</span></span>
+          <span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>可以看到<code>createHook</code>内部还是调用了<code>injectHook</code>但是为什么<code>onErrorCaptured</code>不使用<code>createHook</code>来创建呢？
+因为<code>createHook</code>内部还有对<code>SSR</code>下的处理我们省略了，<code>onErrorCaptured</code>在<code>SSR</code>下是可以使用的，所以需要单独来创建。
+不难发现<code>createHook</code>内部只是利用了高阶函数来做一个参数保留就调用了<code>injectHook</code>，而<code>injectHook</code>才是真正的创建<code>wrappedHook</code>函数的位置，
+这个包裹函数做了一些在执行<code>hooks</code>函数前后要进行的依赖收集状态的处理、组件实例的设置，然后就将包裹函数推入了实例上保存；
+<code>keep-alive</code>相关的两个钩子函数会放在<code>keepAlive</code>组件的章节讲解。</p> <h2 id="钩子函数的调用"><a href="#钩子函数的调用" class="header-anchor">#</a> 钩子函数的调用</h2> <p>生命周期钩子函数是通过<code>invokeArrayFns</code>来调用的，我们先看一下实现：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// shared/index.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">invokeArrayFns</span> <span class="token operator">=</span> <span class="token punctuation">(</span>fns<span class="token operator">:</span> <span class="token builtin">Function</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> arg<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> fns<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    fns<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>仅仅是<code>hooks</code>队列遍历执行一遍，有了这个基础我们再来看生命周期钩子函数的执行时机。</p> <h4 id="onbeforemount、onmounted、onbeforeupdate和onupdated"><a href="#onbeforemount、onmounted、onbeforeupdate和onupdated" class="header-anchor">#</a> <code>onBeforeMount</code>、<code>onMounted</code>、<code>onBeforeUpdate</code>和<code>onUpdated</code></h4> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">const</span> setupRenderEffect<span class="token operator">:</span> <span class="token function-variable function">SetupRenderEffectFn</span> <span class="token operator">=</span> <span class="token punctuation">(</span>
+  instance<span class="token punctuation">,</span>
+  initialVNode<span class="token punctuation">,</span>
+  container<span class="token punctuation">,</span>
+  anchor<span class="token punctuation">,</span>
+  parentSuspense<span class="token punctuation">,</span>
+  isSVG<span class="token punctuation">,</span>
+  optimized
+<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// create reactive effect for rendering</span>
+  <span class="token comment">// 创建执行带副作用的渲染函数并保存在update属性上</span>
+  instance<span class="token punctuation">.</span>update <span class="token operator">=</span> <span class="token function">effect</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">componentEffect</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>instance<span class="token punctuation">.</span>isMounted<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 挂载</span>
+      <span class="token comment">// 渲染出组件子树</span>
+      <span class="token comment">// ...</span>
+      <span class="token comment">// beforeMount hook</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>bm<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">invokeArrayFns</span><span class="token punctuation">(</span>bm<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// patch子树</span>
+      <span class="token comment">// ...</span>
+      <span class="token comment">// mounted hook</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>m<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">queuePostRenderEffect</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> parentSuspense<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 更新</span>
+      <span class="token comment">// 渲染出新组件子树</span>
+      <span class="token comment">// ...</span>
+      <span class="token comment">// beforeUpdate hook</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>bu<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">invokeArrayFns</span><span class="token punctuation">(</span>bu<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// patch新旧子树</span>
+      <span class="token comment">// ...</span>
+      <span class="token comment">// updated hook</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>u<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">queuePostRenderEffect</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span> parentSuspense<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> prodEffectOptions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p><code>onBeforeMount</code>会在渲染完组件子树后执行，而<code>onMounted</code>则是在组件挂载完成后的任务队列中执行；
+而<code>onBeforeUpdate</code>会在渲染完成新的组件子树后执行，<code>onUpdated</code>则是在组件更新完成后的任务队列中执行。</p> <h4 id="onbeforeunmount和onunmounted"><a href="#onbeforeunmount和onunmounted" class="header-anchor">#</a> <code>onBeforeUnmount</code>和<code>onUnmounted</code></h4> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">const</span> <span class="token function-variable function">unmountComponent</span> <span class="token operator">=</span> <span class="token punctuation">(</span>
+  instance<span class="token operator">:</span> ComponentInternalInstance<span class="token punctuation">,</span>
+  parentSuspense<span class="token operator">:</span> SuspenseBoundary <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  doRemove<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span>
+<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// beforeUnmount hook</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>bum<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">invokeArrayFns</span><span class="token punctuation">(</span>bum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 停止组件相关副作用</span>
+  <span class="token comment">// unmounted hook</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>um<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">queuePostRenderEffect</span><span class="token punctuation">(</span>um<span class="token punctuation">,</span> parentSuspense<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 设置组件已卸载标识</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>可以看到<code>onBeforeUnmount</code>的执行会在组件卸载的最开始位置，在进行完组件的副作用停止工作后，
+向组件卸载完成后的任务队列推入<code>onUnmounted</code>钩子函数。</p> <h4 id="onrendertracked和onrendertriggered"><a href="#onrendertracked和onrendertriggered" class="header-anchor">#</a> <code>onRenderTracked</code>和<code>onRenderTriggered</code></h4> <p>这两个钩子函数比较特殊仅仅会在开发环境下生效，两个钩子函数被当做<code>effect</code>的配置传递到<code>effect</code>函数中：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">function</span> <span class="token function">createDevEffectOptions</span><span class="token punctuation">(</span>
+  instance<span class="token operator">:</span> ComponentInternalInstance
+<span class="token punctuation">)</span><span class="token operator">:</span> ReactiveEffectOptions <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    scheduler<span class="token operator">:</span> queueJob<span class="token punctuation">,</span>
+    onTrack<span class="token operator">:</span> instance<span class="token punctuation">.</span>rtc <span class="token operator">?</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">invokeArrayFns</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span>rtc<span class="token operator">!</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">void</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    onTrigger<span class="token operator">:</span> instance<span class="token punctuation">.</span>rtg <span class="token operator">?</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">invokeArrayFns</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span>rtg<span class="token operator">!</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">void</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在组件的带副作用渲染函数发生依赖收集和派发更新时会分别调用<code>onRenderTracked</code>和<code>onRenderTriggered</code>两个钩子。</p> <h4 id="onerrorcaptured"><a href="#onerrorcaptured" class="header-anchor">#</a> <code>onErrorCaptured</code></h4> <p>在<code>Vue3</code>的执行过程中一些可能会出现错误的函数执行会采用一些<code>errorHandling</code>函数来包裹执行，
+其中对于错误的处理会使用<code>handleError</code>函数来处理，我们看一下<code>Vue3</code>执行函数出现的错误是如何被处理的。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">handleError</span><span class="token punctuation">(</span>
+  err<span class="token operator">:</span> <span class="token builtin">unknown</span><span class="token punctuation">,</span>
+  instance<span class="token operator">:</span> ComponentInternalInstance <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  <span class="token keyword">type</span><span class="token operator">:</span> ErrorTypes
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> contextVNode <span class="token operator">=</span> instance <span class="token operator">?</span> instance<span class="token punctuation">.</span>vnode <span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>instance<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> cur <span class="token operator">=</span> instance<span class="token punctuation">.</span>parent<span class="token punctuation">;</span>
+    <span class="token comment">// 暴露render代理实例，和2.x保持一致</span>
+    <span class="token keyword">const</span> exposedInstance <span class="token operator">=</span> instance<span class="token punctuation">.</span>proxy<span class="token punctuation">;</span>
+    <span class="token comment">// 开发环境需要更加详细的错误类型信息</span>
+    <span class="token keyword">const</span> errorInfo <span class="token operator">=</span> __DEV__ <span class="token operator">?</span> ErrorTypeStrings<span class="token punctuation">[</span><span class="token keyword">type</span><span class="token punctuation">]</span> <span class="token operator">:</span> <span class="token keyword">type</span><span class="token punctuation">;</span>
+    <span class="token comment">// 从当前发生异常组件的父组件一直向上冒泡执行errorCapturedHooks</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>cur<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> errorCapturedHooks <span class="token operator">=</span> cur<span class="token punctuation">.</span>ec<span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>errorCapturedHooks<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> errorCapturedHooks<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>errorCapturedHooks<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">(</span>err<span class="token punctuation">,</span> exposedInstance<span class="token punctuation">,</span> errorInfo<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      cur <span class="token operator">=</span> cur<span class="token punctuation">.</span>parent<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// app级别的处理</span>
+    <span class="token keyword">const</span> appErrorHandler <span class="token operator">=</span> instance<span class="token punctuation">.</span>appContext<span class="token punctuation">.</span>config<span class="token punctuation">.</span>errorHandler<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>appErrorHandler<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">callWithErrorHandling</span><span class="token punctuation">(</span>
+        appErrorHandler<span class="token punctuation">,</span>
+        <span class="token keyword">null</span><span class="token punctuation">,</span>
+        ErrorCodes<span class="token punctuation">.</span><span class="token constant">APP_ERROR_HANDLER</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span>err<span class="token punctuation">,</span> exposedInstance<span class="token punctuation">,</span> errorInfo<span class="token punctuation">]</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 警告日志</span>
+  <span class="token function">logError</span><span class="token punctuation">(</span>err<span class="token punctuation">,</span> <span class="token keyword">type</span><span class="token punctuation">,</span> contextVNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>对于错误的处理主要分为三个部分，组件级别的错误处理函数、<code>app</code>级别的处理函数以及警告日志。
+而我们的<code>onErrorCaptured</code>错误处理钩子函数就发生组件级别的处理中，
+<code>Vue3</code>会在发生异常实例的父组件开始一直向上冒泡执行错误钩子函数，
+当然如果<code>onErrorCaptured</code>返回<code>true</code>来表示我这一层次处理完成就足够了就可以阻止错误的继续冒泡。</p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>每个生命周期函数执行的时机都对应着不同需求情况，这也是为我们组件编程提供了一个切面；我们现在已经深入了解了每个生命周期的执行时机，
+在开发中应该选取合适的时机来做处理，比如在<code>onMounted</code>才能操作<code>Dom</code>等等需要注意的点、组件级别的错误处理又应该如何做；
+这些都是我们深度解析生命周期函数的原因。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最后一次更新:</span> <span class="time">9/10/2020, 8:09:21 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/vue3-analysis/v3/runtime/setup.html" class="prev">
+        setup 选项
+      </a></span> <span class="next"><a href="/vue3-analysis/v3/runtime/scheduler.html">
+        异步任务调度
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/vue3-analysis/assets/js/app.3e15c670.js" defer></script><script src="/vue3-analysis/assets/js/2.f2c58315.js" defer></script><script src="/vue3-analysis/assets/js/36.51dede06.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Suspense | vue3解析</title>
+    <meta name="generator" content="VuePress 1.5.3">
+    
+    <meta name="description" content=" ">
+    <link rel="preload" href="/vue3-analysis/assets/css/0.styles.1acb776f.css" as="style"><link rel="preload" href="/vue3-analysis/assets/js/app.3e15c670.js" as="script"><link rel="preload" href="/vue3-analysis/assets/js/2.f2c58315.js" as="script"><link rel="preload" href="/vue3-analysis/assets/js/16.563c74f3.js" as="script"><link rel="prefetch" href="/vue3-analysis/assets/js/10.d9152f7d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/11.48cbb26e.js"><link rel="prefetch" href="/vue3-analysis/assets/js/12.524698e3.js"><link rel="prefetch" href="/vue3-analysis/assets/js/13.2760879c.js"><link rel="prefetch" href="/vue3-analysis/assets/js/14.f967554a.js"><link rel="prefetch" href="/vue3-analysis/assets/js/15.f1bc39ea.js"><link rel="prefetch" href="/vue3-analysis/assets/js/17.d737fd54.js"><link rel="prefetch" href="/vue3-analysis/assets/js/18.3e7e5b73.js"><link rel="prefetch" href="/vue3-analysis/assets/js/19.77a3ce44.js"><link rel="prefetch" href="/vue3-analysis/assets/js/20.bde70dbc.js"><link rel="prefetch" href="/vue3-analysis/assets/js/21.b2b628a1.js"><link rel="prefetch" href="/vue3-analysis/assets/js/22.a072ba3b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/23.37f38ccc.js"><link rel="prefetch" href="/vue3-analysis/assets/js/24.ff4d6150.js"><link rel="prefetch" href="/vue3-analysis/assets/js/25.94a97415.js"><link rel="prefetch" href="/vue3-analysis/assets/js/26.cb21b23b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/27.ecdc3973.js"><link rel="prefetch" href="/vue3-analysis/assets/js/28.8d51d670.js"><link rel="prefetch" href="/vue3-analysis/assets/js/29.4ca9afa9.js"><link rel="prefetch" href="/vue3-analysis/assets/js/3.f955db1b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/30.40a7c4a6.js"><link rel="prefetch" href="/vue3-analysis/assets/js/31.d35e90d4.js"><link rel="prefetch" href="/vue3-analysis/assets/js/32.0795f87d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/33.a990c8fb.js"><link rel="prefetch" href="/vue3-analysis/assets/js/34.21da1856.js"><link rel="prefetch" href="/vue3-analysis/assets/js/35.063396ca.js"><link rel="prefetch" href="/vue3-analysis/assets/js/36.51dede06.js"><link rel="prefetch" href="/vue3-analysis/assets/js/37.fe42948d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/38.ac88b170.js"><link rel="prefetch" href="/vue3-analysis/assets/js/39.a56bb399.js"><link rel="prefetch" href="/vue3-analysis/assets/js/4.0154b038.js"><link rel="prefetch" href="/vue3-analysis/assets/js/40.23e7468b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/41.cdbdb032.js"><link rel="prefetch" href="/vue3-analysis/assets/js/5.106b6465.js"><link rel="prefetch" href="/vue3-analysis/assets/js/6.47c88f4f.js"><link rel="prefetch" href="/vue3-analysis/assets/js/7.88fd05cf.js"><link rel="prefetch" href="/vue3-analysis/assets/js/8.ff6d3cfa.js"><link rel="prefetch" href="/vue3-analysis/assets/js/9.f533e484.js">
+    <link rel="stylesheet" href="/vue3-analysis/assets/css/0.styles.1acb776f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vue3-analysis/" class="home-link router-link-active"><img src="/vue3-analysis/logo.png" alt="vue3解析" class="logo"> <span class="site-name can-hide">vue3解析</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vue3-analysis/v3/idea/vue.html" class="nav-link">
+  Vue3
+</a></div><div class="nav-item"><a href="http://xuguo.xyz/vue-hooks" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-hooks
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/xuguo-code/vue3-analysis/issues" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  我要修正
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/xuguo-code/vue3-analysis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vue3-analysis/v3/idea/vue.html" class="nav-link">
+  Vue3
+</a></div><div class="nav-item"><a href="http://xuguo.xyz/vue-hooks" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-hooks
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/xuguo-code/vue3-analysis/issues" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  我要修正
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/xuguo-code/vue3-analysis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>理念篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>运行时篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/runtime/" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>组件系统</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>异步调度</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>响应式系统篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/reactivity/" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>核心方法</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>更多方法</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>扩展篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/future/" aria-current="page" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>实用特性</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading open"><span>内建组件</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/future/suspense.html" aria-current="page" class="active sidebar-link">Suspense</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/suspense.html#本篇目标" class="sidebar-link">本篇目标</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/suspense.html#解析" class="sidebar-link">解析</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/suspense.html#suspense组件的内部解析" class="sidebar-link">Suspense组件的内部解析</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/suspense.html#suspense组件的挂载" class="sidebar-link">Suspense组件的挂载</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/suspense.html#suspense的recede" class="sidebar-link">suspense的recede</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/suspense.html#整体流程图" class="sidebar-link">整体流程图</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/suspense.html#总结" class="sidebar-link">总结</a></li></ul></li><li><a href="/vue3-analysis/v3/future/teleport.html" class="sidebar-link">Teleport</a></li></ul></section></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="suspense"><a href="#suspense" class="header-anchor">#</a> <code>Suspense</code></h3> <p>上一篇我们学习了<code>Vue3</code>中重新实现的声明异步组件的方式，其中有一部分的代码显示异步组件也可以移交给一个名为<code>suspense</code>的东西来处理；
+那么<code>suspense</code>到底是什么呢？</p> <p>我们都知道异步组件从加载到渲染完成之间会有一段时间间隔，<code>suspense</code>就是用来在这段时间间隔中渲染一个<code>fallback</code>内容直到异步组件渲染成功，
+它的核心工作就是调和这两个阶段。我们先来看一下基本使用方式。</p> <p>通常在<code>Vue3</code>中也会使用<code>async</code>的<code>setup</code>来标明为异步组件：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// async-comp</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token keyword">async</span> <span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">getList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span> res <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>通过插槽来分发<code>fallback</code>内容：</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Suspense</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">#default</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>async-comp</span> <span class="token punctuation">/&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">#fallback</span><span class="token punctuation">&gt;</span></span>
+    loading...
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Suspense</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>支持两个<code>props</code>：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">SuspenseProps</span> <span class="token punctuation">{</span>
+  onResolve<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span>
+  onRecede<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="本篇目标"><a href="#本篇目标" class="header-anchor">#</a> 本篇目标</h2> <ol><li>理解<code>suspense</code>是如何处理异步组件的</li> <li>理解<code>suspense</code>的挂载和更新流程</li></ol> <h2 id="解析"><a href="#解析" class="header-anchor">#</a> 解析</h2> <p><code>suspense</code>的解析会从<code>render</code>函数开始，通过<code>suspense</code>组件的处理过程来了解<code>suspense</code>的行为特性。</p> <h2 id="suspense组件的内部解析"><a href="#suspense组件的内部解析" class="header-anchor">#</a> <code>Suspense</code>组件的内部解析</h2> <p>通过<a href="https://vue-next-template-explorer.netlify.app" target="_blank" rel="noopener noreferrer">Vue 3 Template Explorer<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>来获取上文的<code>Suspense</code>模板编译后的<code>render</code>函数如下：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">render</span><span class="token punctuation">(</span>_ctx<span class="token punctuation">,</span> _cache<span class="token punctuation">,</span> $props<span class="token punctuation">,</span> $setup<span class="token punctuation">,</span> $data<span class="token punctuation">,</span> $options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> component_async_comp <span class="token operator">=</span> <span class="token function">resolveComponent</span><span class="token punctuation">(</span><span class="token string">&quot;async-comp&quot;</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token function">openBlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">createBlock</span><span class="token punctuation">(</span>Suspense<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token keyword">default</span><span class="token operator">:</span> <span class="token function">withCtx</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span>
+      <span class="token function">createVNode</span><span class="token punctuation">(</span>component_async_comp<span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    fallback<span class="token operator">:</span> <span class="token function">withCtx</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span>
+      <span class="token function">createTextVNode</span><span class="token punctuation">(</span><span class="token string">&quot; loading... &quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    _<span class="token operator">:</span> <span class="token number">1</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们可以看<code>Suspense</code>和我们的插槽组件生成的是同样的渲染函数，但是这个<code>Suspense</code>内置组件到底是什么呢？</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/components/Suspense.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> Suspense <span class="token operator">=</span> SuspenseImpl
+   <span class="token keyword">as</span> <span class="token punctuation">{</span>
+  __isSuspense<span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token keyword">new</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">{</span> $props<span class="token operator">:</span> VNodeProps <span class="token operator">&amp;</span> SuspenseProps <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> SuspenseImpl <span class="token operator">=</span> <span class="token punctuation">{</span>
+  __isSuspense<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token function">process</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  hydrate<span class="token operator">:</span> hydrateSuspense
+<span class="token punctuation">}</span>
+</code></pre></div><p>在内部的实现中<code>Suspense</code>组件是通过一个<code>SuspenseImpl</code>接口定义的，这个接口在之后我们会详细解析；
+我们知道通常一个组件应该是需要符合<code>options API</code>或者<code>functional API</code>的声明方式，
+但是这里的<code>Suspense</code>仅仅是看起来像一个组件，对外部的使用者来说是会作为组件来处理，对于内部的处理却和组件相差甚远，
+我们继续看看<code>Suspense</code>组件的挂载处理。</p> <p>我们知道在<code>createBlock</code>中最终会调用<code>_createVNode</code>来创建<code>VNode</code>，而组件的信息会被保存在<code>组件VNode</code>的<code>type</code>属性上，
+并且会为<code>组件VNode</code>打上相应的<code>patchFlags</code>；之后通过<code>mount</code>的触发就会来到组件的<code>patch</code>阶段。
+至此从模板到<code>VNode</code>的解析阶段就已经结束了，我们接下来要看的就是<code>patch</code>阶段对于<code>Suspense</code>的处理。</p> <h2 id="suspense组件的挂载"><a href="#suspense组件的挂载" class="header-anchor">#</a> <code>Suspense</code>组件的挂载</h2> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/renderer.ts</span>
+<span class="token comment">//...</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>__FEATURE_SUSPENSE__ <span class="token operator">&amp;&amp;</span> shapeFlag <span class="token operator">&amp;</span> ShapeFlags<span class="token punctuation">.</span><span class="token constant">SUSPENSE</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token keyword">type</span> <span class="token class-name"><span class="token keyword">as</span></span> <span class="token keyword">typeof</span> SuspenseImpl<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">process</span><span class="token punctuation">(</span>
+    n1<span class="token punctuation">,</span>
+    n2<span class="token punctuation">,</span>
+    container<span class="token punctuation">,</span>
+    anchor<span class="token punctuation">,</span>
+    parentComponent<span class="token punctuation">,</span>
+    parentSuspense<span class="token punctuation">,</span>
+    isSVG<span class="token punctuation">,</span>
+    optimized<span class="token punctuation">,</span>
+    internals
+  <span class="token punctuation">)</span>
+<span class="token comment">// ...</span>
+</code></pre></div><p>从<code>patch</code>函数中对于<code>Suspense</code>的处理来看，内部的处理并没有将其作为一个真正的组件来创建实例等等操作，
+而是直接使用<code>SuspenseImpl</code>接口的<code>process</code>来处理挂载和更新，我们继续看到<code>process</code>函数。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/components/Suspense.ts</span>
+<span class="token function">process</span><span class="token punctuation">(</span>
+    n1<span class="token operator">:</span> VNode <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+    n2<span class="token operator">:</span> VNode<span class="token punctuation">,</span>
+    container<span class="token operator">:</span> RendererElement<span class="token punctuation">,</span>
+    anchor<span class="token operator">:</span> RendererNode <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+    parentComponent<span class="token operator">:</span> ComponentInternalInstance <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+    parentSuspense<span class="token operator">:</span> SuspenseBoundary <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+    isSVG<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">,</span>
+    optimized<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">,</span>
+    <span class="token comment">// host平台 相关方法</span>
+    rendererInternals<span class="token operator">:</span> RendererInternals
+  <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>n1 <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 挂载阶段</span>
+      <span class="token function">mountSuspense</span><span class="token punctuation">(</span>
+        n2<span class="token punctuation">,</span>
+        container<span class="token punctuation">,</span>
+        anchor<span class="token punctuation">,</span>
+        parentComponent<span class="token punctuation">,</span>
+        parentSuspense<span class="token punctuation">,</span>
+        isSVG<span class="token punctuation">,</span>
+        optimized<span class="token punctuation">,</span>
+        rendererInternals
+      <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 更新阶段</span>
+      <span class="token function">patchSuspense</span><span class="token punctuation">(</span>
+        n1<span class="token punctuation">,</span>
+        n2<span class="token punctuation">,</span>
+        container<span class="token punctuation">,</span>
+        anchor<span class="token punctuation">,</span>
+        parentComponent<span class="token punctuation">,</span>
+        isSVG<span class="token punctuation">,</span>
+        optimized<span class="token punctuation">,</span>
+        rendererInternals
+      <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</code></pre></div><p><code>process</code>依旧作为一个分发的函数，我们先关注到挂载函数：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/components/Suspense.ts</span>
+<span class="token keyword">function</span> <span class="token function">mountSuspense</span><span class="token punctuation">(</span>
+  n2<span class="token operator">:</span> VNode<span class="token punctuation">,</span>
+  container<span class="token operator">:</span> RendererElement<span class="token punctuation">,</span>
+  anchor<span class="token operator">:</span> RendererNode <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  parentComponent<span class="token operator">:</span> ComponentInternalInstance <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  parentSuspense<span class="token operator">:</span> SuspenseBoundary <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  isSVG<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">,</span>
+  optimized<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">,</span>
+  rendererInternals<span class="token operator">:</span> RendererInternals
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span>
+    p<span class="token operator">:</span> patch<span class="token punctuation">,</span>
+    o<span class="token operator">:</span> <span class="token punctuation">{</span> createElement <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token operator">=</span> rendererInternals
+  <span class="token comment">// 创建缓存 子树的节点</span>
+  <span class="token keyword">const</span> hiddenContainer <span class="token operator">=</span> <span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span>
+  <span class="token comment">// 生成 子树和fallback树</span>
+  <span class="token keyword">const</span> suspense <span class="token operator">=</span> <span class="token punctuation">(</span>n2<span class="token punctuation">.</span>suspense <span class="token operator">=</span> <span class="token function">createSuspenseBoundary</span><span class="token punctuation">(</span>
+    n2<span class="token punctuation">,</span>
+    parentSuspense<span class="token punctuation">,</span>
+    parentComponent<span class="token punctuation">,</span>
+    container<span class="token punctuation">,</span>
+    hiddenContainer<span class="token punctuation">,</span>
+    anchor<span class="token punctuation">,</span>
+    isSVG<span class="token punctuation">,</span>
+    optimized<span class="token punctuation">,</span>
+    rendererInternals
+  <span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+  <span class="token comment">// 挂载 子树</span>
+  <span class="token function">patch</span><span class="token punctuation">(</span>
+    <span class="token keyword">null</span><span class="token punctuation">,</span>
+    suspense<span class="token punctuation">.</span>subTree<span class="token punctuation">,</span>
+    hiddenContainer<span class="token punctuation">,</span>
+    <span class="token keyword">null</span><span class="token punctuation">,</span>
+    parentComponent<span class="token punctuation">,</span>
+    suspense<span class="token punctuation">,</span>
+    isSVG<span class="token punctuation">,</span>
+    optimized
+  <span class="token punctuation">)</span>
+  <span class="token comment">// 是否存在异步依赖</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>suspense<span class="token punctuation">.</span>deps <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 存在异步依赖，挂载fallback树</span>
+    <span class="token function">patch</span><span class="token punctuation">(</span>
+      <span class="token keyword">null</span><span class="token punctuation">,</span>
+      suspense<span class="token punctuation">.</span>fallbackTree<span class="token punctuation">,</span>
+      container<span class="token punctuation">,</span>
+      anchor<span class="token punctuation">,</span>
+      parentComponent<span class="token punctuation">,</span>
+      <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token comment">// fallback tree will not have suspense context</span>
+      isSVG<span class="token punctuation">,</span>
+      optimized
+    <span class="token punctuation">)</span>
+    n2<span class="token punctuation">.</span>el <span class="token operator">=</span> suspense<span class="token punctuation">.</span>fallbackTree<span class="token punctuation">.</span>el
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 不存在依赖直接 resolve suspense</span>
+    suspense<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们回顾组件的挂载过程，需要先创建组件实例再执行组件的渲染函数生成<code>VNode</code>子树再对<code>VNode Tree</code>进行<code>patch</code>生成真实的<code>Dom</code>；
+这里对于<code>suspense</code>的处理也是如此，我们先通过<code>createSuspenseBoundary</code>（相当于<code>suspense</code>的<code>render</code>函数和创建实例方法）
+来创建<code>suspense</code>实例并且渲染<code>subTree</code>和<code>fallbackTree</code>两棵<code>VNode</code>子树；
+然后将按<code>suspense</code>的<code>resolve</code>状态来判定挂载哪一棵子树到真实的<code>Dom</code>中。</p> <p>在这期间我们需要搞清楚两个问题，如何创建的<code>subTree</code>和<code>fallbackTree</code>以及如何进行异步依赖收集？我们一个个来深入解析。</p> <h4 id="_1-创建subtree和fallbacktree"><a href="#_1-创建subtree和fallbacktree" class="header-anchor">#</a> 1. 创建<code>subTree</code>和<code>fallbackTree</code></h4> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/components/Suspense.ts</span>
+<span class="token keyword">function</span> <span class="token function">createSuspenseBoundary</span><span class="token punctuation">(</span>
+  vnode<span class="token operator">:</span> VNode<span class="token punctuation">,</span>
+  parent<span class="token operator">:</span> SuspenseBoundary <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  parentComponent<span class="token operator">:</span> ComponentInternalInstance <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  container<span class="token operator">:</span> RendererElement<span class="token punctuation">,</span>
+  hiddenContainer<span class="token operator">:</span> RendererElement<span class="token punctuation">,</span>
+  anchor<span class="token operator">:</span> RendererNode <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  isSVG<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">,</span>
+  optimized<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">,</span>
+  rendererInternals<span class="token operator">:</span> RendererInternals<span class="token punctuation">,</span>
+  isHydrating <span class="token operator">=</span> <span class="token boolean">false</span>
+<span class="token punctuation">)</span><span class="token operator">:</span> SuspenseBoundary <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span>
+    p<span class="token operator">:</span> patch<span class="token punctuation">,</span>
+    m<span class="token operator">:</span> move<span class="token punctuation">,</span>
+    um<span class="token operator">:</span> unmount<span class="token punctuation">,</span>
+    n<span class="token operator">:</span> next<span class="token punctuation">,</span>
+    o<span class="token operator">:</span> <span class="token punctuation">{</span> parentNode <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token operator">=</span> rendererInternals
+  <span class="token comment">// 获取当前suspense 所渲染的子树</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">getCurrentTree</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+    suspense<span class="token punctuation">.</span>isResolved <span class="token operator">||</span> suspense<span class="token punctuation">.</span>isHydrating
+      <span class="token operator">?</span> suspense<span class="token punctuation">.</span>subTree
+      <span class="token operator">:</span> suspense<span class="token punctuation">.</span>fallbackTree
+  <span class="token comment">// 生成子树VNode</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> content<span class="token punctuation">,</span> fallback <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">normalizeSuspenseChildren</span><span class="token punctuation">(</span>vnode<span class="token punctuation">)</span>
+  <span class="token comment">// 创建suspense</span>
+  <span class="token keyword">const</span> suspense<span class="token operator">:</span> SuspenseBoundary <span class="token operator">=</span> <span class="token punctuation">{</span>
+    vnode<span class="token punctuation">,</span>
+    parent<span class="token punctuation">,</span>
+    parentComponent<span class="token punctuation">,</span>
+    isSVG<span class="token punctuation">,</span>
+    optimized<span class="token punctuation">,</span>
+    container<span class="token punctuation">,</span>
+    hiddenContainer<span class="token punctuation">,</span>
+    anchor<span class="token punctuation">,</span>
+    deps<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    subTree<span class="token operator">:</span> content<span class="token punctuation">,</span>
+    fallbackTree<span class="token operator">:</span> fallback<span class="token punctuation">,</span>
+    isHydrating<span class="token punctuation">,</span>
+    isResolved<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    isUnmounted<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    effects<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+    <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function">recede</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function">move</span><span class="token punctuation">(</span>container<span class="token punctuation">,</span> anchor<span class="token punctuation">,</span> <span class="token keyword">type</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">move</span><span class="token punctuation">(</span><span class="token function">getCurrentTree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> container<span class="token punctuation">,</span> anchor<span class="token punctuation">,</span> <span class="token keyword">type</span><span class="token punctuation">)</span>
+      suspense<span class="token punctuation">.</span>container <span class="token operator">=</span> container
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token function">getCurrentTree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function">registerDep</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> setupRenderEffect<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function">unmount</span><span class="token punctuation">(</span>parentSuspense<span class="token punctuation">,</span> doRemove<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> suspense
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>createSuspenseBoundary</code>主要创建了一个<code>SuspenseBoundary</code>实例，我们先看一下他的<code>interface</code>：</p> <details class="custom-block details"><summary>点击查看 SuspenseBoundary 注释代码</summary> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/components/Suspense.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">SuspenseBoundary</span> <span class="token punctuation">{</span>
+  <span class="token comment">// susupense VNode</span>
+  vnode<span class="token operator">:</span> VNode<span class="token operator">&lt;</span>RendererNode<span class="token punctuation">,</span> RendererElement<span class="token punctuation">,</span> SuspenseProps<span class="token operator">&gt;</span>
+  <span class="token comment">// 父suspense 实例</span>
+  parent<span class="token operator">:</span> SuspenseBoundary <span class="token operator">|</span> <span class="token keyword">null</span>
+  <span class="token comment">// 父组件实例</span>
+  parentComponent<span class="token operator">:</span> ComponentInternalInstance <span class="token operator">|</span> <span class="token keyword">null</span>
+  isSVG<span class="token operator">:</span> <span class="token builtin">boolean</span>
+  optimized<span class="token operator">:</span> <span class="token builtin">boolean</span>
+  <span class="token comment">// 子树渲染的容器</span>
+  container<span class="token operator">:</span> RendererElement
+  <span class="token comment">// subTree 临时存放元素</span>
+  hiddenContainer<span class="token operator">:</span> RendererElement
+  <span class="token comment">// 相对锚点</span>
+  anchor<span class="token operator">:</span> RendererNode <span class="token operator">|</span> <span class="token keyword">null</span>
+  <span class="token comment">// 异步子树</span>
+  subTree<span class="token operator">:</span> VNode
+  <span class="token comment">// fallback树</span>
+  fallbackTree<span class="token operator">:</span> VNode
+  <span class="token comment">// 依赖数目</span>
+  deps<span class="token operator">:</span> <span class="token builtin">number</span>
+  isHydrating<span class="token operator">:</span> <span class="token builtin">boolean</span>
+  <span class="token comment">// 是否已经resolved</span>
+  isResolved<span class="token operator">:</span> <span class="token builtin">boolean</span>
+  <span class="token comment">// 是否已经卸载</span>
+  isUnmounted<span class="token operator">:</span> <span class="token builtin">boolean</span>
+  <span class="token comment">// 副作用函数列表</span>
+  effects<span class="token operator">:</span> <span class="token builtin">Function</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token comment">// resolve suspense </span>
+  <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span>
+  <span class="token comment">// 重设 suspense 返回未resolve 状态</span>
+  <span class="token function">recede</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span>
+  <span class="token comment">// 移动</span>
+  <span class="token function">move</span><span class="token punctuation">(</span>
+    container<span class="token operator">:</span> RendererElement<span class="token punctuation">,</span>
+    anchor<span class="token operator">:</span> RendererNode <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+    <span class="token keyword">type</span><span class="token operator">:</span> MoveType
+  <span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span>
+  <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> RendererNode <span class="token operator">|</span> <span class="token keyword">null</span>
+  <span class="token comment">// 向该suspense注册异步依赖</span>
+  <span class="token function">registerDep</span><span class="token punctuation">(</span>
+    instance<span class="token operator">:</span> ComponentInternalInstance<span class="token punctuation">,</span>
+    setupRenderEffect<span class="token operator">:</span> SetupRenderEffectFn
+  <span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span>
+  <span class="token comment">// 卸载</span>
+  <span class="token function">unmount</span><span class="token punctuation">(</span>parentSuspense<span class="token operator">:</span> SuspenseBoundary <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span> doRemove<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span>
+<span class="token punctuation">}</span>
+</code></pre></div></details> <p>在上面的注释代码中已经详尽的标记了每个属性的只能，可以看出之后与<code>suspense</code>相关的挂载、依赖注册、<code>resolve</code>等等操作都是依附于该实例的，相关的方法我们在后续解析时遇到了在详细解析，现在我们着重关注<code>normalizeSuspenseChildren</code>这个生成<code>VNode</code>子树的函数。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/components/Suspense.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">normalizeSuspenseChildren</span><span class="token punctuation">(</span>
+  vnode<span class="token operator">:</span> VNode
+<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  content<span class="token operator">:</span> VNode
+  fallback<span class="token operator">:</span> VNode
+<span class="token punctuation">}</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> shapeFlag<span class="token punctuation">,</span> children <span class="token punctuation">}</span> <span class="token operator">=</span> vnode
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>shapeFlag <span class="token operator">&amp;</span> ShapeFlags<span class="token punctuation">.</span><span class="token constant">SLOTS_CHILDREN</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> <span class="token keyword">default</span><span class="token operator">:</span> d<span class="token punctuation">,</span> fallback <span class="token punctuation">}</span> <span class="token operator">=</span> children <span class="token keyword">as</span> Slots
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      content<span class="token operator">:</span> <span class="token function">normalizeVNode</span><span class="token punctuation">(</span><span class="token function">isFunction</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token function">d</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> d<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      fallback<span class="token operator">:</span> <span class="token function">normalizeVNode</span><span class="token punctuation">(</span><span class="token function">isFunction</span><span class="token punctuation">(</span>fallback<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token function">fallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> fallback<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      content<span class="token operator">:</span> <span class="token function">normalizeVNode</span><span class="token punctuation">(</span>children <span class="token keyword">as</span> VNodeChild<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      fallback<span class="token operator">:</span> <span class="token function">normalizeVNode</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在<code>normalizeSuspenseChildren</code>是直接将他的两个<code>slot children</code>执行来获得两颗<code>VNode</code>子树的，至此我们已经得到了<code>suspense</code>实例和两颗<code>VNode</code>子树，下一步就需要将<code>VNode</code>树转化成真实的<code>dom</code>也就是<code>patch</code>阶段。</p> <h4 id="_2-异步依赖的注册"><a href="#_2-异步依赖的注册" class="header-anchor">#</a> 2. 异步依赖的注册</h4> <p>在第二章节解析组件<code>setup</code>函数的时候，我们就遇到过<code>setup</code>返回<code>promise</code>的情况，
+而在<code>suspense</code>中异步组件的<code>setup</code>返回的正是<code>promise</code>，
+那我们就很自然的想到<code>suspense</code>的异步依赖注册会发生在组件的<code>mount</code>阶段。
+我们应该回到<code>mountComponent</code>中对于<code>setup</code>及其结果的处理中去：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/componet.ts</span>
+<span class="token keyword">const</span> mountComponent<span class="token operator">:</span> <span class="token function-variable function">MountComponentFn</span> <span class="token operator">=</span> <span class="token punctuation">(</span>
+  initialVNode<span class="token punctuation">,</span>
+  container<span class="token punctuation">,</span>
+  anchor<span class="token punctuation">,</span>
+  parentComponent<span class="token punctuation">,</span>
+  parentSuspense<span class="token punctuation">,</span>
+  isSVG<span class="token punctuation">,</span>
+  optimized
+<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 创建组件实例</span>
+  <span class="token keyword">const</span> instance<span class="token operator">:</span> ComponentInternalInstance <span class="token operator">=</span> <span class="token punctuation">(</span>initialVNode<span class="token punctuation">.</span>component <span class="token operator">=</span> <span class="token function">createComponentInstance</span><span class="token punctuation">(</span>
+    initialVNode<span class="token punctuation">,</span>
+    parentComponent<span class="token punctuation">,</span>
+    parentSuspense
+  <span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token comment">// 执行setup</span>
+  <span class="token function">setupComponent</span><span class="token punctuation">(</span>instance<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>__FEATURE_SUSPENSE__ <span class="token operator">&amp;&amp;</span> instance<span class="token punctuation">.</span>asyncDep<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 向父 suspense 注册异步依赖</span>
+    parentSuspense<span class="token punctuation">.</span><span class="token function">registerDep</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> setupRenderEffect<span class="token punctuation">)</span>
+    <span class="token comment">// 创建一个注释节点</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>initialVNode<span class="token punctuation">.</span>el<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> placeholder <span class="token operator">=</span> <span class="token punctuation">(</span>instance<span class="token punctuation">.</span>subTree <span class="token operator">=</span> <span class="token function">createVNode</span><span class="token punctuation">(</span>Comment<span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token function">processCommentNode</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> placeholder<span class="token punctuation">,</span> container<span class="token operator">!</span><span class="token punctuation">,</span> anchor<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 发生在 setupComponent 中</span>
+<span class="token keyword">function</span> <span class="token function">setupStatefulComponent</span><span class="token punctuation">(</span>
+  instance<span class="token operator">:</span> ComponentInternalInstance<span class="token punctuation">,</span>
+  isSSR<span class="token operator">:</span> <span class="token builtin">boolean</span>
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 执行 setup 得到 setupResult</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isPromise</span><span class="token punctuation">(</span>setupResult<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      instance<span class="token punctuation">.</span>asyncDep <span class="token operator">=</span> setupResult
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 其他情况处理</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们看到在<code>setupComponent</code>中将<code>async setup</code>返回的<code>promise</code>赋值到了组件实例的<code>asyncDep</code>中，
+再之后就通过父<code>suspense</code>实例的<code>registerDep</code>来注册异步依赖，完成后就向<code>dom</code>中追加了一个注释节点。
+我们接下来看一下<code>registerDep</code>都做了些什么？</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/components/Suspense.ts</span>
+<span class="token function">registerDep</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> setupRenderEffect<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>suspense<span class="token punctuation">.</span>isResolved<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 如果 suspense 已经被 resolved 那就回退 suspense 到 非resolved 状态ß</span>
+    <span class="token function">queueJob</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      suspense<span class="token punctuation">.</span><span class="token function">recede</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">const</span> hydratedEl <span class="token operator">=</span> instance<span class="token punctuation">.</span>vnode<span class="token punctuation">.</span>el
+  <span class="token comment">// 异步依赖计数加一</span>
+  <span class="token comment">// suspense 可以包含多个异步组件</span>
+  suspense<span class="token punctuation">.</span>deps<span class="token operator">++</span>
+  instance
+    <span class="token punctuation">.</span>asyncDep<span class="token operator">!</span><span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>err <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 错误处理</span>
+      <span class="token function">handleError</span><span class="token punctuation">(</span>err<span class="token punctuation">,</span> instance<span class="token punctuation">,</span> ErrorCodes<span class="token punctuation">.</span><span class="token constant">SETUP_FUNCTION</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>asyncSetupResult <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 在resolved之前，组件或者suspense被卸载</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>instance<span class="token punctuation">.</span>isUnmounted <span class="token operator">||</span> suspense<span class="token punctuation">.</span>isUnmounted<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// 一个异步依赖已经resolved 计数减一</span>
+      suspense<span class="token punctuation">.</span>deps<span class="token operator">--</span>
+      instance<span class="token punctuation">.</span>asyncResolved <span class="token operator">=</span> <span class="token boolean">true</span>
+      <span class="token keyword">const</span> <span class="token punctuation">{</span> vnode <span class="token punctuation">}</span> <span class="token operator">=</span> instance
+      <span class="token comment">// 处理 setupResult </span>
+      <span class="token function">handleSetupResult</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> asyncSetupResult<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+      <span class="token comment">// 执行组件渲染函数</span>
+      <span class="token function">setupRenderEffect</span><span class="token punctuation">(</span>
+        instance<span class="token punctuation">,</span>
+        vnode<span class="token punctuation">,</span>
+        hydratedEl
+          <span class="token operator">?</span> <span class="token function">parentNode</span><span class="token punctuation">(</span>hydratedEl<span class="token punctuation">)</span><span class="token operator">!</span>
+          <span class="token operator">:</span> <span class="token function">parentNode</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span>subTree<span class="token punctuation">.</span>el<span class="token operator">!</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">,</span>
+        hydratedEl <span class="token operator">?</span> <span class="token keyword">null</span> <span class="token operator">:</span> <span class="token function">next</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span>subTree<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        suspense<span class="token punctuation">,</span>
+        isSVG<span class="token punctuation">,</span>
+        optimized
+      <span class="token punctuation">)</span>
+      <span class="token function">updateHOCHostEl</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> vnode<span class="token punctuation">.</span>el<span class="token punctuation">)</span>
+      <span class="token comment">// 当所有异步依赖都 resolved suspense将resolved</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>suspense<span class="token punctuation">.</span>deps <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        suspense<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>Vue3</code>的异步组件是强依赖于<code>promise</code>的，所谓的注册依赖其实主要做了一些几件事情：</p> <ol><li>向<code>suspense</code>实例中增加一个依赖数量</li> <li>在<code>async setup</code>返回的<code>promise</code>的<code>then</code>函数中添加<code>asyncSetupResult</code>的处理</li></ol> <p>其实注册依赖就是将同步组件中在得到<code>setupResult</code>后进行的<code>handleSetupResult</code>和<code>setupRenderEffect</code>两个步骤，
+放置在了异步组件<code>setup promise</code>的<code>onResolved</code>中进行处理；还有一个值得注意的点就是，<code>suspense</code>会等到所有异步依赖都<code>resolved</code>才会真正的<code>resolve</code>；我们再看一下<code>suspense.resolve()</code>都做了些什么。</p> <h4 id="_3-suspense的resolve"><a href="#_3-suspense的resolve" class="header-anchor">#</a> 3. <code>suspense</code>的<code>resolve</code></h4> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/components/Suspense.ts</span>
+<span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span>
+    vnode<span class="token punctuation">,</span>
+    subTree<span class="token punctuation">,</span>
+    fallbackTree<span class="token punctuation">,</span>
+    effects<span class="token punctuation">,</span>
+    parentComponent<span class="token punctuation">,</span>
+    container
+  <span class="token punctuation">}</span> <span class="token operator">=</span> suspense
+  <span class="token keyword">let</span> <span class="token punctuation">{</span> anchor <span class="token punctuation">}</span> <span class="token operator">=</span> suspense
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>fallbackTree<span class="token punctuation">.</span>el<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// fallback 已经挂载 需要先卸载</span>
+    anchor <span class="token operator">=</span> <span class="token function">next</span><span class="token punctuation">(</span>fallbackTree<span class="token punctuation">)</span>
+    <span class="token function">unmount</span><span class="token punctuation">(</span>fallbackTree<span class="token punctuation">,</span> parentComponent<span class="token punctuation">,</span> suspense<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 挂载 subTree</span>
+  <span class="token function">move</span><span class="token punctuation">(</span>subTree<span class="token punctuation">,</span> container<span class="token punctuation">,</span> anchor<span class="token punctuation">,</span> MoveType<span class="token punctuation">.</span><span class="token constant">ENTER</span><span class="token punctuation">)</span>
+  <span class="token comment">// suspense 直接作为组件的根元素时</span>
+  <span class="token comment">// 需要更新 组件VNode的el</span>
+  <span class="token keyword">const</span> el <span class="token operator">=</span> <span class="token punctuation">(</span>vnode<span class="token punctuation">.</span>el <span class="token operator">=</span> subTree<span class="token punctuation">.</span>el<span class="token operator">!</span><span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>parentComponent <span class="token operator">&amp;&amp;</span> parentComponent<span class="token punctuation">.</span>subTree <span class="token operator">===</span> vnode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    parentComponent<span class="token punctuation">.</span>vnode<span class="token punctuation">.</span>el <span class="token operator">=</span> el
+    <span class="token comment">// 高阶组件的情况</span>
+    <span class="token comment">// 递归更新</span>
+    <span class="token function">updateHOCHostEl</span><span class="token punctuation">(</span>parentComponent<span class="token punctuation">,</span> el<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 分情况 执行effects</span>
+  <span class="token comment">// 嵌套 suspense 的需要向上查找 pending状态的 suspense</span>
+  <span class="token keyword">let</span> parent <span class="token operator">=</span> suspense<span class="token punctuation">.</span>parent
+  <span class="token keyword">let</span> hasUnresolvedAncestor <span class="token operator">=</span> <span class="token boolean">false</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>parent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>parent<span class="token punctuation">.</span>isResolved<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 查找到了 pending状态的suspense 将effects 移交给该suspense去执行</span>
+      parent<span class="token punctuation">.</span>effects<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token operator">...</span>effects<span class="token punctuation">)</span>
+      hasUnresolvedAncestor <span class="token operator">=</span> <span class="token boolean">true</span>
+      <span class="token keyword">break</span>
+    <span class="token punctuation">}</span>
+    parent <span class="token operator">=</span> parent<span class="token punctuation">.</span>parent
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 没有 pending 的父suspense 直接 执行所有effects任务</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>hasUnresolvedAncestor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">queuePostFlushCb</span><span class="token punctuation">(</span>effects<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  suspense<span class="token punctuation">.</span>isResolved <span class="token operator">=</span> <span class="token boolean">true</span>
+  suspense<span class="token punctuation">.</span>effects <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token comment">// 调用 onResolve 钩子</span>
+  <span class="token keyword">const</span> onResolve <span class="token operator">=</span> vnode<span class="token punctuation">.</span>props <span class="token operator">&amp;&amp;</span> vnode<span class="token punctuation">.</span>props<span class="token punctuation">.</span>onResolve
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isFunction</span><span class="token punctuation">(</span>onResolve<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">onResolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我将<code>suspense</code>的<code>resolve</code>划分为几个步骤，我们依次分析一下这些核心步骤：</p> <h4 id="_1-卸载-fallbacktree和挂载-subtree"><a href="#_1-卸载-fallbacktree和挂载-subtree" class="header-anchor">#</a> 1. 卸载 <code>fallbackTree</code>和挂载 <code>subTree</code></h4> <p>卸载<code>fallbackTree</code>和挂载<code>subTree</code>就是简单的通过宿主平台<code>API</code>来移动<code>Dom</code>元素，
+在<code>suspense.resolve</code>之前就已经完成了<code>patch</code>所以可以直接移动。</p> <h4 id="_2-处理-effects"><a href="#_2-处理-effects" class="header-anchor">#</a> 2. 处理 <code>effects</code></h4> <p><code>effects</code>的处理需要注意这里的<code>effects</code>都是些什么副作用是如何被添加的？想要搞清楚这个问题我们就要关注到一个调度方法：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/components/Suspense.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">queueEffectWithSuspense</span><span class="token punctuation">(</span>
+  fn<span class="token operator">:</span> <span class="token builtin">Function</span> <span class="token operator">|</span> <span class="token builtin">Function</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  suspense<span class="token operator">:</span> SuspenseBoundary <span class="token operator">|</span> <span class="token keyword">null</span>
+<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 存在 suspense 会推入到suspense.effects</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>suspense <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>suspense<span class="token punctuation">.</span>isResolved<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isArray</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      suspense<span class="token punctuation">.</span>effects<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token operator">...</span>fn<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      suspense<span class="token punctuation">.</span>effects<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 否则正常的调度</span>
+    <span class="token function">queuePostFlushCb</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们看到这个调度方法会分两种情况来处理，而<code>suspense</code>的情况会被添加到<code>suspense.effects</code>,
+那么<code>queueEffectWithSuspense</code>的调用存在哪里呢？</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/renderer.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> queuePostRenderEffect <span class="token operator">=</span> __FEATURE_SUSPENSE__
+  <span class="token operator">?</span> queueEffectWithSuspense
+  <span class="token operator">:</span> queuePostFlushCb
+<span class="token comment">// 组件渲染函数</span>
+<span class="token keyword">const</span> <span class="token function-variable function">setupRenderEffect</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ... 很多其他操作</span>
+  <span class="token comment">// mounted hook</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>m<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">queuePostRenderEffect</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> parentSuspense<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这里仅截取一个<code>mounted</code>钩子，还有<code>updated</code>、<code>unMounted</code>等钩子都是调用了<code>queueEffectWithSuspense</code>来添加；
+对于组件的这些渲染后调度都会和<code>parentSuspense</code>相关，那就意味着我们在<code>suspense.resolve</code>中处理的<code>effects</code>都来自与该<code>suspense</code>的子组件；再关注到<code>resolve</code>中的处理方式，我们需要在没有查找到<code>pending</code>状态的<code>父suspense</code>时去执行<code>effects</code>否则会移交给<code>pending</code>状态的<code>父suspense</code>接管，那就是说<code>suspense</code>中异步组件真正的<code>mounted</code>调用时机发生在<code>suspense</code>被<code>resolved</code>的时候。</p> <h4 id="_3-调用-onresolve钩子"><a href="#_3-调用-onresolve钩子" class="header-anchor">#</a> 3. 调用 <code>onResolve</code>钩子</h4> <p><code>suspense</code>再被真正的<code>resolved</code>后，会调用通过<code>props</code>传递的<code>onResolve</code>钩子函数。</p> <p>这就是<code>suspense.resolve</code>的全流程，核心在于对子树的处理以及<code>effects</code>的处理特性需要掌握好。</p> <h2 id="suspense的recede"><a href="#suspense的recede" class="header-anchor">#</a> <code>suspense</code>的<code>recede</code></h2> <p>之前在讨论<code>suspense.registerDep</code>时提到了一个<code>recede</code>回退成未<code>resolved</code>状态的，我们来看一下它的具体实现：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/components/Suspense.ts</span>
+<span class="token function">recede</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 重新设置成未 resolved</span>
+  suspense<span class="token punctuation">.</span>isResolved <span class="token operator">=</span> <span class="token boolean">false</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span>
+    vnode<span class="token punctuation">,</span>
+    subTree<span class="token punctuation">,</span>
+    fallbackTree<span class="token punctuation">,</span>
+    parentComponent<span class="token punctuation">,</span>
+    container<span class="token punctuation">,</span>
+    hiddenContainer<span class="token punctuation">,</span>
+    isSVG<span class="token punctuation">,</span>
+    optimized
+  <span class="token punctuation">}</span> <span class="token operator">=</span> suspense
+  <span class="token comment">// 移除 subTree</span>
+  <span class="token keyword">const</span> anchor <span class="token operator">=</span> <span class="token function">next</span><span class="token punctuation">(</span>subTree<span class="token punctuation">)</span>
+  <span class="token function">move</span><span class="token punctuation">(</span>subTree<span class="token punctuation">,</span> hiddenContainer<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> MoveType<span class="token punctuation">.</span><span class="token constant">LEAVE</span><span class="token punctuation">)</span>
+  <span class="token comment">// 重新挂载 fallbackTree</span>
+  <span class="token function">patch</span><span class="token punctuation">(</span>
+    <span class="token keyword">null</span><span class="token punctuation">,</span>
+    fallbackTree<span class="token punctuation">,</span>
+    container<span class="token punctuation">,</span>
+    anchor<span class="token punctuation">,</span>
+    parentComponent<span class="token punctuation">,</span>
+    <span class="token keyword">null</span><span class="token punctuation">,</span>
+    isSVG<span class="token punctuation">,</span>
+    optimized
+  <span class="token punctuation">)</span>
+  <span class="token keyword">const</span> el <span class="token operator">=</span> <span class="token punctuation">(</span>vnode<span class="token punctuation">.</span>el <span class="token operator">=</span> fallbackTree<span class="token punctuation">.</span>el<span class="token operator">!</span><span class="token punctuation">)</span>
+  <span class="token comment">// 向上更新 el 组件和 高阶组件的情况</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>parentComponent <span class="token operator">&amp;&amp;</span> parentComponent<span class="token punctuation">.</span>subTree <span class="token operator">===</span> vnode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    parentComponent<span class="token punctuation">.</span>vnode<span class="token punctuation">.</span>el <span class="token operator">=</span> el
+    <span class="token function">updateHOCHostEl</span><span class="token punctuation">(</span>parentComponent<span class="token punctuation">,</span> el<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 调用 onRecede 钩子</span>
+  <span class="token keyword">const</span> onRecede <span class="token operator">=</span> vnode<span class="token punctuation">.</span>props <span class="token operator">&amp;&amp;</span> vnode<span class="token punctuation">.</span>props<span class="token punctuation">.</span>onRecede
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isFunction</span><span class="token punctuation">(</span>onRecede<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">onRecede</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>recede</code>核心的还是将<code>suspense</code>重新置成未<code>resolved</code>的状态，再还原其显示子树为<code>fallback</code>，最终调用了<code>onRecede</code>钩子函数。</p> <h2 id="整体流程图"><a href="#整体流程图" class="header-anchor">#</a> 整体流程图</h2> <p><img src="/vue3-analysis/future/suspense.jpg" alt="suspense"></p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>至此我们已经了解到了<code>suspense</code>从解析到<code>resolve</code>的全过程，我们来总结一下<code>suspense</code>的特性：</p> <ol><li><p><code>suspense</code>会通过<code>default</code>插槽接收若干个异步组件甚至可以是嵌套的异步组件，<code>suspense</code>会在它所包含的所有异步组件全部被<code>resolved</code>后执行<code>resolve</code>。</p></li> <li><p><code>suspense</code>接收的异步组件的<code>mounted</code>等钩子函数会在<code>suspense resolved</code>后进行调用。</p></li></ol></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最后一次更新:</span> <span class="time">9/21/2020, 3:21:30 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/vue3-analysis/v3/future/defineAsyncComponent.html" class="prev">
+        声明异步组件
+      </a></span> <span class="next"><a href="/vue3-analysis/v3/future/teleport.html">
+        Teleport
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/vue3-analysis/assets/js/app.3e15c670.js" defer></script><script src="/vue3-analysis/assets/js/2.f2c58315.js" defer></script><script src="/vue3-analysis/assets/js/16.563c74f3.js" defer></script>
+  </body>
+</html>

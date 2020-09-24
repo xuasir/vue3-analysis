@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>插槽 | vue3解析</title>
+    <meta name="generator" content="VuePress 1.5.3">
+    
+    <meta name="description" content=" ">
+    <link rel="preload" href="/vue3-analysis/assets/css/0.styles.1acb776f.css" as="style"><link rel="preload" href="/vue3-analysis/assets/js/app.3e15c670.js" as="script"><link rel="preload" href="/vue3-analysis/assets/js/2.f2c58315.js" as="script"><link rel="preload" href="/vue3-analysis/assets/js/15.f1bc39ea.js" as="script"><link rel="prefetch" href="/vue3-analysis/assets/js/10.d9152f7d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/11.48cbb26e.js"><link rel="prefetch" href="/vue3-analysis/assets/js/12.524698e3.js"><link rel="prefetch" href="/vue3-analysis/assets/js/13.2760879c.js"><link rel="prefetch" href="/vue3-analysis/assets/js/14.f967554a.js"><link rel="prefetch" href="/vue3-analysis/assets/js/16.563c74f3.js"><link rel="prefetch" href="/vue3-analysis/assets/js/17.d737fd54.js"><link rel="prefetch" href="/vue3-analysis/assets/js/18.3e7e5b73.js"><link rel="prefetch" href="/vue3-analysis/assets/js/19.77a3ce44.js"><link rel="prefetch" href="/vue3-analysis/assets/js/20.bde70dbc.js"><link rel="prefetch" href="/vue3-analysis/assets/js/21.b2b628a1.js"><link rel="prefetch" href="/vue3-analysis/assets/js/22.a072ba3b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/23.37f38ccc.js"><link rel="prefetch" href="/vue3-analysis/assets/js/24.ff4d6150.js"><link rel="prefetch" href="/vue3-analysis/assets/js/25.94a97415.js"><link rel="prefetch" href="/vue3-analysis/assets/js/26.cb21b23b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/27.ecdc3973.js"><link rel="prefetch" href="/vue3-analysis/assets/js/28.8d51d670.js"><link rel="prefetch" href="/vue3-analysis/assets/js/29.4ca9afa9.js"><link rel="prefetch" href="/vue3-analysis/assets/js/3.f955db1b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/30.40a7c4a6.js"><link rel="prefetch" href="/vue3-analysis/assets/js/31.d35e90d4.js"><link rel="prefetch" href="/vue3-analysis/assets/js/32.0795f87d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/33.a990c8fb.js"><link rel="prefetch" href="/vue3-analysis/assets/js/34.21da1856.js"><link rel="prefetch" href="/vue3-analysis/assets/js/35.063396ca.js"><link rel="prefetch" href="/vue3-analysis/assets/js/36.51dede06.js"><link rel="prefetch" href="/vue3-analysis/assets/js/37.fe42948d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/38.ac88b170.js"><link rel="prefetch" href="/vue3-analysis/assets/js/39.a56bb399.js"><link rel="prefetch" href="/vue3-analysis/assets/js/4.0154b038.js"><link rel="prefetch" href="/vue3-analysis/assets/js/40.23e7468b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/41.cdbdb032.js"><link rel="prefetch" href="/vue3-analysis/assets/js/5.106b6465.js"><link rel="prefetch" href="/vue3-analysis/assets/js/6.47c88f4f.js"><link rel="prefetch" href="/vue3-analysis/assets/js/7.88fd05cf.js"><link rel="prefetch" href="/vue3-analysis/assets/js/8.ff6d3cfa.js"><link rel="prefetch" href="/vue3-analysis/assets/js/9.f533e484.js">
+    <link rel="stylesheet" href="/vue3-analysis/assets/css/0.styles.1acb776f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vue3-analysis/" class="home-link router-link-active"><img src="/vue3-analysis/logo.png" alt="vue3解析" class="logo"> <span class="site-name can-hide">vue3解析</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vue3-analysis/v3/idea/vue.html" class="nav-link">
+  Vue3
+</a></div><div class="nav-item"><a href="http://xuguo.xyz/vue-hooks" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-hooks
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/xuguo-code/vue3-analysis/issues" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  我要修正
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/xuguo-code/vue3-analysis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vue3-analysis/v3/idea/vue.html" class="nav-link">
+  Vue3
+</a></div><div class="nav-item"><a href="http://xuguo.xyz/vue-hooks" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-hooks
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/xuguo-code/vue3-analysis/issues" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  我要修正
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/xuguo-code/vue3-analysis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>理念篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>运行时篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/runtime/" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>组件系统</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>异步调度</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>响应式系统篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/reactivity/" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>核心方法</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>更多方法</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>扩展篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/future/" aria-current="page" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading open"><span>实用特性</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/future/props.html" class="sidebar-link">Props系统</a></li><li><a href="/vue3-analysis/v3/future/slot.html" aria-current="page" class="active sidebar-link">插槽</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/slot.html#本篇目标" class="sidebar-link">本篇目标</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/slot.html#解析" class="sidebar-link">解析</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/slot.html#插槽如何被编译" class="sidebar-link">插槽如何被编译</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/slot.html#插槽数据的标准化" class="sidebar-link">插槽数据的标准化</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/slot.html#初始化插槽" class="sidebar-link">初始化插槽</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/slot.html#更新插槽" class="sidebar-link">更新插槽</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/slot.html#整体流程" class="sidebar-link">整体流程</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/slot.html#总结" class="sidebar-link">总结</a></li></ul></li><li><a href="/vue3-analysis/v3/future/refs.html" class="sidebar-link">模板 Refs</a></li><li><a href="/vue3-analysis/v3/future/directives.html" class="sidebar-link">指令系统</a></li><li><a href="/vue3-analysis/v3/future/defineAsyncComponent.html" class="sidebar-link">声明异步组件</a></li></ul></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>内建组件</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="插槽"><a href="#插槽" class="header-anchor">#</a> 插槽</h3> <p>插槽系统在<code>Vue2</code>中非常重要的逻辑抽象方式，通过插槽来分发内容使得高阶的组件能够能加聚焦在逻辑的处理上，
+在<code>Vue2</code>的生态中就有<code>vue-promised</code>这样的类库充分利用了插槽来处理<code>promise</code>包装后的异步请求状态。<br> <code>vue2.6</code>的更新后作用域插槽和普通插槽由<code>v-slot</code>或<code>#[..]</code>来统一声明，<code>Vue3</code>的语法也基本保持一致：</p> <div class="language-html extra-class"><pre class="language-html"><code>// comp-a
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>slot</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>slot</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>slot</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>named<span class="token punctuation">&quot;</span></span> <span class="token attr-name"><span class="token namespace">v-bind:</span>user</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>use<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>slot</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><div class="language-html extra-class"><pre class="language-html"><code>// comp-b
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>comp-a</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name"><span class="token namespace">v-slot:</span>default</span><span class="token punctuation">&gt;</span></span>
+    default
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">#[named]</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>slotProps<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    {{ slotProps.xxxx }}
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>comp-a</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>让我们来看看组件内部是如何处理<code>slots</code>的。</p> <h2 id="本篇目标"><a href="#本篇目标" class="header-anchor">#</a> 本篇目标</h2> <ol><li>理解插槽的初始化和更新流程</li> <li>了解插槽是如何被编译的</li></ol> <h2 id="解析"><a href="#解析" class="header-anchor">#</a> 解析</h2> <p>本篇对于插槽的解析我们会按照一个插槽整个生命周期来解析，从被编译成什么样的渲染函数再到如何被处理到组件<code>VNode</code>和<code>instance</code>上，
+以及插槽的渲染。</p> <div class="custom-block tip"><p class="custom-block-title">注意</p> <p>下文的插槽组件指的是声明插槽的组件<br>
+下文的父组件是指使用插槽组件作为子组件的组件<br>
+下文的插槽渲染函数指的是<code>render</code>得到插槽内容的函数</p></div> <h2 id="插槽如何被编译"><a href="#插槽如何被编译" class="header-anchor">#</a> 插槽如何被编译</h2> <ul><li><h4 id="插槽组件如何被编译"><a href="#插槽组件如何被编译" class="header-anchor">#</a> 插槽组件如何被编译</h4></li></ul> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>slot</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>slot</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>slot</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>named<span class="token punctuation">&quot;</span></span> <span class="token attr-name"><span class="token namespace">v-bind:</span>user</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>user<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>slot</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">render</span><span class="token punctuation">(</span>_ctx<span class="token punctuation">,</span> _cache<span class="token punctuation">,</span> $props<span class="token punctuation">,</span> $setup<span class="token punctuation">,</span> $data<span class="token punctuation">,</span> $options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token function">openBlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">createBlock</span><span class="token punctuation">(</span><span class="token string">&quot;div&quot;</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+      <span class="token function">renderSlot</span><span class="token punctuation">(</span>_ctx<span class="token punctuation">.</span>$slots<span class="token punctuation">,</span> <span class="token string">&quot;default&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">renderSlot</span><span class="token punctuation">(</span>_ctx<span class="token punctuation">.</span>$slots<span class="token punctuation">,</span> <span class="token string">&quot;named&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> user<span class="token operator">:</span> _ctx<span class="token punctuation">.</span>user <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们看到编译的结果中，当我们执行该组件的<code>render</code>函数会调用一个<code>renderSlot</code>的方法来渲染插槽，我们找到这个方法：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/helpers/renderSlot.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">renderSlot</span><span class="token punctuation">(</span>
+  slots<span class="token operator">:</span> Slots<span class="token punctuation">,</span>
+  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+  props<span class="token operator">:</span> Data <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  fallback<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> VNodeArrayChildren
+<span class="token punctuation">)</span><span class="token operator">:</span> VNode <span class="token punctuation">{</span>
+  <span class="token comment">// 取出相应的插槽渲染函数</span>
+  <span class="token keyword">let</span> slot <span class="token operator">=</span> slots<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token function">openBlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment">// 创建一个fragment</span>
+    <span class="token function">createBlock</span><span class="token punctuation">(</span>
+      Fragment<span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> key<span class="token operator">:</span> props<span class="token punctuation">.</span>key <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token comment">// 执行slot渲染函数获取子元素</span>
+      slot <span class="token operator">?</span> <span class="token function">slot</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token operator">:</span> fallback <span class="token operator">?</span> <span class="token function">fallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token comment">// 确定fragment的patchFlag</span>
+      <span class="token punctuation">(</span>slots <span class="token keyword">as</span> RawSlots<span class="token punctuation">)</span><span class="token punctuation">.</span>_ <span class="token operator">===</span> SlotFlags<span class="token punctuation">.</span><span class="token constant">STABLE</span>
+        <span class="token operator">?</span> PatchFlags<span class="token punctuation">.</span><span class="token constant">STABLE_FRAGMENT</span>
+        <span class="token operator">:</span> PatchFlags<span class="token punctuation">.</span><span class="token constant">BAIL</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>renderSlot</code>会从组件实例上保存的<code>slots</code>中取出相应的插槽渲染函数，然后调用执行得到子节点，<code>SlotFlags</code>的作用会在下文中提到；
+那么实例上的<code>slots</code>渲染函数从何而来？</p> <ul><li><h4 id="父组件如何被编译"><a href="#父组件如何被编译" class="header-anchor">#</a> 父组件如何被编译</h4></li></ul> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>com-a</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">#default</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>default<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">#named</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>slotProps<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>{{ slotProps.user }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>com-a</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">render</span><span class="token punctuation">(</span>_ctx<span class="token punctuation">,</span> _cache<span class="token punctuation">,</span> $props<span class="token punctuation">,</span> $setup<span class="token punctuation">,</span> $data<span class="token punctuation">,</span> $options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> _component_com_a <span class="token operator">=</span> <span class="token function">_resolveComponent</span><span class="token punctuation">(</span><span class="token string">&quot;com-a&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token function">_openBlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">_createBlock</span><span class="token punctuation">(</span>_component_com_a<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      <span class="token keyword">default</span><span class="token operator">:</span> <span class="token function">withCtx</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span><span class="token function">createVNode</span><span class="token punctuation">(</span><span class="token string">&quot;span&quot;</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">&quot;default&quot;</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      named<span class="token operator">:</span> <span class="token function">withCtx</span><span class="token punctuation">(</span><span class="token punctuation">(</span>slotProps<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span>
+        <span class="token function">createVNode</span><span class="token punctuation">(</span>
+          <span class="token string">&quot;span&quot;</span><span class="token punctuation">,</span>
+          <span class="token keyword">null</span><span class="token punctuation">,</span>
+          <span class="token function">_toDisplayString</span><span class="token punctuation">(</span>slotProps<span class="token punctuation">.</span>user<span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token number">1</span> <span class="token comment">/* TEXT */</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      _<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在使用带插槽组件的时候，会将插槽编译成组件的<code>children</code>参数，并且每个插槽的渲染函数会使用<code>withCtx</code>这个函数来包裹，
+我们看一看这个<code>withCtx</code>做了哪些处理。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/helpers/withRenderContext.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">withCtx</span><span class="token punctuation">(</span>
+  fn<span class="token operator">:</span> Slot<span class="token punctuation">,</span>
+  ctx<span class="token operator">:</span> ComponentInternalInstance <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token operator">=</span> currentRenderingInstance
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 父组件渲染函数执行</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ctx<span class="token punctuation">)</span> <span class="token keyword">return</span> fn<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token function">renderFnWithContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 插槽组件渲染插槽</span>
+    <span class="token keyword">const</span> owner <span class="token operator">=</span> currentRenderingInstance<span class="token punctuation">;</span>
+    <span class="token function">setCurrentRenderingInstance</span><span class="token punctuation">(</span>ctx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> arguments <span class="token keyword">as</span> <span class="token builtin">any</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">setCurrentRenderingInstance</span><span class="token punctuation">(</span>owner<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们先明确的就是在当父组件中渲染函数的执行会调用<code>withCtx</code>从而返回一个<code>renderFnWithContext</code>；
+而我们刚刚所探讨的<code>renderSlot</code>是在插槽组件的渲染函数执行时执行的，
+其实<code>renderSlot</code>调用时取出的插槽渲染函数就是`renderFnWithContext。</p> <ul><li><h4 id="为什么这样处理？"><a href="#为什么这样处理？" class="header-anchor">#</a> 为什么这样处理？</h4> <p>我们先理清楚<code>withCtx</code>所做的事情是通过闭包来插槽渲染函数和<code>currentRenderingInstance</code>上下文，
+当<code>withCtx</code>执行时<code>currentRenderingInstance</code>指向的是父组件的实例，
+而执行<code>renderFnWithContext</code>时<code>currentRenderingInstance</code>指向的是插槽组件的实例，
+这样我们就能同时持有两个渲染上下文，插槽组件的渲染也能和父组件分离，我们仅需要在执行插槽渲染函数时将渲染上下文设置为父组件，
+执行完毕后重新设置成插槽组件的实例，这样就能正确的进行依赖收集同时也能降低插槽渲染函数和父组件渲染的耦合。</p></li> <li><h4 id="作用域插槽处理"><a href="#作用域插槽处理" class="header-anchor">#</a> 作用域插槽处理</h4> <p>作用域插槽的<code>props</code>是属于插槽组件的状态，我们在<code>renderSlot</code>执行的时候，
+通过<code>renderFnWithContext</code>的<code>arguments</code>传入插槽渲染函数。</p></li></ul> <p>在插槽编译的处理中，<code>Vue3</code>将插槽彻底编译成函数同时再次利用闭包特性，使得插槽渲染函数能与父组件渲染分离；
+这一点带来了一个优化就是在父组件的更新中可以确定是否能跳过插槽组件的插槽函数更新，而<code>Vue3</code>也为插槽设立了三种<code>slotFlag</code>如下：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token keyword">enum</span> SlotFlags <span class="token punctuation">{</span>
+  <span class="token comment">/**
+   * 父组件更新 插槽组件不必强制更新
+   */</span>
+  <span class="token constant">STABLE</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  <span class="token comment">/**
+   * 父组件更新时 插槽组件需要强制更新 v-for v-if 动态插槽 依赖父组件的状态
+   * 会更改插槽位
+   */</span>
+  <span class="token constant">DYNAMIC</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span>
+  <span class="token comment">/**
+   * 插槽透传 插槽组件的插槽来自父组件转发外部插槽
+   */</span>
+  <span class="token constant">FORWARDED</span> <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li><h4 id="stable"><a href="#stable" class="header-anchor">#</a> <code>STABLE</code></h4> <p>稳定的插槽意味着父组件使用插槽组件的插槽位在首次渲染完成后就不会再更改，
+每次更新中得益于我们的插槽渲染函数持有父组件的渲染实例，完全可以脱离父组件的更新而自己更新，
+这时候父组件更新并不需要强制执行插槽组件更新，插槽组件只需要执行通过响应式触发的更新来更新，
+因为在执行插槽渲染函数时，渲染实例已经被修正为父组件的渲染实例，这样就能进行正确的依赖收集。</p></li> <li><h4 id="dynamic"><a href="#dynamic" class="header-anchor">#</a> <code>DYNAMIC</code></h4> <p>动态的插槽意味着父组件使用的插槽组件的插槽位是变化的，可能在某次更新中就会渲染<code>default</code>变成渲染<code>named</code>，
+这时候我们就需要强制更新子组件以得到正确的插槽渲染。</p></li> <li><h4 id="forwarded"><a href="#forwarded" class="header-anchor">#</a> <code>FORWARDED</code></h4> <p><code>FORWARDED</code>的情况是存在父子孙三代组件是，子组件仅仅作为透传的功能将父组件传递进来的插槽透传给孙代组件，
+这时候孙代组件插槽的<code>Flags</code>需要依赖于父组件的<code>Flags</code>而定，我们在后面的标准化插槽时会具体分析到。</p></li></ul> <p>其实我们可以总结出，插槽的更新主要有两种情况，一是来自响应式数据的更新这种情况可以不依赖于父组件；
+二是插槽位结构的变化带来的更新这时候需要依赖于父组件的强制更新。</p> <p>我们深度探讨了插槽的更新状况以及父组件和插槽组件编译成什么样的渲染函数来处理的，
+但是我们中间缺失了如何将插槽信息挂载到<code>ctx.$slots</code>上的，这期间包含了插槽的标准化、初始化以及更新，我们一次来看一看。</p> <h2 id="插槽数据的标准化"><a href="#插槽数据的标准化" class="header-anchor">#</a> 插槽数据的标准化</h2> <p>我们知道<code>render</code>函数最终会创建出组件<code>VNode</code>我们将插槽信息通过<code>children</code>传递，
+这期间会经历标准化<code>children</code>的过程最终将标准化后的插槽信息挂载到<code>VNode.children</code>上；
+我们找到<code>runtime-core/vnode.ts</code>中的<code>createVNode</code>:</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/vnode.ts</span>
+<span class="token keyword">function</span> <span class="token function">_createVNode</span><span class="token punctuation">(</span>
+  <span class="token keyword">type</span><span class="token operator">:</span> VNodeTypes <span class="token operator">|</span> ClassComponent <span class="token operator">|</span> <span class="token keyword">typeof</span> <span class="token constant">NULL_DYNAMIC_COMPONENT</span><span class="token punctuation">,</span>
+  props<span class="token operator">:</span> <span class="token punctuation">(</span>Data <span class="token operator">&amp;</span> VNodeProps<span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  children<span class="token operator">:</span> <span class="token builtin">unknown</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  patchFlag<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  dynamicProps<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  isBlockNode <span class="token operator">=</span> <span class="token boolean">false</span>
+<span class="token punctuation">)</span><span class="token operator">:</span> VNode <span class="token punctuation">{</span>
+  <span class="token comment">// class &amp; style 标准化</span>
+  <span class="token comment">// 编码 vnode type</span>
+  <span class="token comment">// 创建 vnode</span>
+  <span class="token comment">// 校验 key</span>
+  <span class="token comment">// 标准化children</span>
+  <span class="token function">normalizeChildren</span><span class="token punctuation">(</span>vnode<span class="token punctuation">,</span> children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// block 相关处理</span>
+  <span class="token keyword">return</span> vnode<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们重点关注在<code>normalizeChildren</code>中的处理插槽相关的逻辑：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/vnode.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">normalizeChildren</span><span class="token punctuation">(</span>vnode<span class="token operator">:</span> VNode<span class="token punctuation">,</span> children<span class="token operator">:</span> <span class="token builtin">unknown</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> <span class="token keyword">type</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> shapeFlag <span class="token punctuation">}</span> <span class="token operator">=</span> vnode<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>children <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 无childre</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isArray</span><span class="token punctuation">(</span>children<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 数组型的children</span>
+    <span class="token keyword">type</span> <span class="token operator">=</span> ShapeFlags<span class="token punctuation">.</span><span class="token constant">ARRAY_CHILDREN</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> children <span class="token operator">===</span> <span class="token string">&quot;object&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>
+      <span class="token punctuation">(</span>shapeFlag <span class="token operator">&amp;</span> ShapeFlags<span class="token punctuation">.</span><span class="token constant">ELEMENT</span> <span class="token operator">||</span> shapeFlag <span class="token operator">&amp;</span> ShapeFlags<span class="token punctuation">.</span><span class="token constant">TELEPORT</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+      <span class="token punctuation">(</span>children <span class="token keyword">as</span> <span class="token builtin">any</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">default</span>
+    <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// teleport 的情况</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 插槽</span>
+      <span class="token keyword">type</span> <span class="token operator">=</span> ShapeFlags<span class="token punctuation">.</span><span class="token constant">SLOTS_CHILDREN</span><span class="token punctuation">;</span>
+      <span class="token comment">// 去除插槽类型</span>
+      <span class="token keyword">const</span> slotFlag <span class="token operator">=</span> <span class="token punctuation">(</span>children <span class="token keyword">as</span> RawSlots<span class="token punctuation">)</span><span class="token punctuation">.</span>_<span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>slotFlag <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token punctuation">(</span>InternalObjectKey <span class="token keyword">in</span> children<span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 未标准化的插槽 需要附加上ctx</span>
+        <span class="token punctuation">(</span>children <span class="token keyword">as</span> RawSlots<span class="token punctuation">)</span><span class="token punctuation">.</span>_ctx <span class="token operator">=</span> currentRenderingInstance<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>slotFlag <span class="token operator">===</span> SlotFlags<span class="token punctuation">.</span><span class="token constant">FORWARDED</span> <span class="token operator">&amp;&amp;</span> currentRenderingInstance<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 透传插槽的情况  需要取决于父组件插槽的`SlotFlags`</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>
+          currentRenderingInstance<span class="token punctuation">.</span>vnode<span class="token punctuation">.</span>patchFlag <span class="token operator">&amp;</span> PatchFlags<span class="token punctuation">.</span><span class="token constant">DYNAMIC_SLOTS</span>
+        <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token punctuation">(</span>children <span class="token keyword">as</span> RawSlots<span class="token punctuation">)</span><span class="token punctuation">.</span>_ <span class="token operator">=</span> SlotFlags<span class="token punctuation">.</span><span class="token constant">DYNAMIC</span><span class="token punctuation">;</span>
+          vnode<span class="token punctuation">.</span>patchFlag <span class="token operator">|=</span> PatchFlags<span class="token punctuation">.</span><span class="token constant">DYNAMIC_SLOTS</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          <span class="token punctuation">(</span>children <span class="token keyword">as</span> RawSlots<span class="token punctuation">)</span><span class="token punctuation">.</span>_ <span class="token operator">=</span> SlotFlags<span class="token punctuation">.</span><span class="token constant">STABLE</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isFunction</span><span class="token punctuation">(</span>children<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 函数children 转成插槽对象</span>
+    children <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token keyword">default</span><span class="token operator">:</span> children<span class="token punctuation">,</span> _ctx<span class="token operator">:</span> currentRenderingInstance <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token operator">=</span> ShapeFlags<span class="token punctuation">.</span><span class="token constant">SLOTS_CHILDREN</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    children <span class="token operator">=</span> <span class="token function">String</span><span class="token punctuation">(</span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 强制最为字符children处理</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 保存children</span>
+  vnode<span class="token punctuation">.</span>children <span class="token operator">=</span> children <span class="token keyword">as</span> VNodeNormalizedChildren<span class="token punctuation">;</span>
+  <span class="token comment">// 添加新的patchFlag标记</span>
+  vnode<span class="token punctuation">.</span>shapeFlag <span class="token operator">|=</span> <span class="token keyword">type</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们看到插槽信息的标准化，主要是针对不同的插槽情况来确定<code>SlotFlags</code>和附加<code>shapeFlag</code>，
+这些<code>Flags</code>标识会在<code>patch</code>过程中发挥作用；并且会对于非编译以及非标准化的插槽进行<code>ctx</code>的补全，
+以及将函数类型的<code>children</code>（手写<code>render</code>时可能会传入函数类型<code>children</code>作为插槽）标准化成<code>default</code>插槽。</p> <h2 id="初始化插槽"><a href="#初始化插槽" class="header-anchor">#</a> 初始化插槽</h2> <p>初始化插槽的时机发生在组件实例化后调用<code>setup</code>之前:</p> <details class="custom-block details"><summary>查看详细代码</summary> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/component.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">setupComponent</span><span class="token punctuation">(</span>
+  instance<span class="token operator">:</span> ComponentInternalInstance<span class="token punctuation">,</span>
+  isSSR <span class="token operator">=</span> <span class="token boolean">false</span>
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  isInSSRComponentSetup <span class="token operator">=</span> isSSR<span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> props<span class="token punctuation">,</span> children<span class="token punctuation">,</span> shapeFlag <span class="token punctuation">}</span> <span class="token operator">=</span> instance<span class="token punctuation">.</span>vnode<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> isStateful <span class="token operator">=</span> shapeFlag <span class="token operator">&amp;</span> ShapeFlags<span class="token punctuation">.</span><span class="token constant">STATEFUL_COMPONENT</span><span class="token punctuation">;</span>
+  <span class="token function">initProps</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> props<span class="token punctuation">,</span> isStateful<span class="token punctuation">,</span> isSSR<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">initSlots</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 执行setup</span>
+  <span class="token keyword">const</span> setupResult <span class="token operator">=</span> isStateful
+    <span class="token operator">?</span> <span class="token function">setupStatefulComponent</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> isSSR<span class="token punctuation">)</span>
+    <span class="token operator">:</span> <span class="token keyword">undefined</span><span class="token punctuation">;</span>
+  isInSSRComponentSetup <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> setupResult<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></details> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">//runtime-core/componentSlots.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">initSlots</span> <span class="token operator">=</span> <span class="token punctuation">(</span>
+  instance<span class="token operator">:</span> ComponentInternalInstance<span class="token punctuation">,</span>
+  children<span class="token operator">:</span> VNodeNormalizedChildren
+<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>instance<span class="token punctuation">.</span>vnode<span class="token punctuation">.</span>shapeFlag <span class="token operator">&amp;</span> ShapeFlags<span class="token punctuation">.</span><span class="token constant">SLOTS_CHILDREN</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token keyword">type</span> <span class="token operator">=</span> <span class="token punctuation">(</span>children <span class="token keyword">as</span> RawSlots<span class="token punctuation">)</span><span class="token punctuation">.</span>_<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">type</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 直接将slots 赋值为 children</span>
+      instance<span class="token punctuation">.</span>slots <span class="token operator">=</span> children <span class="token keyword">as</span> InternalSlots<span class="token punctuation">;</span>
+      <span class="token comment">// 内部标记不可枚举 通过def设置为不可枚举</span>
+      <span class="token function">def</span><span class="token punctuation">(</span>children <span class="token keyword">as</span> InternalSlots<span class="token punctuation">,</span> <span class="token string">&quot;_&quot;</span><span class="token punctuation">,</span> <span class="token keyword">type</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token function">normalizeObjectSlots</span><span class="token punctuation">(</span>children <span class="token keyword">as</span> RawSlots<span class="token punctuation">,</span> <span class="token punctuation">(</span>instance<span class="token punctuation">.</span>slots <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    instance<span class="token punctuation">.</span>slots <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>children<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">normalizeVNodeSlots</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">def</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span>slots<span class="token punctuation">,</span> InternalObjectKey<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>我们按逻辑分支来查看，如果组件未被打上<code>SLOTS_CHILDREN</code>的<code>shapeFlag</code>直接进入<code>normalizeVNodeSlots</code>来处理；</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">//runtime-core/componentSlots.ts</span>
+<span class="token keyword">const</span> <span class="token function-variable function">normalizeVNodeSlots</span> <span class="token operator">=</span> <span class="token punctuation">(</span>
+  instance<span class="token operator">:</span> ComponentInternalInstance<span class="token punctuation">,</span>
+  children<span class="token operator">:</span> VNodeNormalizedChildren
+<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__ <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token function">isKeepAlive</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span>vnode<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">warn</span><span class="token punctuation">(</span>
+      <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Non-function value encountered for default slot. </span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Prefer function slots for better performance.</span><span class="token template-punctuation string">`</span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">const</span> normalized <span class="token operator">=</span> <span class="token function">normalizeSlotValue</span><span class="token punctuation">(</span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  instance<span class="token punctuation">.</span>slots<span class="token punctuation">.</span><span class="token function-variable function">default</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> normalized<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> normalizeSlotValue <span class="token operator">=</span> <span class="token punctuation">(</span>value<span class="token operator">:</span> <span class="token builtin">unknown</span><span class="token punctuation">)</span><span class="token operator">:</span> VNode<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=&gt;</span>
+  <span class="token function">isArray</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+    <span class="token operator">?</span> value<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>normalizeVNode<span class="token punctuation">)</span>
+    <span class="token operator">:</span> <span class="token punctuation">[</span><span class="token function">normalizeVNode</span><span class="token punctuation">(</span>value <span class="token keyword">as</span> VNodeChild<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><p><code>normalizeVNodeSlots</code>会将<code>children</code>标准化成一个返回<code>Array children</code>的函数并且赋值给<code>default</code>插槽位。</p> <p>如果组件被打上<code>SLOTS_CHILDREN</code>的<code>shapeFlag</code>，则通过插槽的类型来判断，已经打上<code>slotFlag</code>的插槽信息说明是编译而来或者是标准化过的，
+直接赋值给<code>slots</code>即可；如果是未被打上<code>slotFlag</code>的则进入<code>normalizeObjectSlots</code>来标准化。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">//runtime-core/componentSlots.ts</span>
+<span class="token keyword">const</span> <span class="token function-variable function">normalizeObjectSlots</span> <span class="token operator">=</span> <span class="token punctuation">(</span>rawSlots<span class="token operator">:</span> RawSlots<span class="token punctuation">,</span> slots<span class="token operator">:</span> InternalSlots<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> ctx <span class="token operator">=</span> rawSlots<span class="token punctuation">.</span>_ctx<span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> key <span class="token keyword">in</span> rawSlots<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 内部 key 跳过</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isInternalKey</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">continue</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> value <span class="token operator">=</span> rawSlots<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isFunction</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 使用withCtx来保存ctx</span>
+      slots<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">normalizeSlot</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> ctx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">warn</span><span class="token punctuation">(</span>
+          <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Non-function value encountered for slot &quot;</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>key<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&quot;. </span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+            <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Prefer function slots for better performance.</span><span class="token template-punctuation string">`</span></span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// 非函数插槽 转化成函数插槽</span>
+      <span class="token keyword">const</span> normalized <span class="token operator">=</span> <span class="token function">normalizeSlotValue</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      slots<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> normalized<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> normalizeSlot <span class="token operator">=</span> <span class="token punctuation">(</span>
+  key<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+  rawSlot<span class="token operator">:</span> <span class="token builtin">Function</span><span class="token punctuation">,</span>
+  ctx<span class="token operator">:</span> ComponentInternalInstance <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token operator">|</span> <span class="token keyword">undefined</span>
+<span class="token punctuation">)</span><span class="token operator">:</span> Slot <span class="token operator">=&gt;</span>
+  <span class="token function">withCtx</span><span class="token punctuation">(</span><span class="token punctuation">(</span>props<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__ <span class="token operator">&amp;&amp;</span> currentInstance<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">warn</span><span class="token punctuation">(</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Slot &quot;</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>key<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&quot; invoked outside of the render function: </span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+          <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">this will not track dependencies used in the slot. </span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+          <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Invoke the slot function inside the render function instead.</span><span class="token template-punctuation string">`</span></span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 标准化插槽返回值 --&gt; 数组型的children</span>
+    <span class="token keyword">return</span> <span class="token function">normalizeSlotValue</span><span class="token punctuation">(</span><span class="token function">rawSlot</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> ctx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>整个标准化插槽数据的过程需要保证最终插槽是函数类型的，已提供更好的性能。</p> <h2 id="更新插槽"><a href="#更新插槽" class="header-anchor">#</a> 更新插槽</h2> <p>插槽的更新发生在组件重新渲染之前：</p> <details class="custom-block details"><summary>查看详细代码</summary> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/renderer.ts</span>
+<span class="token keyword">const</span> <span class="token function-variable function">updateComponentPreRender</span> <span class="token operator">=</span> <span class="token punctuation">(</span>
+  instance<span class="token operator">:</span> ComponentInternalInstance<span class="token punctuation">,</span>
+  nextVNode<span class="token operator">:</span> VNode<span class="token punctuation">,</span>
+  optimized<span class="token operator">:</span> <span class="token builtin">boolean</span>
+<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  nextVNode<span class="token punctuation">.</span>component <span class="token operator">=</span> instance<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> prevProps <span class="token operator">=</span> instance<span class="token punctuation">.</span>vnode<span class="token punctuation">.</span>props<span class="token punctuation">;</span>
+  instance<span class="token punctuation">.</span>vnode <span class="token operator">=</span> nextVNode<span class="token punctuation">;</span>
+  instance<span class="token punctuation">.</span>next <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token comment">// 更新props</span>
+  <span class="token function">updateProps</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> nextVNode<span class="token punctuation">.</span>props<span class="token punctuation">,</span> prevProps<span class="token punctuation">,</span> optimized<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 更新插槽</span>
+  <span class="token function">updateSlots</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> nextVNode<span class="token punctuation">.</span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div></details> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">//runtime-core/componentSlots.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">updateSlots</span> <span class="token operator">=</span> <span class="token punctuation">(</span>
+  instance<span class="token operator">:</span> ComponentInternalInstance<span class="token punctuation">,</span>
+  children<span class="token operator">:</span> VNodeNormalizedChildren
+<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> vnode<span class="token punctuation">,</span> slots <span class="token punctuation">}</span> <span class="token operator">=</span> instance<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> needDeletionCheck <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> deletionComparisonTarget <span class="token operator">=</span> <span class="token constant">EMPTY_OBJ</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>vnode<span class="token punctuation">.</span>shapeFlag <span class="token operator">&amp;</span> ShapeFlags<span class="token punctuation">.</span><span class="token constant">SLOTS_CHILDREN</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token keyword">type</span> <span class="token operator">=</span> <span class="token punctuation">(</span>children <span class="token keyword">as</span> RawSlots<span class="token punctuation">)</span><span class="token punctuation">.</span>_<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">type</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 编译的插槽</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__ <span class="token operator">&amp;&amp;</span> isHmrUpdating<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">extend</span><span class="token punctuation">(</span>slots<span class="token punctuation">,</span> children <span class="token keyword">as</span> Slots<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">type</span> <span class="token operator">===</span> SlotFlags<span class="token punctuation">.</span><span class="token constant">STABLE</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 稳定的插槽不需要更新</span>
+        needDeletionCheck <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 动态的插槽 编译而来 可以跳过规范化 但是不能跳过合并</span>
+        <span class="token function">extend</span><span class="token punctuation">(</span>slots<span class="token punctuation">,</span> children <span class="token keyword">as</span> Slots<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 稳定的插槽不会进行更改，不需要删除</span>
+      needDeletionCheck <span class="token operator">=</span> <span class="token operator">!</span><span class="token punctuation">(</span>children <span class="token keyword">as</span> RawSlots<span class="token punctuation">)</span><span class="token punctuation">.</span>$stable<span class="token punctuation">;</span>
+      <span class="token comment">// 规范化插槽</span>
+      <span class="token function">normalizeObjectSlots</span><span class="token punctuation">(</span>children <span class="token keyword">as</span> RawSlots<span class="token punctuation">,</span> slots<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 保存新的插槽信息</span>
+    deletionComparisonTarget <span class="token operator">=</span> children <span class="token keyword">as</span> RawSlots<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>children<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 没有插槽对象作为children 而是直接注入children到组件中</span>
+    <span class="token comment">// 将其规范化成default插槽位</span>
+    <span class="token function">normalizeVNodeSlots</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 除了default 其他的插槽位全部删除</span>
+    deletionComparisonTarget <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token keyword">default</span><span class="token operator">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 删除变更的插槽</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>needDeletionCheck<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> key <span class="token keyword">in</span> slots<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 不在新的插槽中直接删除</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isInternalKey</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token punctuation">(</span>key <span class="token keyword">in</span> deletionComparisonTarget<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">delete</span> slots<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>插槽的更新依旧是和初始化相似的判断，以编译而来的<code>slotFlag</code>为优化信息，稳定的插槽能跳过插槽渲染函数的更新；
+其余情况则进行动态的添加和删除，以获取最新的标准化插槽对象。</p> <h2 id="整体流程"><a href="#整体流程" class="header-anchor">#</a> 整体流程</h2> <p><img src="/vue3-analysis/future/slot.jpg" alt="slot"></p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>这就是插槽的整个生命周期，以及它是如何与父组件分离渲染的；<code>slotFlag</code>也涉及到<code>shouldUpdateComponent</code>的优化如下：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/componentRenderUtils.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">shouldUpdateComponent</span><span class="token punctuation">(</span>
+  prevVNode<span class="token operator">:</span> VNode<span class="token punctuation">,</span>
+  nextVNode<span class="token operator">:</span> VNode<span class="token punctuation">,</span>
+  optimized<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span>
+<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">boolean</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> props<span class="token operator">:</span> prevProps<span class="token punctuation">,</span> children<span class="token operator">:</span> prevChildren <span class="token punctuation">}</span> <span class="token operator">=</span> prevVNode<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> props<span class="token operator">:</span> nextProps<span class="token punctuation">,</span> children<span class="token operator">:</span> nextChildren<span class="token punctuation">,</span> patchFlag <span class="token punctuation">}</span> <span class="token operator">=</span> nextVNode<span class="token punctuation">;</span>
+  <span class="token comment">// 其他判断优化</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>patchFlag <span class="token operator">&amp;</span> PatchFlags<span class="token punctuation">.</span><span class="token constant">DYNAMIC_SLOTS</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 其他判断优化</span>
+  <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这其实就是类似<code>React</code>的<code>shouldUpdateComponent</code>和<code>useMemo</code>优化，只不过<code>Vue3</code>会在内部帮我们做好这一步优化。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最后一次更新:</span> <span class="time">9/9/2020, 9:32:07 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/vue3-analysis/v3/future/props.html" class="prev">
+        Props系统
+      </a></span> <span class="next"><a href="/vue3-analysis/v3/future/refs.html">
+        模板 Refs
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/vue3-analysis/assets/js/app.3e15c670.js" defer></script><script src="/vue3-analysis/assets/js/2.f2c58315.js" defer></script><script src="/vue3-analysis/assets/js/15.f1bc39ea.js" defer></script>
+  </body>
+</html>

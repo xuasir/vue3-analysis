@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Teleport | vue3解析</title>
+    <meta name="generator" content="VuePress 1.5.3">
+    
+    <meta name="description" content=" ">
+    <link rel="preload" href="/vue3-analysis/assets/css/0.styles.1acb776f.css" as="style"><link rel="preload" href="/vue3-analysis/assets/js/app.3e15c670.js" as="script"><link rel="preload" href="/vue3-analysis/assets/js/2.f2c58315.js" as="script"><link rel="preload" href="/vue3-analysis/assets/js/17.d737fd54.js" as="script"><link rel="prefetch" href="/vue3-analysis/assets/js/10.d9152f7d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/11.48cbb26e.js"><link rel="prefetch" href="/vue3-analysis/assets/js/12.524698e3.js"><link rel="prefetch" href="/vue3-analysis/assets/js/13.2760879c.js"><link rel="prefetch" href="/vue3-analysis/assets/js/14.f967554a.js"><link rel="prefetch" href="/vue3-analysis/assets/js/15.f1bc39ea.js"><link rel="prefetch" href="/vue3-analysis/assets/js/16.563c74f3.js"><link rel="prefetch" href="/vue3-analysis/assets/js/18.3e7e5b73.js"><link rel="prefetch" href="/vue3-analysis/assets/js/19.77a3ce44.js"><link rel="prefetch" href="/vue3-analysis/assets/js/20.bde70dbc.js"><link rel="prefetch" href="/vue3-analysis/assets/js/21.b2b628a1.js"><link rel="prefetch" href="/vue3-analysis/assets/js/22.a072ba3b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/23.37f38ccc.js"><link rel="prefetch" href="/vue3-analysis/assets/js/24.ff4d6150.js"><link rel="prefetch" href="/vue3-analysis/assets/js/25.94a97415.js"><link rel="prefetch" href="/vue3-analysis/assets/js/26.cb21b23b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/27.ecdc3973.js"><link rel="prefetch" href="/vue3-analysis/assets/js/28.8d51d670.js"><link rel="prefetch" href="/vue3-analysis/assets/js/29.4ca9afa9.js"><link rel="prefetch" href="/vue3-analysis/assets/js/3.f955db1b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/30.40a7c4a6.js"><link rel="prefetch" href="/vue3-analysis/assets/js/31.d35e90d4.js"><link rel="prefetch" href="/vue3-analysis/assets/js/32.0795f87d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/33.a990c8fb.js"><link rel="prefetch" href="/vue3-analysis/assets/js/34.21da1856.js"><link rel="prefetch" href="/vue3-analysis/assets/js/35.063396ca.js"><link rel="prefetch" href="/vue3-analysis/assets/js/36.51dede06.js"><link rel="prefetch" href="/vue3-analysis/assets/js/37.fe42948d.js"><link rel="prefetch" href="/vue3-analysis/assets/js/38.ac88b170.js"><link rel="prefetch" href="/vue3-analysis/assets/js/39.a56bb399.js"><link rel="prefetch" href="/vue3-analysis/assets/js/4.0154b038.js"><link rel="prefetch" href="/vue3-analysis/assets/js/40.23e7468b.js"><link rel="prefetch" href="/vue3-analysis/assets/js/41.cdbdb032.js"><link rel="prefetch" href="/vue3-analysis/assets/js/5.106b6465.js"><link rel="prefetch" href="/vue3-analysis/assets/js/6.47c88f4f.js"><link rel="prefetch" href="/vue3-analysis/assets/js/7.88fd05cf.js"><link rel="prefetch" href="/vue3-analysis/assets/js/8.ff6d3cfa.js"><link rel="prefetch" href="/vue3-analysis/assets/js/9.f533e484.js">
+    <link rel="stylesheet" href="/vue3-analysis/assets/css/0.styles.1acb776f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vue3-analysis/" class="home-link router-link-active"><img src="/vue3-analysis/logo.png" alt="vue3解析" class="logo"> <span class="site-name can-hide">vue3解析</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vue3-analysis/v3/idea/vue.html" class="nav-link">
+  Vue3
+</a></div><div class="nav-item"><a href="http://xuguo.xyz/vue-hooks" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-hooks
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/xuguo-code/vue3-analysis/issues" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  我要修正
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/xuguo-code/vue3-analysis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vue3-analysis/v3/idea/vue.html" class="nav-link">
+  Vue3
+</a></div><div class="nav-item"><a href="http://xuguo.xyz/vue-hooks" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-hooks
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/xuguo-code/vue3-analysis/issues" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  我要修正
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/xuguo-code/vue3-analysis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>理念篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>运行时篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/runtime/" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>组件系统</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>异步调度</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>响应式系统篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/reactivity/" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>核心方法</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>更多方法</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>扩展篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/future/" aria-current="page" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>实用特性</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading open"><span>内建组件</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-analysis/v3/future/suspense.html" class="sidebar-link">Suspense</a></li><li><a href="/vue3-analysis/v3/future/teleport.html" aria-current="page" class="active sidebar-link">Teleport</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/teleport.html#本篇目标" class="sidebar-link">本篇目标</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/teleport.html#解析" class="sidebar-link">解析</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/teleport.html#teleport的挂载" class="sidebar-link">Teleport的挂载</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/teleport.html#teleport的更新" class="sidebar-link">Teleport的更新</a></li><li class="sidebar-sub-header"><a href="/vue3-analysis/v3/future/teleport.html#总结" class="sidebar-link">总结</a></li></ul></li></ul></section></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="teleport"><a href="#teleport" class="header-anchor">#</a> <code>Teleport</code></h3> <p>在开发场景中经常会出现需要动态创建<code>Dom</code>元素并且挂载到<code>Dom</code>中当前组件树不可到达的节点位置类似：动态创建弹出框、通知块等等需求；
+在<code>Vue2.x</code>中我们经常采用<code>Vue.extend</code>来创建组件构造函数并且在手动实例化后挂载到<code>Dom</code>中所需要的位置上，这样的方式学习成本较高
+并且需要注意到很多细节类似单例的问题等等，而<code>Vue3</code>为我们带来了更加简介的<code>Teleport</code>组件来实现这一功能，我们直接通过一个实例来看看使用方式：</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Teleport</span> <span class="token attr-name">:to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span><span class="token punctuation">'</span>app<span class="token punctuation">'</span><span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>teleported<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Teleport</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>使用<code>Teleport</code>的情况我们仅需要一个<code>to</code>的属性来指定需要挂载到的地方，就可以完成上述的复杂功能，是不是非常简洁。
+同时<code>Teleport</code>也支持另外一个<code>disabled</code>的属性，来决定<code>Teleport</code>的内容是否要被传送到指定节点处，
+如果<code>disabled === true</code> <code>Teleport</code>会将内容渲染在原组件树中节点存在的位置。</p> <p>了解了<code>Teleport</code>的使用方法和特性后，让我们来看看它的实现方式吧。</p> <h2 id="本篇目标"><a href="#本篇目标" class="header-anchor">#</a> 本篇目标</h2> <ol><li>理解<code>Teleport</code>的运作机制</li></ol> <h2 id="解析"><a href="#解析" class="header-anchor">#</a> 解析</h2> <p>和<code>Suspense</code>类似，<code>Teleport</code>也是仅仅看起来像一个组件，对外部的使用者来说是会作为组件来处理，对于内部的处理却被当做一个接口，
+我们直接从<code>patch</code>阶段对于<code>Teleport</code>处理看起。</p> <h2 id="teleport的挂载"><a href="#teleport的挂载" class="header-anchor">#</a> <code>Teleport</code>的挂载</h2> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/renderer.ts</span>
+<span class="token comment">//...</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>shapeFlag <span class="token operator">&amp;</span> ShapeFlags<span class="token punctuation">.</span><span class="token constant">TELEPORT</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token keyword">type</span> <span class="token class-name"><span class="token keyword">as</span></span> <span class="token keyword">typeof</span> TeleportImpl<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">process</span><span class="token punctuation">(</span>
+    n1 <span class="token keyword">as</span> TeleportVNode<span class="token punctuation">,</span>
+    n2 <span class="token keyword">as</span> TeleportVNode<span class="token punctuation">,</span>
+    container<span class="token punctuation">,</span>
+    anchor<span class="token punctuation">,</span>
+    parentComponent<span class="token punctuation">,</span>
+    parentSuspense<span class="token punctuation">,</span>
+    isSVG<span class="token punctuation">,</span>
+    optimized<span class="token punctuation">,</span>
+    internals
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// ...</span>
+</code></pre></div><p>和<code>Suspense</code>保持一致，对于<code>Teleport</code>的<code>patch</code>也是交由<code>TeleportImpl.process</code>来进行处理的，我们继续看到<code>process</code>函数体：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/components/Teleport.ts</span>
+<span class="token function">process</span><span class="token punctuation">(</span>
+  n1<span class="token operator">:</span> TeleportVNode <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  n2<span class="token operator">:</span> TeleportVNode<span class="token punctuation">,</span>
+  container<span class="token operator">:</span> RendererElement<span class="token punctuation">,</span>
+  anchor<span class="token operator">:</span> RendererNode <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  parentComponent<span class="token operator">:</span> ComponentInternalInstance <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  parentSuspense<span class="token operator">:</span> SuspenseBoundary <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  isSVG<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">,</span>
+  optimized<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">,</span>
+  internals<span class="token operator">:</span> RendererInternals
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 获取宿主平台操作API</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span>
+    mc<span class="token operator">:</span> mountChildren<span class="token punctuation">,</span>
+    pc<span class="token operator">:</span> patchChildren<span class="token punctuation">,</span>
+    pbc<span class="token operator">:</span> patchBlockChildren<span class="token punctuation">,</span>
+    o<span class="token operator">:</span> <span class="token punctuation">{</span> insert<span class="token punctuation">,</span> querySelector<span class="token punctuation">,</span> createText<span class="token punctuation">,</span> createComment <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token operator">=</span> internals
+  <span class="token comment">// 获取disabled 状态</span>
+  <span class="token keyword">const</span> disabled <span class="token operator">=</span> <span class="token function">isTeleportDisabled</span><span class="token punctuation">(</span>n2<span class="token punctuation">.</span>props<span class="token punctuation">)</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> shapeFlag<span class="token punctuation">,</span> children <span class="token punctuation">}</span> <span class="token operator">=</span> n2
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>n1 <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 挂载阶段</span>
+    <span class="token comment">// 创建 注释节点</span>
+    <span class="token keyword">const</span> placeholder <span class="token operator">=</span> <span class="token punctuation">(</span>n2<span class="token punctuation">.</span>el <span class="token operator">=</span> __DEV__
+      <span class="token operator">?</span> <span class="token function">createComment</span><span class="token punctuation">(</span><span class="token string">'teleport start'</span><span class="token punctuation">)</span>
+      <span class="token operator">:</span> <span class="token function">createText</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">const</span> mainAnchor <span class="token operator">=</span> <span class="token punctuation">(</span>n2<span class="token punctuation">.</span>anchor <span class="token operator">=</span> __DEV__
+      <span class="token operator">?</span> <span class="token function">createComment</span><span class="token punctuation">(</span><span class="token string">'teleport end'</span><span class="token punctuation">)</span>
+      <span class="token operator">:</span> <span class="token function">createText</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment">// 先container中插入注释节点</span>
+    <span class="token function">insert</span><span class="token punctuation">(</span>placeholder<span class="token punctuation">,</span> container<span class="token punctuation">,</span> anchor<span class="token punctuation">)</span>
+    <span class="token function">insert</span><span class="token punctuation">(</span>mainAnchor<span class="token punctuation">,</span> container<span class="token punctuation">,</span> anchor<span class="token punctuation">)</span>
+
+    <span class="token comment">// 获取将要 传送到的dom节点</span>
+    <span class="token keyword">const</span> target <span class="token operator">=</span> <span class="token punctuation">(</span>n2<span class="token punctuation">.</span>target <span class="token operator">=</span> <span class="token function">resolveTarget</span><span class="token punctuation">(</span>n2<span class="token punctuation">.</span>props<span class="token punctuation">,</span> querySelector<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment">// 在target中append一个空的文本节点当做 teleport最终insert的相对节点</span>
+    <span class="token keyword">const</span> targetAnchor <span class="token operator">=</span> <span class="token punctuation">(</span>n2<span class="token punctuation">.</span>targetAnchor <span class="token operator">=</span> <span class="token function">createText</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 首先插入 锚点 节点</span>
+      <span class="token function">insert</span><span class="token punctuation">(</span>targetAnchor<span class="token punctuation">,</span> target<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">warn</span><span class="token punctuation">(</span><span class="token string">'Invalid Teleport target on mount:'</span><span class="token punctuation">,</span> target<span class="token punctuation">,</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">typeof</span> target<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">)</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 动态挂载到正确的位置和锚点</span>
+    <span class="token keyword">const</span> <span class="token function-variable function">mount</span> <span class="token operator">=</span> <span class="token punctuation">(</span>container<span class="token operator">:</span> RendererElement<span class="token punctuation">,</span> anchor<span class="token operator">:</span> RendererNode<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Teleport 无论是标准化还是编译而来都只会包含 数组型的children</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>shapeFlag <span class="token operator">&amp;</span> ShapeFlags<span class="token punctuation">.</span><span class="token constant">ARRAY_CHILDREN</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">mountChildren</span><span class="token punctuation">(</span>
+          children <span class="token keyword">as</span> VNodeArrayChildren<span class="token punctuation">,</span>
+          container<span class="token punctuation">,</span>
+          anchor<span class="token punctuation">,</span>
+          parentComponent<span class="token punctuation">,</span>
+          parentSuspense<span class="token punctuation">,</span>
+          isSVG<span class="token punctuation">,</span>
+          optimized
+        <span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>disabled<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 禁用状态 挂载到组件所在dom树节点位置</span>
+      <span class="token function">mount</span><span class="token punctuation">(</span>container<span class="token punctuation">,</span> mainAnchor<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 挂载到 目标节点下</span>
+      <span class="token function">mount</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> targetAnchor<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 更新</span>
+  <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</code></pre></div><p>在挂载过程中出现了两种概念<code>container</code>和<code>targte</code>我们需要先理解这两个概念：</p> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <ul><li><p><code>container</code></p> <p><code>Teleport</code>组件在<code>Dom Tree</code>中原本存在的位置的父节点</p></li> <li><p><code>targte</code></p> <p><code>Teleport</code>目标挂载的节点</p></li></ul></div> <p>有了这两个节点的认识整个挂载流程就非常简单了：</p> <h4 id="_1-向container容器中插入注释节点标识teleport原有位置"><a href="#_1-向container容器中插入注释节点标识teleport原有位置" class="header-anchor">#</a> 1. 向<code>container</code>容器中插入注释节点标识<code>Teleport</code>原有位置</h4> <h4 id="_2-解析target并且安插锚点"><a href="#_2-解析target并且安插锚点" class="header-anchor">#</a> 2. 解析<code>Target</code>并且安插锚点</h4> <p>解析<code>target</code>的过程我们可以详细看看</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code>  <span class="token comment">// runtime-core/components/Teleport.ts</span>
+  <span class="token keyword">const</span> resolveTarget <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token constant">T</span> <span class="token operator">=</span> RendererElement<span class="token operator">&gt;</span><span class="token punctuation">(</span>
+    props<span class="token operator">:</span> TeleportProps <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+    select<span class="token operator">:</span> RendererOptions<span class="token punctuation">[</span><span class="token string">'querySelector'</span><span class="token punctuation">]</span>
+  <span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span> <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> targetSelector <span class="token operator">=</span> props <span class="token operator">&amp;&amp;</span> props<span class="token punctuation">.</span>to
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isString</span><span class="token punctuation">(</span>targetSelector<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 字符串类型to 需要select选择器</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>select<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        __DEV__ <span class="token operator">&amp;&amp;</span>
+          <span class="token function">warn</span><span class="token punctuation">(</span>
+            <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Current renderer does not support string target for Teleports. </span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+              <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">(missing querySelector renderer option)</span><span class="token template-punctuation string">`</span></span>
+          <span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 获取 targte</span>
+        <span class="token keyword">const</span> target <span class="token operator">=</span> <span class="token function">select</span><span class="token punctuation">(</span>targetSelector<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          __DEV__ <span class="token operator">&amp;&amp;</span>
+            <span class="token function">warn</span><span class="token punctuation">(</span>
+              <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Failed to locate Teleport target with selector &quot;</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>targetSelector<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&quot;. </span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+                <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Note the target element must exist before the component is mounted - </span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+                <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">i.e. the target cannot be rendered by the component itself, and </span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+                <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">ideally should be outside of the entire Vue component tree.</span><span class="token template-punctuation string">`</span></span>
+            <span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> target <span class="token keyword">as</span> <span class="token builtin">any</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// to 为 dom元素</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__ <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>targetSelector<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">warn</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Invalid Teleport target: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>targetSelector<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> targetSelector <span class="token keyword">as</span> <span class="token builtin">any</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</code></pre></div><p>可以看到<code>props.to</code>支持传递两种类型的<code>querySelector</code>支持的选择器类型以及<code>Dom</code>节点（<code>web</code>平台）；
+当我们拿到<code>target</code>后会向其追加一个空文本节点，作为之后<code>patchChildren</code>的锚点。</p> <h4 id="_3-挂载"><a href="#_3-挂载" class="header-anchor">#</a> 3. 挂载</h4> <p>挂载过程主要依据<code>disabled</code>的状态来决定挂载到何处，<code>mount</code>函数接受挂载位置的父容器以及锚点节点，
+来进行<code>mountChildren</code>将<code>Teleport</code>的内容挂载到正确的位置。</p> <p>这就是整个挂载的流程还是非常简单的，我们学习到了<code>props.to</code>的可接受类型，以及<code>disabled</code>的行为特性。</p> <h2 id="teleport的更新"><a href="#teleport的更新" class="header-anchor">#</a> <code>Teleport</code>的更新</h2> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// runtime-core/components/Teleport.ts</span>
+<span class="token comment">// update content</span>
+n2<span class="token punctuation">.</span>el <span class="token operator">=</span> n1<span class="token punctuation">.</span>el
+<span class="token keyword">const</span> mainAnchor <span class="token operator">=</span> <span class="token punctuation">(</span>n2<span class="token punctuation">.</span>anchor <span class="token operator">=</span> n1<span class="token punctuation">.</span>anchor<span class="token punctuation">)</span><span class="token operator">!</span>
+<span class="token keyword">const</span> target <span class="token operator">=</span> <span class="token punctuation">(</span>n2<span class="token punctuation">.</span>target <span class="token operator">=</span> n1<span class="token punctuation">.</span>target<span class="token punctuation">)</span><span class="token operator">!</span>
+<span class="token keyword">const</span> targetAnchor <span class="token operator">=</span> <span class="token punctuation">(</span>n2<span class="token punctuation">.</span>targetAnchor <span class="token operator">=</span> n1<span class="token punctuation">.</span>targetAnchor<span class="token punctuation">)</span><span class="token operator">!</span>
+<span class="token keyword">const</span> wasDisabled <span class="token operator">=</span> <span class="token function">isTeleportDisabled</span><span class="token punctuation">(</span>n1<span class="token punctuation">.</span>props<span class="token punctuation">)</span>
+<span class="token keyword">const</span> currentContainer <span class="token operator">=</span> wasDisabled <span class="token operator">?</span> container <span class="token operator">:</span> target
+<span class="token keyword">const</span> currentAnchor <span class="token operator">=</span> wasDisabled <span class="token operator">?</span> mainAnchor <span class="token operator">:</span> targetAnchor
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>n2<span class="token punctuation">.</span>dynamicChildren<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 基于 block 的patch</span>
+  <span class="token function">patchBlockChildren</span><span class="token punctuation">(</span>
+    n1<span class="token punctuation">.</span>dynamicChildren<span class="token operator">!</span><span class="token punctuation">,</span>
+    n2<span class="token punctuation">.</span>dynamicChildren<span class="token punctuation">,</span>
+    currentContainer<span class="token punctuation">,</span>
+    parentComponent<span class="token punctuation">,</span>
+    parentSuspense<span class="token punctuation">,</span>
+    isSVG
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>optimized<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">patchChildren</span><span class="token punctuation">(</span>
+    n1<span class="token punctuation">,</span>
+    n2<span class="token punctuation">,</span>
+    currentContainer<span class="token punctuation">,</span>
+    currentAnchor<span class="token punctuation">,</span>
+    parentComponent<span class="token punctuation">,</span>
+    parentSuspense<span class="token punctuation">,</span>
+    isSVG
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>disabled<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>wasDisabled<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// enabled -&gt; disabled</span>
+    <span class="token comment">// 移动到 container 容器</span>
+    <span class="token function">moveTeleport</span><span class="token punctuation">(</span>
+      n2<span class="token punctuation">,</span>
+      container<span class="token punctuation">,</span>
+      mainAnchor<span class="token punctuation">,</span>
+      internals<span class="token punctuation">,</span>
+      TeleportMoveTypes<span class="token punctuation">.</span><span class="token constant">TOGGLE</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token comment">// target 改变了</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>n2<span class="token punctuation">.</span>props <span class="token operator">&amp;&amp;</span> n2<span class="token punctuation">.</span>props<span class="token punctuation">.</span>to<span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token punctuation">(</span>n1<span class="token punctuation">.</span>props <span class="token operator">&amp;&amp;</span> n1<span class="token punctuation">.</span>props<span class="token punctuation">.</span>to<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> nextTarget <span class="token operator">=</span> <span class="token punctuation">(</span>n2<span class="token punctuation">.</span>target <span class="token operator">=</span> <span class="token function">resolveTarget</span><span class="token punctuation">(</span>
+      n2<span class="token punctuation">.</span>props<span class="token punctuation">,</span>
+      querySelector
+    <span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>nextTarget<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">moveTeleport</span><span class="token punctuation">(</span>
+        n2<span class="token punctuation">,</span>
+        nextTarget<span class="token punctuation">,</span>
+        <span class="token keyword">null</span><span class="token punctuation">,</span>
+        internals<span class="token punctuation">,</span>
+        TeleportMoveTypes<span class="token punctuation">.</span><span class="token constant">TARGET_CHANGE</span>
+      <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">warn</span><span class="token punctuation">(</span>
+        <span class="token string">'Invalid Teleport target on update:'</span><span class="token punctuation">,</span>
+        target<span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">typeof</span> target<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">)</span><span class="token template-punctuation string">`</span></span>
+      <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>wasDisabled<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// disabled -&gt; enabled</span>
+    <span class="token comment">// 移动到 target 容器</span>
+    <span class="token function">moveTeleport</span><span class="token punctuation">(</span>
+      n2<span class="token punctuation">,</span>
+      target<span class="token punctuation">,</span>
+      targetAnchor<span class="token punctuation">,</span>
+      internals<span class="token punctuation">,</span>
+      TeleportMoveTypes<span class="token punctuation">.</span><span class="token constant">TOGGLE</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>更新的过程主要分为两部分：</p> <h4 id="_1-patchchildren获取最新的子树"><a href="#_1-patchchildren获取最新的子树" class="header-anchor">#</a> 1. <code>patchChildren</code>获取最新的子树</h4> <h4 id="_2-处理disabled状态"><a href="#_2-处理disabled状态" class="header-anchor">#</a> 2. 处理<code>disabled</code>状态</h4> <p>对<code>disabled</code>的处理核心就在感知出前后状态的转变，主要有四种情况：</p> <ul><li><code>disabled -&gt; enabled</code></li> <li><code>enabled -&gt; disabled</code></li> <li><code>disabled -&gt; disabled</code></li> <li><code>enabled -&gt; enabled</code></li></ul> <p>能看到源码中采用了一个双重判断来处理，当前状态下为<code>disabled</code>的时候仅需要处理原状态为<code>enabled</code>的情况将<code>Teleport</code>移到<code>container</code>容器下。</p> <p>当前状态为<code>enabled</code>的情况，首先比对的就是<code>target</code>是否发生了改变，如果<code>target</code>发生了变更就将<code>Teleport</code>移动到新的<code>target</code>之中；另一种情况就是<code>disabled -&gt; enabled</code>将<code>Teleport</code>移动到<code>target</code>即可。</p> <p><code>Teleport</code>的更新流程基本就是如此，我们需要掌握的就是<code>disabled</code>状态的不同<code>Teleport</code>内容会挂载到不同容器之下。</p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>这是<code>Vue3</code>为我们带来的<code>Teleport</code>特性，用非常简洁的接口实现了之前复杂的功能，核心的<code>props</code>只有<code>to</code>和<code>disabled</code>；
+与组件的挂载更新基本上是一致的，只是在挂载点的处理上做了扩展；可以看出复杂的功能如果从内部来实现是很有机会简化使用方式的。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最后一次更新:</span> <span class="time">9/24/2020, 6:50:56 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/vue3-analysis/v3/future/suspense.html" class="prev">
+        Suspense
+      </a></span> <!----></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/vue3-analysis/assets/js/app.3e15c670.js" defer></script><script src="/vue3-analysis/assets/js/2.f2c58315.js" defer></script><script src="/vue3-analysis/assets/js/17.d737fd54.js" defer></script>
+  </body>
+</html>
