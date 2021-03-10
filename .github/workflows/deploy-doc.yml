@@ -34,7 +34,7 @@ jobs:
         env:
           CI: true
   sync:
-    needs: build-and-deploy
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Sync to Gitee
