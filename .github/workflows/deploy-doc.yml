@@ -53,5 +53,5 @@ jobs:
         with:
           gitee-username: a-sir
           gitee-password: ${{ secrets.GITEE_PASSWORD }}
-          gitee-repo: a-sir/vue3-analysis
+          gitee-repo: vue3-analysis
           branch: gh_pages
