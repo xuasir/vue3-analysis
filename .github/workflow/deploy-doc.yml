@@ -1,0 +1,57 @@
+name: Deploy Doc CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [15.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: yarn intall, doc build
+        run: |
+          npm install yarn -g
+          yarn
+          yarn build
+      - name: deploy docs
+        uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dist
+          CLEAN: true
+        env:
+          CI: true
+  sync:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync to Gitee
+        uses: wearerequired/git-mirror-action@master
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }}
+        with:
+          source-repo: "git@github.com:xus-code/vue3-analysis.git"
+          destination-repo: "git@gitee.com:a-sir/vue3-analysis.git"
+  reload-pages:
+    needs: sync
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Gitee Pages
+        uses: yanglbme/gitee-pages-action@main
+        with:
+          gitee-username: a-sir
+          gitee-password: ${{ secrets.GITEE_PASSWORD }}
+          gitee-repo: a-sir/vue3-analysis
+          branch: gh_pages
