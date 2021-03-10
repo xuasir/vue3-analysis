@@ -11,7 +11,7 @@ module.exports = {
     docsDir: "./",
     lastUpdated: "最后一次更新",
     nav: [
-      { text: "Vue3", link: "/v3/idea/vue" },
+      { text: "国内镜像", link: "https://a-sir.gitee.io/vue3-analysis" },
       { text: "vue-reuse", link: "http://xuguo.xyz/vue-reuse" },
       {
         text: "我要修正",
